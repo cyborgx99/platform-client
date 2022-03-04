@@ -4,10 +4,11 @@
     "es2021": true
   },
   "extends": [
+    "eslint:recommended",
     "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:react-hooks/recommended",
-    "plugin:jsx-a11y/recommended",
-    "plugin:import/typescript"
+    "plugin:jsx-a11y/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -17,7 +18,13 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint", "unused-imports"],
+  "plugins": [
+    "react",
+    "react-hooks",
+    "unused-imports",
+    "@typescript-eslint",
+    "jsx-a11y"
+  ],
   "rules": {
     "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": [
