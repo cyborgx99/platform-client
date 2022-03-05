@@ -1,4 +1,5 @@
 import { lazy } from 'react';
+
 import { paths } from './pathKeys';
 import { IRouteInterface } from './types';
 
