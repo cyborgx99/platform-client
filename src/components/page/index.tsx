@@ -1,12 +1,31 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
+import React, { useState } from 'react';
 
-const PageLayout: React.FC = () => {
+import Navbar from '../navbar';
+import {
+  PageContainer,
+  PageContent,
+  PageFooter,
+  PageHeader,
+  ShowIcon,
+} from './styles';
+
+const PageLayout: React.FC = ({ children }) => {
+  const [isNavbarShown, setIsNavbarShown] = useState(false);
+
+  const toggleNavbar = () => {
+    setIsNavbarShown((prev) => !prev);
+  };
+
   return (
-    <div>
-      Page Layout
-      <Outlet />
-    </div>
+    <PageContainer>
+      <Navbar isShown={isNavbarShown} onToggle={toggleNavbar} />
+      <PageHeader onClick={toggleNavbar}>
+        <ShowIcon />
+        Header
+      </PageHeader>
+      <PageContent>{children}</PageContent>
+      <PageFooter>Footer</PageFooter>
+    </PageContainer>
   );
 };
 
