@@ -1,13 +1,9 @@
+import { ReactComponent as Show } from 'assets/icons/dial.svg';
+import IconComponent from 'components/icon';
 import React, { useState } from 'react';
 
 import Navbar from '../navbar';
-import {
-  PageContainer,
-  PageContent,
-  PageFooter,
-  PageHeader,
-  ShowIcon,
-} from './styles';
+import { PageContainer, PageContent, PageFooter, PageHeader } from './styles';
 
 const PageLayout: React.FC = ({ children }) => {
   const [isNavbarShown, setIsNavbarShown] = useState(false);
@@ -19,9 +15,8 @@ const PageLayout: React.FC = ({ children }) => {
   return (
     <PageContainer>
       <Navbar isShown={isNavbarShown} onToggle={toggleNavbar} />
-      <PageHeader onClick={toggleNavbar}>
-        <ShowIcon />
-        Header
+      <PageHeader>
+        <IconComponent title='Show navbar' Svg={Show} onClick={toggleNavbar} />
       </PageHeader>
       <PageContent>{children}</PageContent>
       <PageFooter>Footer</PageFooter>

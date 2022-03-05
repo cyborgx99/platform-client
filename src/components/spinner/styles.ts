@@ -12,8 +12,8 @@ const spin = keyframes`
 `;
 
 export const Loader = styled.div`
-  border: 0.5rem solid #f3f3f3;
-  border-top: 0.5rem solid #3498db;
+  border: 0.5rem solid ${({ theme }) => theme.colors.gray};
+  border-top: 0.5rem solid ${({ theme }) => theme.colors.primary};
   border-radius: 50%;
   width: 2.5rem;
   height: 2.5rem;

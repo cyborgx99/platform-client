@@ -1,4 +1,3 @@
-import { ReactComponent as Show } from 'assets/icons/dial.svg';
 import styled from 'styled-components';
 
 export const PageContainer = styled.div`
@@ -18,24 +17,11 @@ export const PageContent = styled.section`
 export const PageFooter = styled.footer`
   min-height: 1rem;
   background-color: ${({ theme }) => theme.colors.primary};
+  padding: 1rem;
 `;
 
 export const PageHeader = styled.header`
   min-height: 1rem;
   background-color: green;
-`;
-
-export const ShowIcon = styled(Show)`
-  width: 1.5rem;
-  height: 1.5rem;
-
-  path {
-    fill: ${({ theme }) => theme.colors.primary};
-  }
-
-  & :hover {
-    path {
-      fill: ${({ theme }) => theme.colors.primaryHover};
-    }
-  }
+  padding: 1rem;
 `;
