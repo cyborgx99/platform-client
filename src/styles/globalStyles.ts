@@ -1,11 +1,13 @@
 import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
+
 /* Box sizing rules */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+  font-family: 'Roboto', sans-serif
 }
 
 
