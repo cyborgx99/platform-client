@@ -11,12 +11,22 @@ export const PageContainer = styled.div`
 
 export const PageContent = styled.section`
   flex: 1;
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.white};
+  position: relative;
+`;
+
+export const PageContentScrollable = styled.div`
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
 `;
 
 export const PageFooter = styled.footer`
   min-height: 1rem;
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.primary.main};
   padding: 1rem;
 `;
 

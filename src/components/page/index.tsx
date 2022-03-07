@@ -3,7 +3,13 @@ import IconComponent from 'components/icon';
 import React, { useState } from 'react';
 
 import Navbar from '../navbar';
-import { PageContainer, PageContent, PageFooter, PageHeader } from './styles';
+import {
+  PageContainer,
+  PageContent,
+  PageContentScrollable,
+  PageFooter,
+  PageHeader,
+} from './styles';
 
 const PageLayout: React.FC = ({ children }) => {
   const [isNavbarShown, setIsNavbarShown] = useState(false);
@@ -18,7 +24,9 @@ const PageLayout: React.FC = ({ children }) => {
       <PageHeader>
         <IconComponent title='Show navbar' Svg={Show} onClick={toggleNavbar} />
       </PageHeader>
-      <PageContent>{children}</PageContent>
+      <PageContent>
+        <PageContentScrollable>{children}</PageContentScrollable>
+      </PageContent>
       <PageFooter>Footer</PageFooter>
     </PageContainer>
   );
