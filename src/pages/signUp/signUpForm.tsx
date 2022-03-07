@@ -1,12 +1,15 @@
 import { useMutation } from '@apollo/client';
+import ButtonComponent from 'components/button';
 import FormInput from 'components/input';
 import { Formik } from 'formik';
 import React from 'react';
+import * as yup from 'yup';
 
 import { SIGN_UP } from './mutation';
 import { StyledForm } from './styles';
+import { SignUpFormValues } from './types';
 
-const initialValues = {
+const initialValues: SignUpFormValues = {
   name: '',
   lastName: '',
   email: '',
@@ -14,31 +17,47 @@ const initialValues = {
   confirmPassword: '',
 };
 
-type values = {
-  name: string;
-  lastName: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-};
+const signUpValidationSchema = yup.object({
+  name: yup.string().required().min(2).max(32),
+  lastName: yup.string().required().min(2).max(32),
+  email: yup.string().required().email(),
+  password: yup
+    .string()
+    .required()
+    .max(32)
+    .matches(
+      /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/g,
+      'Password must have at least 6 characters, one letter, and one number.'
+    ),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref('password'), null], 'Passwords must match.'),
+});
 
 const SignUpForm = () => {
-  const [signUp] = useMutation(SIGN_UP, {
+  const [signUp, { loading, error }] = useMutation(SIGN_UP, {
     onCompleted: (d) => {
       console.log(d);
     },
   });
 
-  const handleSubmit = (values: values) => {
-    signUp({
-      variables: {
-        input: { ...values, confirmPassword: undefined },
-      },
-    });
+  const handleSubmit = async (values: SignUpFormValues) => {
+    try {
+      await signUp({
+        variables: {
+          input: { ...values, confirmPassword: undefined },
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
-    <Formik onSubmit={handleSubmit} initialValues={initialValues}>
+    <Formik<SignUpFormValues>
+      onSubmit={handleSubmit}
+      initialValues={initialValues}
+      validationSchema={signUpValidationSchema}>
       <StyledForm>
         <FormInput label='Name' name='name' type='text' />
         <FormInput label='Last name' name='lastName' type='text' />
@@ -49,7 +68,10 @@ const SignUpForm = () => {
           name='confirmPassword'
           type='password'
         />
-        <button type='submit'>Submit</button>
+        <ButtonComponent isLoading={loading} type='submit' variant='primary'>
+          Sign up
+        </ButtonComponent>
+        <div>{error?.message}</div>
       </StyledForm>
     </Formik>
   );
