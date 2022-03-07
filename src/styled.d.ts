@@ -2,13 +2,11 @@ import 'styled-components';
 declare module 'styled-components' {
   export interface DefaultTheme {
     colors: {
-      primary: string;
-      primaryActive: string;
-      primaryHover: string;
-      secondary: string;
+      primary: { main: string; hover: string; active: string };
+      secondary: { main: string; hover: string; active: string };
       text: string;
       gray: string;
-      error: string;
+      error: { main: string; hover: string; active: string };
       success: string;
       white: string;
     };

@@ -11,7 +11,7 @@ export const IconContainer = styled.div<{
     cursor: pointer;
 
     path {
-      fill: ${({ theme }) => theme.colors.primaryHover};
+      fill: ${({ theme }) => theme.colors.primary.hover};
     }
   }
 
@@ -20,7 +20,7 @@ export const IconContainer = styled.div<{
     height: 1.5rem;
 
     path {
-      fill: ${({ theme }) => theme.colors.primary};
+      fill: ${({ theme }) => theme.colors.primary.main};
     }
 
     ${({ $iconStyle }) => $iconStyle}

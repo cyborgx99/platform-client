@@ -13,6 +13,7 @@ export const NavigationContainer = styled.nav<{ $isShown: boolean }>`
     $isShown ? 'translate(0, 0)' : 'translate(-100%, 0)'};
   transition: transform 0.5s ease-out;
   padding: 1rem;
+  z-index: 1;
 `;
 
 export const NavigationTopPart = styled.div`
@@ -43,14 +44,14 @@ export const LinkText = styled.span<{ $isActive: boolean }>`
   border-radius: 4px;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.primary};
+    background-color: ${({ theme }) => theme.colors.primary.hover};
     color: ${({ theme }) => theme.colors.white};
   }
 
   ${({ $isActive, theme }) =>
     $isActive &&
     css`
-      background-color: ${theme.colors.primary};
+      background-color: ${theme.colors.primary.active};
       color: ${theme.colors.white};
     `}
 `;

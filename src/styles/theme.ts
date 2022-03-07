@@ -2,14 +2,24 @@ import { css, DefaultTheme } from 'styled-components';
 
 const myTheme: DefaultTheme = {
   colors: {
-    primary: '#2D31FA',
-    primaryActive: '#0509e6',
-    primaryHover: '#565afb',
-    secondary: '#051367',
+    primary: {
+      main: '#134091',
+      active: '#205BB5',
+      hover: '#0C2E78',
+    },
+    secondary: {
+      main: '#555770',
+      active: '#8E90A6',
+      hover: '#28293D',
+    },
     text: '#151D3B',
-    gray: '#ECECEC',
+    gray: '#E3E4EB',
     white: '#FFFFFF',
-    error: '#FF1818',
+    error: {
+      main: '#DB2A30',
+      hover: '#B81D2F',
+      active: '#FF4539',
+    },
     success: '#6EBF8B',
   },
   typography: {
