@@ -1,3 +1,4 @@
+import { AuthContextProvider } from 'auth';
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 
@@ -9,7 +10,9 @@ const App = () => {
   return (
     <ThemeProvider theme={myTheme}>
       <GlobalCSS />
-      <AppRoutes />
+      <AuthContextProvider>
+        <AppRoutes />
+      </AuthContextProvider>
     </ThemeProvider>
   );
 };

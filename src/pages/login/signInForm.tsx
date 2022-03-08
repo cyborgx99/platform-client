@@ -1,5 +1,6 @@
 import { useMutation } from '@apollo/client';
 import { SIGN_IN } from 'apollo/graphql';
+import { useAuth } from 'auth';
 import ButtonComponent from 'components/button';
 import FormInput from 'components/input';
 import { Formik } from 'formik';
@@ -27,9 +28,10 @@ const signInValidationSchema = yup.object({
 });
 
 const SignInForm = () => {
+  const { refetchUser } = useAuth();
   const [signIn, { loading, error }] = useMutation(SIGN_IN, {
-    onCompleted: (d) => {
-      console.log(d);
+    onCompleted: () => {
+      refetchUser();
     },
   });
 
