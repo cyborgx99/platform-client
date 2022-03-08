@@ -3,6 +3,7 @@ import React from 'react';
 
 const client = new ApolloClient({
   uri: process.env.REACT_APP_APOLLO_SERVER_URL,
+  credentials: 'include',
   cache: new InMemoryCache(),
 });
 
