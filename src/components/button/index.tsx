@@ -2,15 +2,16 @@ import Spinner from 'components/spinner';
 import React from 'react';
 
 import { StyledButton } from './styles';
-import { IButtonProps } from './types';
+import { ButtonProps } from './types';
 
-const ButtonComponent: React.FC<IButtonProps> = ({
+const ButtonComponent: React.FC<ButtonProps> = ({
   type = 'submit',
   isLoading,
   children,
+  onClick,
 }) => {
   return (
-    <StyledButton disabled={isLoading} type={type}>
+    <StyledButton onClick={onClick} disabled={isLoading} type={type}>
       {isLoading ? <Spinner size='small' /> : children}
     </StyledButton>
   );
