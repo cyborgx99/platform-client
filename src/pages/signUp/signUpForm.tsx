@@ -1,11 +1,11 @@
 import { useMutation } from '@apollo/client';
+import { SIGN_UP } from 'apollo/graphql';
 import ButtonComponent from 'components/button';
 import FormInput from 'components/input';
 import { Formik } from 'formik';
 import React from 'react';
 import * as yup from 'yup';
 
-import { SIGN_UP } from './mutation';
 import { StyledForm } from './styles';
 import { SignUpFormValues } from './types';
 
@@ -41,16 +41,12 @@ const SignUpForm = () => {
     },
   });
 
-  const handleSubmit = async (values: SignUpFormValues) => {
-    try {
-      await signUp({
-        variables: {
-          input: { ...values, confirmPassword: undefined },
-        },
-      });
-    } catch (error) {
-      console.log(error);
-    }
+  const handleSubmit = (values: SignUpFormValues) => {
+    signUp({
+      variables: {
+        input: { ...values, confirmPassword: undefined },
+      },
+    });
   };
 
   return (
