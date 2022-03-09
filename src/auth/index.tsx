@@ -7,6 +7,7 @@ import { IAuthContext, IAuthContextProviderProps } from './types';
 
 const AuthContext = createContext<IAuthContext>({
   user: undefined,
+  loading: true,
   logout: () => {
     throw new Error('Called "logout" without provider.');
   },
@@ -18,15 +19,13 @@ const AuthContext = createContext<IAuthContext>({
 export const AuthContextProvider = ({
   children,
 }: IAuthContextProviderProps) => {
-  const {
-    data,
-    loading: _loading,
-    error: _error,
-    refetch,
-  } = useQuery<Pick<Query, 'getUser'>>(GET_USER, {
-    notifyOnNetworkStatusChange: true,
-    fetchPolicy: 'network-only',
-  });
+  const { data, loading, refetch } = useQuery<Pick<Query, 'getUser'>>(
+    GET_USER,
+    {
+      notifyOnNetworkStatusChange: true,
+      fetchPolicy: 'network-only',
+    }
+  );
 
   const refetchUser = () => {
     refetch();
@@ -37,6 +36,7 @@ export const AuthContextProvider = ({
     logout: () => {
       console.log('log out');
     },
+    loading,
     refetchUser,
   };
 

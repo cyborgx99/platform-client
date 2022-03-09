@@ -10,7 +10,7 @@ import * as yup from 'yup';
 import { StyledForm } from './styles';
 import { ISignInFormValues } from './types';
 
-const initialValues = {
+const initialValues: ISignInFormValues = {
   email: '',
   password: '',
 };
@@ -51,11 +51,9 @@ const SignInForm = () => {
       <StyledForm>
         <FormInput label='Email' name='email' type='email' />
         <FormInput label='Password' name='password' type='password' />
-
         <ButtonComponent isLoading={loading} type='submit' variant='primary'>
           Sign in
         </ButtonComponent>
-
         <div>{error?.message}</div>
       </StyledForm>
     </Formik>
