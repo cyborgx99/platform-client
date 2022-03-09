@@ -13,8 +13,14 @@ export type Scalars = {
   Float: number;
 };
 
+export type LogoutResponse = {
+  __typename?: 'LogoutResponse';
+  success: Scalars['Boolean'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
+  logout: LogoutResponse;
   signIn: SignInResponse;
   signUp: SignUpResponse;
 };
