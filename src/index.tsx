@@ -1,3 +1,5 @@
+import './translations/i18n';
+
 import ApolloClientProvider from 'apollo';
 import React from 'react';
 import ReactDOM from 'react-dom';
