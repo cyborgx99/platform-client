@@ -32,6 +32,7 @@ export const PageFooter = styled.footer`
 
 export const PageHeader = styled.header`
   min-height: 1rem;
-  background-color: green;
   padding: 1rem;
+  display: flex;
+  justify-content: space-between;
 `;
