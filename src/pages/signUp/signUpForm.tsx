@@ -2,8 +2,10 @@ import { useMutation } from '@apollo/client';
 import { SIGN_UP } from 'apollo/graphql';
 import ButtonComponent from 'components/button';
 import FormInput from 'components/input';
+import TextSpan from 'components/span';
 import { Formik } from 'formik';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import * as yup from 'yup';
 
 import { StyledForm } from './styles';
@@ -35,6 +37,7 @@ const signUpValidationSchema = yup.object({
 });
 
 const SignUpForm = () => {
+  const { t } = useTranslation();
   const [signUp, { loading, error }] = useMutation(SIGN_UP, {
     onCompleted: (d) => {
       console.log(d);
@@ -49,25 +52,35 @@ const SignUpForm = () => {
     });
   };
 
+  console.log(t('signIn.hello'));
+
   return (
     <Formik<SignUpFormValues>
       onSubmit={handleSubmit}
       initialValues={initialValues}
       validationSchema={signUpValidationSchema}>
       <StyledForm>
-        <FormInput label='Name' name='name' type='text' />
-        <FormInput label='Last name' name='lastName' type='text' />
-        <FormInput label='Email' name='email' type='email' />
-        <FormInput label='Password' name='password' type='password' />
+        <FormInput label={t('pages.signUp.name')} name='name' type='text' />
         <FormInput
-          label='Confirm password'
+          label={t('pages.signUp.lastName')}
+          name='lastName'
+          type='text'
+        />
+        <FormInput label={t('pages.signUp.email')} name='email' type='email' />
+        <FormInput
+          label={t('pages.signUp.password')}
+          name='password'
+          type='password'
+        />
+        <FormInput
+          label={t('pages.signUp.confirmPassword')}
           name='confirmPassword'
           type='password'
         />
         <ButtonComponent isLoading={loading} type='submit' variant='primary'>
-          Sign up
+          {t('pages.signUp.signUpButton')}
         </ButtonComponent>
-        <div>{error?.message}</div>
+        <TextSpan textColor='error'>{error?.message ?? ''}</TextSpan>
       </StyledForm>
     </Formik>
   );

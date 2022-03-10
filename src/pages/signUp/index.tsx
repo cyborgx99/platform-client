@@ -6,7 +6,6 @@ import SignUpForm from './signUpForm';
 const SignUpPage = () => {
   return (
     <PageLayout>
-      <div>SignUpPage</div>
       <SignUpForm />
     </PageLayout>
   );

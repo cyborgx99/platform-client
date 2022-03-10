@@ -7,7 +7,7 @@ import { unathorizedRoutes } from './unathorizedRoutes';
 const AppRoutes = () => {
   return (
     <BrowserRouter>
-      <Suspense fallback={<Spinner />}>
+      <Suspense fallback={<Spinner type='animated' />}>
         <Routes>
           {unathorizedRoutes.map(({ path, Component }, i) => (
             <Route

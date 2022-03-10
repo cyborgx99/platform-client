@@ -1,13 +1,12 @@
 import PageLayout from 'components/page';
 import React from 'react';
 
-import SignInForm from './signInForm';
+import LoginForm from './loginForm';
 
 const LoginPage = () => {
   return (
     <PageLayout>
-      <div>Login3Page</div>
-      <SignInForm />
+      <LoginForm />
     </PageLayout>
   );
 };
