@@ -1,8 +1,13 @@
 import { useMutation } from '@apollo/client';
 import { SIGN_IN } from 'apollo/graphql';
+import {
+  Mutation,
+  SignInMutationVariables,
+} from 'apollo/graphql/generated.types';
 import { useAuth } from 'auth';
 import ButtonComponent from 'components/button';
 import FormInput from 'components/input';
+import TextSpan from 'components/span';
 import { Formik } from 'formik';
 import React from 'react';
 import * as yup from 'yup';
@@ -28,14 +33,17 @@ const signInValidationSchema = yup.object({
 });
 
 const SignInForm = () => {
-  const { refetchUser } = useAuth();
-  const [signIn, { loading, error }] = useMutation(SIGN_IN, {
+  const { refetch } = useAuth();
+  const [signIn, { loading, error }] = useMutation<
+    Pick<Mutation, 'signIn'>,
+    SignInMutationVariables
+  >(SIGN_IN, {
     onCompleted: () => {
-      refetchUser();
+      refetch();
     },
   });
 
-  const handleSignIn = async (values: ISignInFormValues) => {
+  const handleSignIn = (values: ISignInFormValues) => {
     signIn({
       variables: {
         input: values,
@@ -54,7 +62,9 @@ const SignInForm = () => {
         <ButtonComponent isLoading={loading} type='submit' variant='primary'>
           Sign in
         </ButtonComponent>
-        <div>{error?.message}</div>
+        <TextSpan textType='lightText' textColor='error'>
+          {error?.message ?? ''}
+        </TextSpan>
       </StyledForm>
     </Formik>
   );
