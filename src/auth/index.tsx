@@ -8,11 +8,8 @@ import { IAuthContext, IAuthContextProviderProps } from './types';
 const AuthContext = createContext<IAuthContext>({
   user: undefined,
   loading: true,
-  logout: () => {
-    throw new Error('Called "logout" without provider.');
-  },
-  refetchUser: () => {
-    throw new Error('Called "logout" without provider.');
+  refetch: () => {
+    throw new Error('Called "refetch" without provider.');
   },
 });
 
@@ -27,17 +24,10 @@ export const AuthContextProvider = ({
     }
   );
 
-  const refetchUser = () => {
-    refetch();
-  };
-
   const value: IAuthContext = {
     user: data?.getUser,
-    logout: () => {
-      console.log('log out');
-    },
     loading,
-    refetchUser,
+    refetch,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
