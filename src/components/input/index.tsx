@@ -1,12 +1,8 @@
+import TextSpan from 'components/span';
 import { useField } from 'formik';
 import React from 'react';
 
-import {
-  InputContainer,
-  StyledError,
-  StyledInput,
-  StyledLabel,
-} from './styles';
+import { InputContainer, StyledInput, StyledLabel } from './styles';
 import { IFormInputProps } from './types';
 
 const FormInput = ({ label = '', type = 'text', name }: IFormInputProps) => {
@@ -16,7 +12,9 @@ const FormInput = ({ label = '', type = 'text', name }: IFormInputProps) => {
     <InputContainer>
       <StyledLabel>{label}</StyledLabel>
       <StyledInput {...field} name={name} type={type} />
-      <StyledError>{touched ? error : ''}</StyledError>
+      <TextSpan textType='lightText' textColor='error'>
+        {touched && error ? error : ''}
+      </TextSpan>
     </InputContainer>
   );
 };

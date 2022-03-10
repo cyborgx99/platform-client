@@ -23,8 +23,3 @@ export const StyledInput = styled.input`
 export const StyledLabel = styled.label`
   ${({ theme }) => theme.typography.regularText};
 `;
-
-export const StyledError = styled.span`
-  ${({ theme }) => theme.typography.lightText};
-  color: ${({ theme }) => theme.colors.error.main};
-`;
