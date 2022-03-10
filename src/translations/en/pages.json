@@ -1,10 +1,11 @@
 {
-  "signUp": {
+  "auth": {
     "name": "Name",
     "lastName": "Last name",
     "email": "Email",
     "password": "Password",
     "confirmPassword": "Confirm password",
-    "signUpButton": "Sign up"
+    "signUpButton": "Sign up",
+    "signInButton": "Sign in"
   }
 }

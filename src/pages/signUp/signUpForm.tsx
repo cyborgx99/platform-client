@@ -52,33 +52,31 @@ const SignUpForm = () => {
     });
   };
 
-  console.log(t('signIn.hello'));
-
   return (
     <Formik<SignUpFormValues>
       onSubmit={handleSubmit}
       initialValues={initialValues}
       validationSchema={signUpValidationSchema}>
       <StyledForm>
-        <FormInput label={t('pages.signUp.name')} name='name' type='text' />
+        <FormInput label={t('pages.auth.name')} name='name' type='text' />
         <FormInput
-          label={t('pages.signUp.lastName')}
+          label={t('pages.auth.lastName')}
           name='lastName'
           type='text'
         />
-        <FormInput label={t('pages.signUp.email')} name='email' type='email' />
+        <FormInput label={t('pages.auth.email')} name='email' type='email' />
         <FormInput
-          label={t('pages.signUp.password')}
+          label={t('pages.auth.password')}
           name='password'
           type='password'
         />
         <FormInput
-          label={t('pages.signUp.confirmPassword')}
+          label={t('pages.auth.confirmPassword')}
           name='confirmPassword'
           type='password'
         />
         <ButtonComponent isLoading={loading} type='submit' variant='primary'>
-          {t('pages.signUp.signUpButton')}
+          {t('pages.auth.signUpButton')}
         </ButtonComponent>
         <TextSpan textColor='error'>{error?.message ?? ''}</TextSpan>
       </StyledForm>

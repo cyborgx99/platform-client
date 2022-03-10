@@ -10,6 +10,7 @@ import FormInput from 'components/input';
 import TextSpan from 'components/span';
 import { Formik } from 'formik';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import * as yup from 'yup';
 
 import { StyledForm } from './styles';
@@ -34,6 +35,7 @@ const signInValidationSchema = yup.object({
 
 const SignInForm = () => {
   const { refetch } = useAuth();
+  const { t } = useTranslation();
   const [signIn, { loading, error }] = useMutation<
     Pick<Mutation, 'signIn'>,
     SignInMutationVariables
@@ -57,10 +59,14 @@ const SignInForm = () => {
       initialValues={initialValues}
       validationSchema={signInValidationSchema}>
       <StyledForm>
-        <FormInput label='Email' name='email' type='email' />
-        <FormInput label='Password' name='password' type='password' />
+        <FormInput label={t('pages.auth.email')} name='email' type='email' />
+        <FormInput
+          label={t('pages.auth.password')}
+          name='password'
+          type='password'
+        />
         <ButtonComponent isLoading={loading} type='submit' variant='primary'>
-          Sign in
+          {t('pages.auth.signInButton')}
         </ButtonComponent>
         <TextSpan textType='lightText' textColor='error'>
           {error?.message ?? ''}
