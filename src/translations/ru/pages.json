@@ -1,0 +1,10 @@
+{
+  "signUp": {
+    "name": "Имя",
+    "lastName": "Фамилия",
+    "email": "Email",
+    "password": "Пароль",
+    "confirmPassword": "Подтверждение пароля",
+    "signUpButton": "Зарегистрироваться"
+  }
+}
