@@ -2,32 +2,32 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Formik } from 'formik';
 import React from 'react';
 
-import FormInput from '.';
+import ButtonComponent from '.';
 
 export default {
-  title: 'Form Input',
+  title: 'Button',
   argTypes: {
     type: {
-      control: { type: 'select', options: ['text', 'email', 'password'] },
+      control: { type: 'select', options: ['button', 'submit'] },
     },
   },
-  component: FormInput,
-} as ComponentMeta<typeof FormInput>;
+  component: ButtonComponent,
+} as ComponentMeta<typeof ButtonComponent>;
 
-const Template: ComponentStory<typeof FormInput> = (args) => (
+const Template: ComponentStory<typeof ButtonComponent> = (args) => (
   <Formik
     initialValues={{ test: '' }}
     onSubmit={() => {
       console.log(1);
     }}>
-    <FormInput {...args} />
+    <ButtonComponent {...args} />
   </Formik>
 );
 
 export const Primary = Template.bind({});
 
 Primary.args = {
-  type: 'text',
-  label: 'Input field',
-  name: 'test',
+  type: 'button',
+  isLoading: false,
+  children: 'Click me',
 };
