@@ -1,7 +1,7 @@
 import { ReactComponent as Close } from 'assets/icons/close.svg';
 import IconComponent from 'components/icon';
 import React from 'react';
-import { unathorizedPath } from 'routes/pathKeys';
+import { unathorizedPathKeys, userPathKeys } from 'routes/pathKeys';
 import { removeSlash } from 'utils';
 
 import {
@@ -13,14 +13,16 @@ import {
 } from './styles';
 import { INavbarProps } from './types';
 
-const getNavLinks = (userRole?: 'student' | 'teacher') => {
+const getNavLinks = (userRole?: string) => {
   switch (userRole) {
+    case 'USER':
+      return userPathKeys;
     default:
-      return unathorizedPath;
+      return unathorizedPathKeys;
   }
 };
 
-const Navbar = ({ isShown, onToggle }: INavbarProps) => {
+const Navbar = ({ isShown, onToggle, userRole }: INavbarProps) => {
   return (
     <NavigationContainer $isShown={isShown}>
       <NavigationTopPart>
@@ -28,7 +30,7 @@ const Navbar = ({ isShown, onToggle }: INavbarProps) => {
         <IconComponent title='Close navbar' onClick={onToggle} Svg={Close} />
       </NavigationTopPart>
       <NavigationLinkContainer>
-        {Object.values(getNavLinks()).map((link) => (
+        {Object.values(getNavLinks(userRole)).map((link) => (
           <StyledNavLink key={link} to={link}>
             {({ isActive }) => (
               <LinkText $isActive={isActive}>

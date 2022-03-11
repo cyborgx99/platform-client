@@ -1,5 +1,6 @@
 import { useMutation } from '@apollo/client';
 import { SIGN_UP } from 'apollo/graphql';
+import { Mutation } from 'apollo/graphql/generated.types';
 import ButtonComponent from 'components/button';
 import FormInput from 'components/input';
 import TextSpan from 'components/span';
@@ -38,11 +39,14 @@ const signUpValidationSchema = yup.object({
 
 const SignUpForm = () => {
   const { t } = useTranslation();
-  const [signUp, { loading, error }] = useMutation(SIGN_UP, {
-    onCompleted: (d) => {
-      console.log(d);
-    },
-  });
+  const [signUp, { loading, error }] = useMutation<Pick<Mutation, 'signUp'>>(
+    SIGN_UP,
+    {
+      onCompleted: (d) => {
+        console.log(d);
+      },
+    }
+  );
 
   const handleSubmit = (values: SignUpFormValues) => {
     signUp({
