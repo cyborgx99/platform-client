@@ -1,4 +1,4 @@
-import { useMutation } from '@apollo/client';
+import { useApolloClient, useMutation } from '@apollo/client';
 import { Mutation } from 'apollo/graphql/generated.types';
 import { LOGOUT } from 'apollo/graphql/mutations/logout';
 import { ReactComponent as Show } from 'assets/icons/dial.svg';
@@ -25,10 +25,11 @@ const flagIcon: LanguageFlags = {
 
 const PageHeader = ({ onToggleNavbar }: IPageHeaderInterface) => {
   const { i18n } = useTranslation();
-  const { user, refetch } = useAuth();
+  const { user } = useAuth();
+  const apolloClient = useApolloClient();
   const [logout, { loading }] = useMutation<Pick<Mutation, 'logout'>>(LOGOUT, {
     onCompleted: () => {
-      refetch();
+      apolloClient.cache.reset();
     },
   });
 
@@ -48,7 +49,6 @@ const PageHeader = ({ onToggleNavbar }: IPageHeaderInterface) => {
         Svg={Show}
         onClick={onToggleNavbar}
       />
-
       <IconComponent
         title='Change language'
         Svg={flagIcon[i18n.language as Languages]}
