@@ -1,4 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+export const showIconStyles = css`
+  margin-right: auto;
+`;
 
 export const PageContainer = styled.div`
   display: flex;
@@ -30,9 +34,11 @@ export const PageFooter = styled.footer`
   padding: 1rem;
 `;
 
-export const PageHeader = styled.header`
+export const StyledPageHeader = styled.header`
   min-height: 1rem;
-  padding: 1rem;
+  padding: 0.75rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2rem;
 `;
