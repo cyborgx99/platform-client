@@ -1,4 +1,5 @@
 import { useMutation } from '@apollo/client';
+import { handleApolloError } from 'apollo/errorHandling';
 import { SIGN_UP } from 'apollo/graphql';
 import { Mutation } from 'apollo/graphql/generated.types';
 import ButtonComponent from 'components/button';
@@ -82,7 +83,9 @@ const SignUpForm = () => {
         <ButtonComponent isLoading={loading} type='submit' variant='primary'>
           {t('pages.auth.signUpButton')}
         </ButtonComponent>
-        <TextSpan textColor='error'>{error?.message ?? ''}</TextSpan>
+        <TextSpan textColor='error'>
+          {error ? t(`errors.${handleApolloError(error)}`) : ''}
+        </TextSpan>
       </StyledForm>
     </Formik>
   );

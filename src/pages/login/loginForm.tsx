@@ -1,4 +1,5 @@
 import { useMutation } from '@apollo/client';
+import { handleApolloError } from 'apollo/errorHandling';
 import { SIGN_IN } from 'apollo/graphql';
 import {
   Mutation,
@@ -13,7 +14,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import * as yup from 'yup';
 
-import { StyledForm } from './styles';
+import { StyledForm, StyledLink, StyledParagraph } from './styles';
 import { ISignInFormValues } from './types';
 
 const initialValues: ISignInFormValues = {
@@ -28,29 +29,32 @@ const signInValidationSchema = yup.object({
     .required()
     .max(32)
     .matches(
-      /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/g,
+      /^(?=(.*\d){1})(.*\S)(?=.*[a-zA-Z\S])[0-9a-zA-Z\S]{6,}/,
       'Password must have at least 6 characters, one letter, and one number.'
     ),
 });
 
 const SignInForm = () => {
-  const { refetch } = useAuth();
   const { t } = useTranslation();
+  const { refetch } = useAuth();
   const [signIn, { loading, error }] = useMutation<
     Pick<Mutation, 'signIn'>,
     SignInMutationVariables
   >(SIGN_IN, {
-    onCompleted: () => {
-      refetch();
+    onError: (err) => {
+      console.log('ERR', err.networkError?.message);
     },
   });
 
-  const handleSignIn = (values: ISignInFormValues) => {
-    signIn({
+  const handleSignIn = async (values: ISignInFormValues) => {
+    const { data } = await signIn({
       variables: {
         input: values,
       },
     });
+    if (data?.signIn.success) {
+      refetch();
+    }
   };
 
   return (
@@ -69,8 +73,15 @@ const SignInForm = () => {
           {t('pages.auth.signInButton')}
         </ButtonComponent>
         <TextSpan textType='lightText' textColor='error'>
-          {error?.message ?? ''}
+          {error ? handleApolloError(error) : ''}
         </TextSpan>
+        <StyledParagraph>
+          Do not have an account? <StyledLink to='/sign-up'>Sign up</StyledLink>
+        </StyledParagraph>
+        <StyledParagraph>
+          Forgot password?{' '}
+          <StyledLink to='/forgot-password'>Restore</StyledLink>
+        </StyledParagraph>
       </StyledForm>
     </Formik>
   );
