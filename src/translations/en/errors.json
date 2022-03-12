@@ -1,0 +1,10 @@
+{
+  "required": "The field is required.",
+  "min": "Must be at least {{min}} characters long.",
+  "max": "Must be less than {{max}} characters.",
+  "email": "Must be a valid email.",
+  "password": "Must have at least 6 characters, one letter, and one digit.",
+  "USER_CONFLICT": "Cannot register this user.",
+  "NO_INTERNET": "No internet connection.",
+  "NETWORK_ERROR": "A network error has occured."
+}

@@ -1,7 +1,0 @@
-{
-  "required": "The field is required.",
-  "min": "Must be at least {{min}} characters long.",
-  "max": "Must be less than {{min}} characters.",
-  "email": "Must be a valid email.",
-  "password": "Must have at least 6 characters, one letter, and one digit."
-}

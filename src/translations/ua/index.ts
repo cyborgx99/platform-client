@@ -1,4 +1,4 @@
+import errors from './errors.json';
 import pages from './pages.json';
-import validation from './validation.json';
 
-export default { pages, validation };
+export default { pages, errors };
