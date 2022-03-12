@@ -1,3 +1,4 @@
+import { Role } from 'apollo/graphql/generated.types';
 import { ReactComponent as Close } from 'assets/icons/close.svg';
 import IconComponent from 'components/icon';
 import React from 'react';
@@ -13,9 +14,9 @@ import {
 } from './styles';
 import { INavbarProps } from './types';
 
-const getNavLinks = (userRole?: string) => {
+const getNavLinks = (userRole?: Role) => {
   switch (userRole) {
-    case 'USER':
+    case Role.User:
       return userPathKeys;
     default:
       return unathorizedPathKeys;
