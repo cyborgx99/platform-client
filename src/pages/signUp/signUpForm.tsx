@@ -4,13 +4,18 @@ import { SIGN_UP } from 'apollo/graphql';
 import { Mutation } from 'apollo/graphql/generated.types';
 import ButtonComponent from 'components/button';
 import FormInput from 'components/input';
-import TextSpan from 'components/span';
 import { Formik } from 'formik';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import {
+  stringRequiredConfirmPassword,
+  stringRequiredEmail,
+  stringRequiredMaxPassword,
+  stringRequiredMinMax,
+} from 'utils/validation';
 import * as yup from 'yup';
 
-import { StyledForm } from './styles';
+import { ErrorMessage, StyledForm } from './styles';
 import { SignUpFormValues } from './types';
 
 const initialValues: SignUpFormValues = {
@@ -21,21 +26,12 @@ const initialValues: SignUpFormValues = {
   confirmPassword: '',
 };
 
-const signUpValidationSchema = yup.object({
-  name: yup.string().required().min(2).max(32),
-  lastName: yup.string().required().min(2).max(32),
-  email: yup.string().required().email(),
-  password: yup
-    .string()
-    .required()
-    .max(32)
-    .matches(
-      /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/g,
-      'Password must have at least 6 characters, one letter, and one number.'
-    ),
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref('password'), null], 'Passwords must match.'),
+const signUpValidationSchema: yup.SchemaOf<SignUpFormValues> = yup.object({
+  name: stringRequiredMinMax,
+  lastName: stringRequiredMinMax,
+  email: stringRequiredEmail,
+  password: stringRequiredMaxPassword,
+  confirmPassword: stringRequiredConfirmPassword,
 });
 
 const SignUpForm = () => {
@@ -83,9 +79,9 @@ const SignUpForm = () => {
         <ButtonComponent isLoading={loading} type='submit' variant='primary'>
           {t('pages.auth.signUpButton')}
         </ButtonComponent>
-        <TextSpan textColor='error'>
+        <ErrorMessage $textType='normalText' $textWeight='regular'>
           {error ? t(`errors.${handleApolloError(error)}`) : ''}
-        </TextSpan>
+        </ErrorMessage>
       </StyledForm>
     </Formik>
   );

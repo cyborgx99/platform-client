@@ -8,13 +8,21 @@ import {
 import { useAuth } from 'auth';
 import ButtonComponent from 'components/button';
 import FormInput from 'components/input';
-import TextSpan from 'components/span';
 import { Formik } from 'formik';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import {
+  stringRequiredEmail,
+  stringRequiredMaxPassword,
+} from 'utils/validation';
 import * as yup from 'yup';
 
-import { StyledForm, StyledLink, StyledParagraph } from './styles';
+import {
+  ErrorMessage,
+  StyledForm,
+  StyledLink,
+  StyledParagraph,
+} from './styles';
 import { ISignInFormValues } from './types';
 
 const initialValues: ISignInFormValues = {
@@ -22,16 +30,9 @@ const initialValues: ISignInFormValues = {
   password: '',
 };
 
-const signInValidationSchema = yup.object({
-  email: yup.string().required().email(),
-  password: yup
-    .string()
-    .required()
-    .max(32)
-    .matches(
-      /^(?=(.*\d){1})(.*\S)(?=.*[a-zA-Z\S])[0-9a-zA-Z\S]{6,}/,
-      'Password must have at least 6 characters, one letter, and one number.'
-    ),
+const signInValidationSchema: yup.SchemaOf<ISignInFormValues> = yup.object({
+  email: stringRequiredEmail,
+  password: stringRequiredMaxPassword,
 });
 
 const SignInForm = () => {
@@ -72,9 +73,9 @@ const SignInForm = () => {
         <ButtonComponent isLoading={loading} type='submit' variant='primary'>
           {t('pages.auth.signInButton')}
         </ButtonComponent>
-        <TextSpan textType='lightText' textColor='error'>
+        <ErrorMessage $textType='normalText' $textWeight='regular'>
           {error ? handleApolloError(error) : ''}
-        </TextSpan>
+        </ErrorMessage>
         <StyledParagraph>
           Do not have an account? <StyledLink to='/sign-up'>Sign up</StyledLink>
         </StyledParagraph>
