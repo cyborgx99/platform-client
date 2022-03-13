@@ -6,6 +6,7 @@
     "password": "Password",
     "confirmPassword": "Confirm password",
     "signUpButton": "Sign up",
-    "signInButton": "Sign in"
+    "signInButton": "Sign in",
+    "resetButton": "Reset"
   }
 }

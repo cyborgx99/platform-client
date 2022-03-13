@@ -6,6 +6,7 @@
     "password": "Пароль",
     "confirmPassword": "Підтвердження пароля",
     "signUpButton": "Зареєструватись",
-    "signInButton": "Увійти"
+    "signInButton": "Увійти",
+    "resetButton": "Скинути"
   }
 }
