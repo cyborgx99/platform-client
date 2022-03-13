@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { SpanBase } from 'styles/globalStyles';
 
 export const InputContainer = styled.div`
   display: flex;
@@ -7,19 +8,32 @@ export const InputContainer = styled.div`
   margin-bottom: 0.5rem;
 `;
 
-export const StyledInput = styled.input`
+const border = css`
+  border: 2px solid ${({ theme }) => theme.colors.secondary.light};
+`;
+
+const borderError = css`
+  border: 2px solid ${({ theme }) => theme.colors.red.light};
+`;
+
+const outline = css`
+  outline: 2px solid ${({ theme }) => theme.colors.secondary.darkest};
+`;
+
+const outlineError = css`
+  outline: 2px solid ${({ theme }) => theme.colors.red.darkest};
+`;
+
+export const StyledInput = styled.input<{ $hasError: boolean }>`
   padding: 0.5rem;
-  background-color: ${({ theme }) => theme.colors.gray};
-  border: none;
-  border-bottom: 2px solid ${({ theme }) => theme.colors.secondary.main};
-  border-radius: 2px;
+  border-radius: 8px;
+  ${({ $hasError }) => ($hasError ? borderError : border)};
 
   &:focus {
-    outline: 2px solid ${({ theme }) => theme.colors.primary.active};
-    border: none;
+    ${({ $hasError }) => ($hasError ? outlineError : outline)};
   }
 `;
 
-export const StyledLabel = styled.label`
-  ${({ theme }) => theme.typography.regularText};
+export const ErrorMessage = styled(SpanBase)`
+  color: ${({ theme }) => theme.colors.red.base};
 `;
