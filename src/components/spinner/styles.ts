@@ -16,19 +16,19 @@ const spin = keyframes`
 const loaderSizes: LoaderSizes = {
   small: css`
     border: 0.25rem solid ${({ theme }) => theme.colors.gray};
-    border-top: 0.25rem solid ${({ theme }) => theme.colors.primary.main};
+    border-top: 0.25rem solid ${({ theme }) => theme.colors.primary.base};
     width: 1.7rem;
     height: 1.7rem;
   `,
   medium: css`
     border: 0.5rem solid ${({ theme }) => theme.colors.gray};
-    border-top: 0.5rem solid ${({ theme }) => theme.colors.primary.main};
+    border-top: 0.5rem solid ${({ theme }) => theme.colors.primary.base};
     width: 2.5rem;
     height: 2.5rem;
   `,
   large: css`
     border: 0.75rem solid ${({ theme }) => theme.colors.gray};
-    border-top: 0.75rem solid ${({ theme }) => theme.colors.primary.main};
+    border-top: 0.75rem solid ${({ theme }) => theme.colors.primary.base};
     width: 3.5rem;
     height: 3.5rem;
   `,
@@ -36,7 +36,7 @@ const loaderSizes: LoaderSizes = {
 
 export const Loader = styled.div<{ $size: 'small' | 'medium' | 'large' }>`
   border: 0.25rem solid ${({ theme }) => theme.colors.gray};
-  border-top: 0.25rem solid ${({ theme }) => theme.colors.primary.main};
+  border-top: 0.25rem solid ${({ theme }) => theme.colors.primary.base};
   width: 1.7rem;
   height: 1.7rem;
   border-radius: 50%;
@@ -121,7 +121,7 @@ export const InnerOne = styled.div`
   left: 0%;
   top: 0%;
   animation: ${rotateOne} 1s linear infinite;
-  border-bottom: 3px solid ${({ theme }) => theme.colors.primary.main};
+  border-bottom: 3px solid ${({ theme }) => theme.colors.primary.base};
 `;
 
 export const InnerTwo = styled.div`
@@ -129,7 +129,7 @@ export const InnerTwo = styled.div`
   right: 0%;
   top: 0%;
   animation: ${rotateTwo} 1s linear infinite;
-  border-right: 3px solid ${({ theme }) => theme.colors.primary.main};
+  border-right: 3px solid ${({ theme }) => theme.colors.primary.base};
 `;
 
 export const InnerThree = styled.div`
@@ -137,5 +137,5 @@ export const InnerThree = styled.div`
   right: 0%;
   bottom: 0%;
   animation: ${rotateThree} 1s linear infinite;
-  border-top: 3px solid ${({ theme }) => theme.colors.primary.main};
+  border-top: 3px solid ${({ theme }) => theme.colors.primary.base};
 `;

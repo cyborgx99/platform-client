@@ -1,8 +1,4 @@
-import {
-  DefaultTheme,
-  FlattenInterpolation,
-  ThemeProps,
-} from 'styled-components';
+import { CssStyleProp } from 'styles/types';
 
 export type LoaderSizeType = 'small' | 'medium' | 'large';
 export type LoaderTypes = 'regular' | 'animated';
@@ -13,7 +9,7 @@ export interface ISpinnerProps {
 }
 
 export type LoaderSizes = {
-  [key in LoaderSizeType]: FlattenInterpolation<ThemeProps<DefaultTheme>>;
+  [key in LoaderSizeType]: CssStyleProp;
 };
 
 export type SpinnerComponentTypes = {
