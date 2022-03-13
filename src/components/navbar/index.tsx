@@ -1,11 +1,12 @@
 import { Role } from 'apollo/graphql/generated.types';
-import { ReactComponent as Close } from 'assets/icons/close.svg';
+import { ReactComponent as Close } from 'assets/icons/delete.svg';
 import IconComponent from 'components/icon';
 import React from 'react';
-import { unathorizedPathKeys, userPathKeys } from 'routes/pathKeys';
+import { pathKeys } from 'routes/pathKeys';
 import { removeSlash } from 'utils';
 
 import {
+  deleteIconStyle,
   LinkText,
   NavigationContainer,
   NavigationLinkContainer,
@@ -17,9 +18,9 @@ import { INavbarProps } from './types';
 const getNavLinks = (userRole?: Role) => {
   switch (userRole) {
     case Role.User:
-      return userPathKeys;
+      return pathKeys.user;
     default:
-      return unathorizedPathKeys;
+      return pathKeys.unathorized;
   }
 };
 
@@ -27,8 +28,12 @@ const Navbar = ({ isShown, onToggle, userRole }: INavbarProps) => {
   return (
     <NavigationContainer $isShown={isShown}>
       <NavigationTopPart>
-        <p>Navigation</p>
-        <IconComponent title='Close navbar' onClick={onToggle} Svg={Close} />
+        <IconComponent
+          iconStyle={deleteIconStyle}
+          title='Close navbar'
+          onClick={onToggle}
+          Svg={Close}
+        />
       </NavigationTopPart>
       <NavigationLinkContainer>
         {Object.values(getNavLinks(userRole)).map((link) => (
