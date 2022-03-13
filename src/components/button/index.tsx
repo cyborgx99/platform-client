@@ -6,12 +6,19 @@ import { ButtonProps } from './types';
 
 const ButtonComponent: React.FC<ButtonProps> = ({
   type = 'submit',
+  width = 'min',
   isLoading,
   children,
+  variant,
   onClick,
 }) => {
   return (
-    <StyledButton onClick={onClick} disabled={isLoading} type={type}>
+    <StyledButton
+      $variant={variant}
+      $width={width}
+      onClick={onClick}
+      disabled={isLoading}
+      type={type}>
       {isLoading ? <Spinner size='small' /> : children}
     </StyledButton>
   );

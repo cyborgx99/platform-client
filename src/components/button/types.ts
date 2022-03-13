@@ -1,6 +1,19 @@
+import { CssStyleProp } from 'styles/types';
+
+type ButtonVariant = 'primary' | 'secondary' | 'textOnly';
+type ButtonWidth = 'min' | 'full';
+
+export type ButtonVariantStyle = {
+  [key in ButtonVariant]: CssStyleProp;
+};
+
+export type ButtonWidthStyle = {
+  [key in ButtonWidth]: CssStyleProp;
+};
 interface BasicButtonProps {
-  variant: 'primary' | 'secondary' | 'textOnly';
+  variant: ButtonVariant;
   isLoading: boolean;
+  width?: ButtonWidth;
 }
 
 interface SubmitButtonProps extends BasicButtonProps {
@@ -8,9 +21,9 @@ interface SubmitButtonProps extends BasicButtonProps {
   onClick?: () => void;
 }
 
-interface CLickButtonProps extends BasicButtonProps {
+interface ClickButtonProps extends BasicButtonProps {
   type: 'button';
   onClick: () => void;
 }
 
-export type ButtonProps = SubmitButtonProps | CLickButtonProps;
+export type ButtonProps = SubmitButtonProps | ClickButtonProps;
