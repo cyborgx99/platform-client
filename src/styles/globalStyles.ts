@@ -1,13 +1,60 @@
+import { Link } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
+
+import { TextType, TextWeight } from './types';
+
+export const HeaderOneBase = styled.h1`
+  ${({ theme }) => theme.typography.title.one};
+`;
+
+export const HeaderTwoBase = styled.h2`
+  ${({ theme }) => theme.typography.title.two};
+`;
+
+export const HeaderThreeBase = styled.h3`
+  ${({ theme }) => theme.typography.title.three};
+`;
+
+export const ParagraphBase = styled.p<{
+  $textType: TextType;
+  $textWeight: TextWeight;
+}>`
+  ${({ theme, $textType, $textWeight }) =>
+    theme.typography[$textType][$textWeight]};
+`;
+
+export const SpanBase = styled.span<{
+  $textType: TextType;
+  $textWeight: TextWeight;
+}>`
+  ${({ theme, $textType, $textWeight }) =>
+    theme.typography[$textType][$textWeight]};
+`;
+
+export const LabelBase = styled.label<{
+  $textType: TextType;
+  $textWeight: TextWeight;
+}>`
+  ${({ theme, $textType, $textWeight }) =>
+    theme.typography[$textType][$textWeight]};
+`;
+
+export const LinkBase = styled(Link)<{
+  $textType: TextType;
+  $textWeight: TextWeight;
+}>`
+  ${({ theme, $textType, $textWeight }) =>
+    theme.typography[$textType][$textWeight]};
+`;
 
 export default createGlobalStyle`
-
 /* Box sizing rules */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif
+  font-family: 'Inter', sans-serif
 }
 
 
