@@ -1,4 +1,4 @@
-import { FlattenSimpleInterpolation } from 'styled-components';
+import { CssStyleProp } from 'styles/types';
 
 export interface IIconComponentProps {
   Svg: React.FunctionComponent<
@@ -6,8 +6,8 @@ export interface IIconComponentProps {
       title?: string | undefined;
     }
   >;
-  iconStyle?: FlattenSimpleInterpolation;
-  iconContainerStyle?: FlattenSimpleInterpolation;
+  iconStyle?: CssStyleProp;
+  iconContainerStyle?: CssStyleProp;
   title: string;
   onClick: () => void;
 }
