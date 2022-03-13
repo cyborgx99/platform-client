@@ -13,7 +13,7 @@ import {
 const PageLayout: React.FC = ({ children }) => {
   const [isNavbarShown, setIsNavbarShown] = useState(false);
   const { user } = useAuth();
-
+  const year = new Date().getFullYear();
   const toggleNavbar = () => {
     setIsNavbarShown((prev) => !prev);
   };
@@ -29,7 +29,7 @@ const PageLayout: React.FC = ({ children }) => {
       <PageContent>
         <PageContentScrollable>{children}</PageContentScrollable>
       </PageContent>
-      <PageFooter>Footer</PageFooter>
+      <PageFooter>© {year} All rights reserved. (Apparently)</PageFooter>
     </PageContainer>
   );
 };

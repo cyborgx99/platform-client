@@ -30,8 +30,11 @@ export const PageContentScrollable = styled.div`
 
 export const PageFooter = styled.footer`
   min-height: 1rem;
-  background-color: ${({ theme }) => theme.colors.primary.main};
+  background-color: ${({ theme }) => theme.colors.black.dark};
   padding: 1rem;
+  border-top: 2px solid ${({ theme }) => theme.colors.gray.base};
+  text-align: center;
+  color: ${({ theme }) => theme.colors.white};
 `;
 
 export const StyledPageHeader = styled.header`
@@ -40,5 +43,7 @@ export const StyledPageHeader = styled.header`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  border-bottom: 2px solid ${({ theme }) => theme.colors.gray.base};
+  background-color: ${({ theme }) => theme.colors.white};
   gap: 2rem;
 `;
