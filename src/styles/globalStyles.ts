@@ -1,8 +1,17 @@
+import { Form } from 'formik';
 import { Link } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 import styled from 'styled-components';
 
 import { TextType, TextWeight } from './types';
+
+export const FormBase = styled(Form)`
+  padding: 0.5rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  width: 100%;
+  margin: 0.5rem 0;
+`;
 
 export const HeaderOneBase = styled.h1`
   ${({ theme }) => theme.typography.title.one};

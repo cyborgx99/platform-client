@@ -4,6 +4,7 @@
     "lastName": "Last name",
     "email": "Email",
     "password": "Password",
+    "newPassword": "New password",
     "confirmPassword": "Confirm password",
     "signUpButton": "Sign up",
     "signInButton": "Sign in",
@@ -11,6 +12,12 @@
     "resetPasswordTitle": "Enter your email to reset your password.",
     "signUpSuccessTitle": "Account Created!",
     "signUpSuccessText": "Your account has been created successfully. You can now log in.",
-    "signUpSuccessButton": "Continue"
+    "successButton": "Continue",
+    "passwordResetTitle": "Success",
+    "passwordResetText": "Check your email and follow the instructions to reset your password.",
+    "setPasswordTitle": "Enter new password",
+    "setPasswordButton": "Change password",
+    "setPasswordSuccessTitle": "Updated successfully!",
+    "setPasswordSuccessText": "Now you can log in using your new password."
   }
 }

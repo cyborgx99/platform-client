@@ -67,7 +67,7 @@ const SignUpForm = () => {
             onContinue={handleContinue}
             title={t('pages.auth.signUpSuccessTitle')}
             text={t('pages.auth.signUpSuccessText')}
-            buttonText={t('pages.auth.signUpSuccessButton')}
+            buttonText={t('pages.auth.successButton')}
           />
         ) : (
           <FormContent loading={loading} error={error} />
