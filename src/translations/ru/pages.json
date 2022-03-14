@@ -7,6 +7,10 @@
     "confirmPassword": "Подтверждение пароля",
     "signUpButton": "Зарегистрироваться",
     "signInButton": "Войти",
-    "resetButton": "Сбросить"
+    "resetButton": "Сбросить",
+    "resetPasswordTitle": "Введите свой email чтобы сбросить пароль.",
+    "signUpSuccessTitle": "Аккаунт был создан!",
+    "signUpSuccessText": "Ваш аккаунт был создан. Теперь вы можете войти.",
+    "signUpSuccessButton": "Продолжить"
   }
 }

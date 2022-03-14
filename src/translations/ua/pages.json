@@ -7,6 +7,10 @@
     "confirmPassword": "Підтвердження пароля",
     "signUpButton": "Зареєструватись",
     "signInButton": "Увійти",
-    "resetButton": "Скинути"
+    "resetButton": "Скинути",
+    "resetPasswordTitle": "Введіть свій email щоб скинути пароль.",
+    "signUpSuccessTitle": "Акаунт був створений!",
+    "signUpSuccessText": "Ваш акаунт був створений. Зараз ви можете увійти.",
+    "signUpSuccessButton": "Продовжити"
   }
 }

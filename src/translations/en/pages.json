@@ -7,6 +7,10 @@
     "confirmPassword": "Confirm password",
     "signUpButton": "Sign up",
     "signInButton": "Sign in",
-    "resetButton": "Reset"
+    "resetButton": "Reset",
+    "resetPasswordTitle": "Enter your email to reset your password.",
+    "signUpSuccessTitle": "Account Created!",
+    "signUpSuccessText": "Your account has been created successfully. You can now log in.",
+    "signUpSuccessButton": "Continue"
   }
 }
