@@ -35,8 +35,7 @@ const loaderSizes: LoaderSizes = {
 };
 
 export const Loader = styled.div<{ $size: 'small' | 'medium' | 'large' }>`
-  border: 0.25rem solid ${({ theme }) => theme.colors.gray};
-  border-top: 0.25rem solid ${({ theme }) => theme.colors.primary.base};
+  border: 0.25rem solid ${({ theme }) => theme.colors.gray.lightest};
   width: 1.7rem;
   height: 1.7rem;
   border-radius: 50%;

@@ -26,6 +26,9 @@ export const PageContentScrollable = styled.div`
   top: 0;
   bottom: 0;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 `;
 
 export const PageFooter = styled.footer`

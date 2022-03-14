@@ -12,6 +12,7 @@ const IconComponent = ({
 }: IIconComponentProps) => {
   return (
     <IconContainer
+      disabled={Boolean(!onClick)}
       $iconContainerStyle={iconContainerStyle}
       $iconStyle={iconStyle}
       onClick={onClick}>

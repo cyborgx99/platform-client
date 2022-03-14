@@ -4,6 +4,7 @@ import { CssStyleProp } from 'styles/types';
 export const IconContainer = styled.button<{
   $iconStyle?: CssStyleProp;
   $iconContainerStyle?: CssStyleProp;
+  disabled: boolean;
 }>`
   display: flex;
   width: max-content;
@@ -16,7 +17,7 @@ export const IconContainer = styled.button<{
   }
 
   & :hover {
-    cursor: pointer;
+    cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
   }
 
   svg {

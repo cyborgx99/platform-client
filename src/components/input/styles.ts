@@ -4,7 +4,7 @@ import { SpanBase } from 'styles/globalStyles';
 export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.25rem;
   margin-bottom: 0.5rem;
 `;
 

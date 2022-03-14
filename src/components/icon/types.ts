@@ -9,5 +9,5 @@ export interface IIconComponentProps {
   iconStyle?: CssStyleProp;
   iconContainerStyle?: CssStyleProp;
   title: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
