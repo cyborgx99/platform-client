@@ -1,12 +1,12 @@
 import { useMutation } from '@apollo/client';
-import { handleApolloError } from 'apollo/errorHandling';
 import { SIGN_UP } from 'apollo/graphql';
 import { Mutation } from 'apollo/graphql/generated.types';
-import ButtonComponent from 'components/button';
-import FormInput from 'components/input';
+import Success from 'components/success';
 import { Formik } from 'formik';
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import { pathKeys } from 'routes/pathKeys';
 import {
   stringRequiredConfirmPassword,
   stringRequiredEmail,
@@ -15,7 +15,7 @@ import {
 } from 'utils/validation';
 import * as yup from 'yup';
 
-import { ErrorMessage, StyledForm } from './styles';
+import FormContent from './formContent';
 import { SignUpFormValues } from './types';
 
 const initialValues: SignUpFormValues = {
@@ -36,21 +36,24 @@ const signUpValidationSchema: yup.SchemaOf<SignUpFormValues> = yup.object({
 
 const SignUpForm = () => {
   const { t } = useTranslation();
-  const [signUp, { loading, error }] = useMutation<Pick<Mutation, 'signUp'>>(
-    SIGN_UP,
-    {
-      onCompleted: (d) => {
-        console.log(d);
-      },
-    }
-  );
+  const navigate = useNavigate();
+  const [isSuccessShown, setIsSuccessShown] = useState(false);
+  const [signUp, { error, loading }] =
+    useMutation<Pick<Mutation, 'signUp'>>(SIGN_UP);
 
-  const handleSubmit = (values: SignUpFormValues) => {
-    signUp({
+  const handleContinue = () => {
+    navigate(pathKeys.unathorized.LOGIN);
+  };
+
+  const handleSubmit = async (values: SignUpFormValues) => {
+    const { data } = await signUp({
       variables: {
         input: { ...values, confirmPassword: undefined },
       },
     });
+    if (data?.signUp.success) {
+      setIsSuccessShown(true);
+    }
   };
 
   return (
@@ -58,31 +61,18 @@ const SignUpForm = () => {
       onSubmit={handleSubmit}
       initialValues={initialValues}
       validationSchema={signUpValidationSchema}>
-      <StyledForm>
-        <FormInput label={t('pages.auth.name')} name='name' type='text' />
-        <FormInput
-          label={t('pages.auth.lastName')}
-          name='lastName'
-          type='text'
-        />
-        <FormInput label={t('pages.auth.email')} name='email' type='email' />
-        <FormInput
-          label={t('pages.auth.password')}
-          name='password'
-          type='password'
-        />
-        <FormInput
-          label={t('pages.auth.confirmPassword')}
-          name='confirmPassword'
-          type='password'
-        />
-        <ButtonComponent isLoading={loading} type='submit' variant='primary'>
-          {t('pages.auth.signUpButton')}
-        </ButtonComponent>
-        <ErrorMessage $textType='normalText' $textWeight='regular'>
-          {error ? t(`errors.${handleApolloError(error)}`) : ''}
-        </ErrorMessage>
-      </StyledForm>
+      <>
+        {isSuccessShown ? (
+          <Success
+            onContinue={handleContinue}
+            title={t('pages.auth.signUpSuccessTitle')}
+            text={t('pages.auth.signUpSuccessText')}
+            buttonText={t('pages.auth.signUpSuccessButton')}
+          />
+        ) : (
+          <FormContent loading={loading} error={error} />
+        )}
+      </>
     </Formik>
   );
 };
