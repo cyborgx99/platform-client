@@ -1,5 +1,4 @@
 import { useMutation } from '@apollo/client';
-import { handleApolloError } from 'apollo/errorHandling';
 import { SIGN_IN } from 'apollo/graphql';
 import {
   Mutation,
@@ -7,22 +6,19 @@ import {
 } from 'apollo/graphql/generated.types';
 import { useAuth } from 'auth';
 import ButtonComponent from 'components/button';
+import ErrorMessage from 'components/errorMessage';
 import FormInput from 'components/input';
 import { Formik } from 'formik';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { FormBase } from 'styles/globalStyles';
 import {
   stringRequiredEmail,
   stringRequiredMaxPassword,
 } from 'utils/validation';
 import * as yup from 'yup';
 
-import {
-  ErrorMessage,
-  StyledForm,
-  StyledLink,
-  StyledParagraph,
-} from './styles';
+import { StyledLink, StyledParagraph } from './styles';
 import { ISignInFormValues } from './types';
 
 const initialValues: ISignInFormValues = {
@@ -63,19 +59,21 @@ const SignInForm = () => {
       onSubmit={handleSignIn}
       initialValues={initialValues}
       validationSchema={signInValidationSchema}>
-      <StyledForm>
+      <FormBase>
         <FormInput label={t('pages.auth.email')} name='email' type='email' />
         <FormInput
           label={t('pages.auth.password')}
           name='password'
           type='password'
         />
-        <ButtonComponent isLoading={loading} type='submit' variant='primary'>
+        <ButtonComponent
+          width='full'
+          isLoading={loading}
+          type='submit'
+          variant='primary'>
           {t('pages.auth.signInButton')}
         </ButtonComponent>
-        <ErrorMessage $textType='normalText' $textWeight='regular'>
-          {error ? handleApolloError(error) : ''}
-        </ErrorMessage>
+        <ErrorMessage error={error} />
         <StyledParagraph>
           Do not have an account? <StyledLink to='/sign-up'>Sign up</StyledLink>
         </StyledParagraph>
@@ -83,7 +81,7 @@ const SignInForm = () => {
           Forgot password?{' '}
           <StyledLink to='/forgot-password'>Restore</StyledLink>
         </StyledParagraph>
-      </StyledForm>
+      </FormBase>
     </Formik>
   );
 };
