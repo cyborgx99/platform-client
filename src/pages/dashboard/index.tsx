@@ -1,10 +1,8 @@
-import PageLayout from 'components/page'
-import React from 'react'
+import PageLayout from 'components/page';
+import React from 'react';
 
 const DashboardPage = () => {
-  return (
-    <PageLayout>DashboardPage</PageLayout>
-  )
-}
+  return <PageLayout></PageLayout>;
+};
 
-export default DashboardPage
+export default DashboardPage;
