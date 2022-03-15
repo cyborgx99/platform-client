@@ -1,9 +1,11 @@
 import { useAuth } from 'auth';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Navbar from '../navbar';
 import PageHeader from './pageHeader';
 import {
+  FooterText,
   PageContainer,
   PageContent,
   PageContentScrollable,
@@ -13,6 +15,7 @@ import {
 const PageLayout: React.FC = ({ children }) => {
   const [isNavbarShown, setIsNavbarShown] = useState(false);
   const { user } = useAuth();
+  const { t } = useTranslation();
   const year = new Date().getFullYear();
   const toggleNavbar = () => {
     setIsNavbarShown((prev) => !prev);
@@ -29,7 +32,11 @@ const PageLayout: React.FC = ({ children }) => {
       <PageContent>
         <PageContentScrollable>{children}</PageContentScrollable>
       </PageContent>
-      <PageFooter>© {year} All rights reserved. (Apparently)</PageFooter>
+      <PageFooter>
+        <FooterText $textType='normalText' $textWeight='regular'>
+          © {year} {t('pages.auth.footer')}
+        </FooterText>
+      </PageFooter>
     </PageContainer>
   );
 };
