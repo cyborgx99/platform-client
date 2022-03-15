@@ -1,6 +1,5 @@
 export const pathKeys = {
   unathorized: {
-    HOME: '/',
     LOGIN: '/login',
     SIGN_UP: '/sign-up',
   },
