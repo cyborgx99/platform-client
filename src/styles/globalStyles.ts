@@ -10,19 +10,24 @@ export const FormBase = styled(Form)`
   word-wrap: break-word;
   overflow-wrap: break-word;
   width: 100%;
-  margin: 0.5rem 0;
+  margin: auto 0;
+  max-width: 25rem;
+  align-self: center;
 `;
 
 export const HeaderOneBase = styled.h1`
   ${({ theme }) => theme.typography.title.one};
+  color: ${({ theme }) => theme.colors.black.darkest};
 `;
 
 export const HeaderTwoBase = styled.h2`
   ${({ theme }) => theme.typography.title.two};
+  color: ${({ theme }) => theme.colors.black.darkest};
 `;
 
 export const HeaderThreeBase = styled.h3`
   ${({ theme }) => theme.typography.title.three};
+  color: ${({ theme }) => theme.colors.black.darkest};
 `;
 
 export const ParagraphBase = styled.p<{
@@ -31,6 +36,7 @@ export const ParagraphBase = styled.p<{
 }>`
   ${({ theme, $textType, $textWeight }) =>
     theme.typography[$textType][$textWeight]};
+  color: ${({ theme }) => theme.colors.black.darkest};
 `;
 
 export const SpanBase = styled.span<{
@@ -39,6 +45,7 @@ export const SpanBase = styled.span<{
 }>`
   ${({ theme, $textType, $textWeight }) =>
     theme.typography[$textType][$textWeight]};
+  color: ${({ theme }) => theme.colors.black.darkest};
 `;
 
 export const LabelBase = styled.label<{
@@ -47,6 +54,7 @@ export const LabelBase = styled.label<{
 }>`
   ${({ theme, $textType, $textWeight }) =>
     theme.typography[$textType][$textWeight]};
+  color: ${({ theme }) => theme.colors.black.darkest};
 `;
 
 export const LinkBase = styled(Link)<{
@@ -55,6 +63,24 @@ export const LinkBase = styled(Link)<{
 }>`
   ${({ theme, $textType, $textWeight }) =>
     theme.typography[$textType][$textWeight]};
+  color: ${({ theme }) => theme.colors.primary.base};
+
+  :link {
+    text-decoration: none;
+  }
+
+  :visited {
+    text-decoration: none;
+  }
+
+  :hover {
+    text-decoration: underline;
+    color: ${({ theme }) => theme.colors.primary.darkest};
+  }
+
+  :active {
+    text-decoration: none;
+  }
 `;
 
 export default createGlobalStyle`

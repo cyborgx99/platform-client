@@ -1,7 +1,16 @@
 import styled, { css } from 'styled-components';
+import { ParagraphBase } from 'styles/globalStyles';
 
 export const showIconStyles = css`
   margin-right: auto;
+  path {
+    fill: ${({ theme }) => theme.colors.secondary.base};
+  }
+  :hover {
+    path {
+      fill: ${({ theme }) => theme.colors.secondary.darkest};
+    }
+  }
 `;
 
 export const PageContainer = styled.div`
@@ -34,7 +43,7 @@ export const PageContentScrollable = styled.div`
 export const PageFooter = styled.footer`
   min-height: 1rem;
   background-color: ${({ theme }) => theme.colors.black.dark};
-  padding: 1rem;
+  padding: 0.5rem;
   border-top: 2px solid ${({ theme }) => theme.colors.gray.base};
   text-align: center;
   color: ${({ theme }) => theme.colors.white};
@@ -49,4 +58,8 @@ export const StyledPageHeader = styled.header`
   border-bottom: 2px solid ${({ theme }) => theme.colors.gray.base};
   background-color: ${({ theme }) => theme.colors.white};
   gap: 2rem;
+`;
+
+export const FooterText = styled(ParagraphBase)`
+  color: ${({ theme }) => theme.colors.gray.lightest};
 `;

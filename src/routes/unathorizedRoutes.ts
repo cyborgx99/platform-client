@@ -5,12 +5,10 @@ import { IRouteInterface } from './types';
 
 const LoginPage = lazy(() => import('../pages/login'));
 const SignUpPage = lazy(() => import('../pages/signUp'));
-const HomePage = lazy(() => import('../pages/home'));
 const ForgotPasswordPage = lazy(() => import('../pages/forgotPassword'));
 const SetNewPasswordPage = lazy(() => import('../pages/newPassword'));
 
 export const unathorizedRoutes: IRouteInterface[] = [
-  { path: pathKeys.unathorized.HOME, Component: HomePage },
   {
     path: pathKeys.unathorized.LOGIN,
     Component: LoginPage,

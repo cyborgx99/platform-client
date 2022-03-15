@@ -2,6 +2,7 @@ import { Role } from 'apollo/graphql/generated.types';
 import { ReactComponent as Close } from 'assets/icons/delete.svg';
 import IconComponent from 'components/icon';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { pathKeys } from 'routes/pathKeys';
 import { removeSlash } from 'utils';
 
@@ -25,6 +26,7 @@ const getNavLinks = (userRole?: Role) => {
 };
 
 const Navbar = ({ isShown, onToggle, userRole }: INavbarProps) => {
+  const { t } = useTranslation();
   return (
     <NavigationContainer $isShown={isShown}>
       <NavigationTopPart>
@@ -40,7 +42,7 @@ const Navbar = ({ isShown, onToggle, userRole }: INavbarProps) => {
           <StyledNavLink key={link} to={link}>
             {({ isActive }) => (
               <LinkText $isActive={isActive}>
-                {link === '/' ? 'Home' : removeSlash(link)}
+                {t(`pages.navigation.${removeSlash(link)}`)}
               </LinkText>
             )}
           </StyledNavLink>

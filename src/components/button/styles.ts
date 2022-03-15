@@ -60,7 +60,7 @@ export const StyledButton = styled.button<{
   $variant: 'primary' | 'secondary' | 'textOnly';
   $width: 'min' | 'full';
 }>`
-  padding: 0.5rem 1rem;
+  padding: 0.45rem 0.75rem;
   display: flex;
   justify-content: center;
   align-items: center;

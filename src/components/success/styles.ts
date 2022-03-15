@@ -27,4 +27,7 @@ export const SuccessContainer = styled.div`
   gap: 2rem;
   height: 100%;
   text-align: center;
+  word-wrap: break-word;
+  word-break: break-word;
+  padding: 0.5rem;
 `;

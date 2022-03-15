@@ -25,7 +25,7 @@ const outlineError = css`
 `;
 
 export const StyledInput = styled.input<{ $hasError: boolean }>`
-  padding: 0.5rem;
+  padding: 0.25rem;
   border-radius: 8px;
   ${({ $hasError }) => ($hasError ? borderError : border)};
 

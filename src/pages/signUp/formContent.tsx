@@ -3,8 +3,10 @@ import ErrorMessage from 'components/errorMessage';
 import FormInput from 'components/input';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { FormBase } from 'styles/globalStyles';
+import { pathKeys } from 'routes/pathKeys';
+import { FormBase, LinkBase, ParagraphBase } from 'styles/globalStyles';
 
+import { LinkContainer } from './styles';
 import { FormContentProps } from './types';
 
 const FormContent = ({ error, loading }: FormContentProps) => {
@@ -32,6 +34,26 @@ const FormContent = ({ error, loading }: FormContentProps) => {
         {t('pages.auth.signUpButton')}
       </ButtonComponent>
       <ErrorMessage error={error} />
+      <LinkContainer>
+        <ParagraphBase $textType='normalText' $textWeight='regular'>
+          {t('pages.auth.alreadyHaveAccount')}{' '}
+          <LinkBase
+            $textType='normalText'
+            $textWeight='regular'
+            to={pathKeys.unathorized.SIGN_UP}>
+            {t('pages.auth.signInButton')}
+          </LinkBase>
+        </ParagraphBase>
+        <ParagraphBase $textType='normalText' $textWeight='regular'>
+          {t('pages.auth.forgotPassword')}{' '}
+          <LinkBase
+            $textType='normalText'
+            $textWeight='regular'
+            to={pathKeys.password.FORGOT_PASSWORD}>
+            {t('pages.auth.resetButton')}
+          </LinkBase>
+        </ParagraphBase>
+      </LinkContainer>
     </FormBase>
   );
 };

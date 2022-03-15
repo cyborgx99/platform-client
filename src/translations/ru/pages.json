@@ -4,13 +4,29 @@
     "lastName": "Фамилия",
     "email": "Email",
     "password": "Пароль",
+    "newPassword": "Новый пароль",
     "confirmPassword": "Подтверждение пароля",
     "signUpButton": "Зарегистрироваться",
     "signInButton": "Войти",
+    "logoutButton": "Выйти",
     "resetButton": "Сбросить",
     "resetPasswordTitle": "Введите свой email чтобы сбросить пароль.",
     "signUpSuccessTitle": "Аккаунт был создан!",
     "signUpSuccessText": "Ваш аккаунт был создан. Теперь вы можете войти.",
-    "signUpSuccessButton": "Продолжить"
+    "successButton": "Продолжить",
+    "passwordResetTitle": "Успешно!",
+    "passwordResetText": "Проверьте ваш email и следуйте инструкциям.",
+    "setPasswordTitle": "Введите новый пароль",
+    "setPasswordButton": "Изменить пароль",
+    "setPasswordSuccessTitle": "Успешно изменен!",
+    "setPasswordSuccessText": "Теперь вы можете войти используя новый пароль.",
+    "doNotHaveAccount": "Нет аккаунта?",
+    "forgotPassword": "Забыли пароль?",
+    "alreadyHaveAccount": "Уже есть аккаунт?",
+    "footer": "Все права защищены. (Кажется)"
+  },
+  "navigation": {
+    "login": "Логин",
+    "sign-up": "Регистрация"
   }
 }

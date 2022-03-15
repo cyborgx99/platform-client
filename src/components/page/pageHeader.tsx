@@ -26,6 +26,7 @@ const flagIcon: LanguageFlags = {
 const PageHeader = ({ onToggleNavbar }: IPageHeaderInterface) => {
   const { i18n } = useTranslation();
   const { user } = useAuth();
+  const { t } = useTranslation();
   const apolloClient = useApolloClient();
   const [logout, { loading }] = useMutation<Pick<Mutation, 'logout'>>(LOGOUT, {
     onCompleted: () => {
@@ -60,7 +61,7 @@ const PageHeader = ({ onToggleNavbar }: IPageHeaderInterface) => {
           type='button'
           variant='primary'
           isLoading={loading}>
-          Logout
+          {t('pages.auth.logoutButton')}
         </ButtonComponent>
       )}
     </StyledPageHeader>

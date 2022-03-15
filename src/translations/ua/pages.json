@@ -4,13 +4,29 @@
     "lastName": "Прізвище",
     "email": "Email",
     "password": "Пароль",
+    "newPassword": "Новий пароль",
     "confirmPassword": "Підтвердження пароля",
     "signUpButton": "Зареєструватись",
     "signInButton": "Увійти",
+    "logoutButton": "Вийти",
     "resetButton": "Скинути",
     "resetPasswordTitle": "Введіть свій email щоб скинути пароль.",
     "signUpSuccessTitle": "Акаунт був створений!",
     "signUpSuccessText": "Ваш акаунт був створений. Зараз ви можете увійти.",
-    "signUpSuccessButton": "Продовжити"
+    "successButton": "Продовжити",
+    "passwordResetTitle": "Успішно!",
+    "passwordResetText": "Перевірте ваш email та слідуйте інструкціям.",
+    "setPasswordTitle": "Введіть новый пароль",
+    "setPasswordButton": "Змінити пароль",
+    "setPasswordSuccessTitle": "Успішно змінений!",
+    "setPasswordSuccessText": "Тепер ви можете увійти використовуя новый пароль.",
+    "doNotHaveAccount": "Немає акаунта?",
+    "forgotPassword": "Забули пароль?",
+    "alreadyHaveAccount": "Вже є акаунт?",
+    "footer": "Усі права захищені. (Здається)"
+  },
+  "navigation": {
+    "login": "Логін",
+    "sign-up": "Реєстрація"
   }
 }

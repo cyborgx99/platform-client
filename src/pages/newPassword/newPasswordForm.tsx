@@ -12,7 +12,7 @@ const NewPasswordForm = ({ error, loading }: INewPasswordFormProps) => {
   return (
     <FormBase>
       <FormInput
-        label={t('pages.auth.password')}
+        label={t('pages.auth.newPassword')}
         name='password'
         type='password'
       />

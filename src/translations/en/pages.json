@@ -8,6 +8,7 @@
     "confirmPassword": "Confirm password",
     "signUpButton": "Sign up",
     "signInButton": "Sign in",
+    "logoutButton": "Logout",
     "resetButton": "Reset",
     "resetPasswordTitle": "Enter your email to reset your password.",
     "signUpSuccessTitle": "Account Created!",
@@ -18,6 +19,14 @@
     "setPasswordTitle": "Enter new password",
     "setPasswordButton": "Change password",
     "setPasswordSuccessTitle": "Updated successfully!",
-    "setPasswordSuccessText": "Now you can log in using your new password."
+    "setPasswordSuccessText": "Now you can log in using your new password.",
+    "doNotHaveAccount": "Do not have an account?",
+    "forgotPassword": "Forgot password?",
+    "alreadyHaveAccount": "Already have an account?",
+    "footer": "All rights reserved. (Apparently)"
+  },
+  "navigation": {
+    "login": "Login",
+    "sign-up": "Sign-Up"
   }
 }

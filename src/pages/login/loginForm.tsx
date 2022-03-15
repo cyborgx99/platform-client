@@ -11,14 +11,15 @@ import FormInput from 'components/input';
 import { Formik } from 'formik';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { FormBase } from 'styles/globalStyles';
+import { pathKeys } from 'routes/pathKeys';
+import { FormBase, LinkBase, ParagraphBase } from 'styles/globalStyles';
 import {
   stringRequiredEmail,
   stringRequiredMaxPassword,
 } from 'utils/validation';
 import * as yup from 'yup';
 
-import { StyledLink, StyledParagraph } from './styles';
+import { LinkContainer } from './styles';
 import { ISignInFormValues } from './types';
 
 const initialValues: ISignInFormValues = {
@@ -74,13 +75,26 @@ const SignInForm = () => {
           {t('pages.auth.signInButton')}
         </ButtonComponent>
         <ErrorMessage error={error} />
-        <StyledParagraph>
-          Do not have an account? <StyledLink to='/sign-up'>Sign up</StyledLink>
-        </StyledParagraph>
-        <StyledParagraph>
-          Forgot password?{' '}
-          <StyledLink to='/forgot-password'>Restore</StyledLink>
-        </StyledParagraph>
+        <LinkContainer>
+          <ParagraphBase $textType='normalText' $textWeight='regular'>
+            {t('pages.auth.doNotHaveAccount')}{' '}
+            <LinkBase
+              $textType='normalText'
+              $textWeight='regular'
+              to={pathKeys.unathorized.SIGN_UP}>
+              {t('pages.auth.signUpButton')}
+            </LinkBase>
+          </ParagraphBase>
+          <ParagraphBase $textType='normalText' $textWeight='regular'>
+            {t('pages.auth.forgotPassword')}{' '}
+            <LinkBase
+              $textType='normalText'
+              $textWeight='regular'
+              to={pathKeys.password.FORGOT_PASSWORD}>
+              {t('pages.auth.resetButton')}
+            </LinkBase>
+          </ParagraphBase>
+        </LinkContainer>
       </FormBase>
     </Formik>
   );
