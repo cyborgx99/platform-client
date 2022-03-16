@@ -28,7 +28,7 @@ const getNavLinks = (userRole?: Role) => {
 const Navbar = ({ isShown, onToggle, userRole }: INavbarProps) => {
   const { t } = useTranslation();
   return (
-    <NavigationContainer $isShown={isShown}>
+    <NavigationContainer data-cy-nav $isShown={isShown}>
       <NavigationTopPart>
         <IconComponent
           iconStyle={deleteIconStyle}
