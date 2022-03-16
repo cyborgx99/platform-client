@@ -12,6 +12,7 @@ const IconComponent = ({
 }: IIconComponentProps) => {
   return (
     <IconContainer
+      data-cy-icon={title}
       disabled={Boolean(!onClick)}
       $iconContainerStyle={iconContainerStyle}
       $iconStyle={iconStyle}
