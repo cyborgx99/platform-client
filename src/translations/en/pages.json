@@ -26,7 +26,13 @@
     "footer": "All rights reserved. (Apparently)"
   },
   "navigation": {
+    "home": "Home",
     "login": "Login",
     "sign-up": "Sign-Up"
+  },
+  "errorBoundary": {
+    "explanation": "An error has occurred. In some cases, reloading the page can resolve the issue. If the error persists, please contact us.",
+    "header": "Something went wrong",
+    "reloadButton": "Reload"
   }
 }

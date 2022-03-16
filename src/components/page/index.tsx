@@ -1,4 +1,5 @@
 import { useAuth } from 'auth';
+import ErrorBoundary from 'components/errorBoundary';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -22,22 +23,24 @@ const PageLayout: React.FC = ({ children }) => {
   };
 
   return (
-    <PageContainer>
-      <Navbar
-        userRole={user?.role}
-        isShown={isNavbarShown}
-        onToggle={toggleNavbar}
-      />
-      <PageHeader onToggleNavbar={toggleNavbar} />
-      <PageContent>
-        <PageContentScrollable>{children}</PageContentScrollable>
-      </PageContent>
-      <PageFooter>
-        <FooterText $textType='normalText' $textWeight='regular'>
-          © {year} {t('pages.auth.footer')}
-        </FooterText>
-      </PageFooter>
-    </PageContainer>
+    <ErrorBoundary>
+      <PageContainer>
+        <Navbar
+          userRole={user?.role}
+          isShown={isNavbarShown}
+          onToggle={toggleNavbar}
+        />
+        <PageHeader onToggleNavbar={toggleNavbar} />
+        <PageContent>
+          <PageContentScrollable>{children}</PageContentScrollable>
+        </PageContent>
+        <PageFooter>
+          <FooterText $textType='normalText' $textWeight='regular'>
+            © {year} {t('pages.auth.footer')}
+          </FooterText>
+        </PageFooter>
+      </PageContainer>
+    </ErrorBoundary>
   );
 };
 

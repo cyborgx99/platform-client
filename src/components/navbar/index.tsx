@@ -28,7 +28,7 @@ const getNavLinks = (userRole?: Role) => {
 const Navbar = ({ isShown, onToggle, userRole }: INavbarProps) => {
   const { t } = useTranslation();
   return (
-    <NavigationContainer $isShown={isShown}>
+    <NavigationContainer data-cy-nav $isShown={isShown}>
       <NavigationTopPart>
         <IconComponent
           iconStyle={deleteIconStyle}
@@ -42,7 +42,11 @@ const Navbar = ({ isShown, onToggle, userRole }: INavbarProps) => {
           <StyledNavLink key={link} to={link}>
             {({ isActive }) => (
               <LinkText $isActive={isActive}>
-                {t(`pages.navigation.${removeSlash(link)}`)}
+                {t(
+                  `pages.navigation.${
+                    link === '/' ? 'home' : removeSlash(link)
+                  }`
+                )}
               </LinkText>
             )}
           </StyledNavLink>
