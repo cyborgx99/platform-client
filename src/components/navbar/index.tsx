@@ -42,7 +42,11 @@ const Navbar = ({ isShown, onToggle, userRole }: INavbarProps) => {
           <StyledNavLink key={link} to={link}>
             {({ isActive }) => (
               <LinkText $isActive={isActive}>
-                {t(`pages.navigation.${removeSlash(link)}`)}
+                {t(
+                  `pages.navigation.${
+                    link === '/' ? 'home' : removeSlash(link)
+                  }`
+                )}
               </LinkText>
             )}
           </StyledNavLink>
