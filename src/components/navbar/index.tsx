@@ -39,7 +39,7 @@ const Navbar = ({ isShown, onToggle, userRole }: INavbarProps) => {
       </NavigationTopPart>
       <NavigationLinkContainer>
         {Object.values(getNavLinks(userRole)).map((link) => (
-          <StyledNavLink key={link} to={link}>
+          <StyledNavLink data-cy-nav-link={link} key={link} to={link}>
             {({ isActive }) => (
               <LinkText $isActive={isActive}>
                 {t(
