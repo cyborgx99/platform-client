@@ -14,6 +14,7 @@ const ButtonComponent: React.FC<ButtonProps> = ({
 }) => {
   return (
     <StyledButton
+      data-cy-button
       $variant={variant}
       $width={width}
       onClick={onClick}
