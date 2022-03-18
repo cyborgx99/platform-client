@@ -28,7 +28,8 @@
   "navigation": {
     "home": "Home",
     "login": "Login",
-    "sign-up": "Sign-Up"
+    "sign-up": "Sign-Up",
+    "dashboard": "Dashboard"
   },
   "errorBoundary": {
     "explanation": "An error has occurred. In some cases, reloading the page can resolve the issue. If the error persists, please contact us.",
