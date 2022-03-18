@@ -17,7 +17,10 @@ const FormInput = ({ label = '', type = 'text', name }: IFormInputProps) => {
         {label}
       </LabelBase>
       <StyledInput $hasError={hasError} {...field} name={name} type={type} />
-      <ErrorMessage $textType='normalText' $textWeight='regular'>
+      <ErrorMessage
+        data-cy-error={name}
+        $textType='normalText'
+        $textWeight='regular'>
         {hasError ? t(`errors.${error}`, { min: 2, max: 32 }) : ''}
       </ErrorMessage>
     </InputContainer>
