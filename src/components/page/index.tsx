@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Navbar from '../navbar';
+import HtmlHeadTags from './htmlHeadTags';
 import PageHeader from './pageHeader';
 import {
   FooterText,
@@ -12,8 +13,9 @@ import {
   PageContentScrollable,
   PageFooter,
 } from './styles';
+import { IPageProps } from './types';
 
-const PageLayout: React.FC = ({ children }) => {
+const PageLayout: React.FC<IPageProps> = ({ children, title }) => {
   const [isNavbarShown, setIsNavbarShown] = useState(false);
   const { user } = useAuth();
   const { t } = useTranslation();
@@ -23,24 +25,27 @@ const PageLayout: React.FC = ({ children }) => {
   };
 
   return (
-    <ErrorBoundary>
-      <PageContainer>
-        <Navbar
-          userRole={user?.role}
-          isShown={isNavbarShown}
-          onToggle={toggleNavbar}
-        />
-        <PageHeader onToggleNavbar={toggleNavbar} />
-        <PageContent>
-          <PageContentScrollable>{children}</PageContentScrollable>
-        </PageContent>
-        <PageFooter>
-          <FooterText $textType='normalText' $textWeight='regular'>
-            © {year} {t('pages.auth.footer')}
-          </FooterText>
-        </PageFooter>
-      </PageContainer>
-    </ErrorBoundary>
+    <>
+      <HtmlHeadTags title={title} />
+      <ErrorBoundary>
+        <PageContainer>
+          <Navbar
+            userRole={user?.role}
+            isShown={isNavbarShown}
+            onToggle={toggleNavbar}
+          />
+          <PageHeader onToggleNavbar={toggleNavbar} />
+          <PageContent>
+            <PageContentScrollable>{children}</PageContentScrollable>
+          </PageContent>
+          <PageFooter>
+            <FooterText $textType='normalText' $textWeight='regular'>
+              © {year} {t('pages.auth.footer')}
+            </FooterText>
+          </PageFooter>
+        </PageContainer>
+      </ErrorBoundary>
+    </>
   );
 };
 

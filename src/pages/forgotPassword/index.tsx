@@ -55,7 +55,7 @@ const ForgotPasswordPage = () => {
   };
 
   return (
-    <PageLayout>
+    <PageLayout title='Forgot password'>
       <Formik<ResetPasswordLinkFormValues>
         onSubmit={handleSendResetPasswordLink}
         initialValues={initialValues}
