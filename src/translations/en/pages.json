@@ -29,7 +29,14 @@
     "home": "Home",
     "login": "Login",
     "sign-up": "Sign-Up",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "tabs": {
+      "user": "User",
+      "payment": "Payment",
+      "classroom": "Classroom",
+      "lesson": "Lesson",
+      "homework": "Homework"
+    }
   },
   "errorBoundary": {
     "explanation": "An error has occurred. In some cases, reloading the page can resolve the issue. If the error persists, please contact us.",
