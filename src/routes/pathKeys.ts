@@ -11,4 +11,19 @@ export const pathKeys = {
   user: {
     DASHBOARD: '/dashboard',
   },
+  teacher: {
+    DASHBOARD: '/dashboard',
+  },
+  tabs: {
+    DASHBOARD_STUDENT_TABS: {
+      CLASSROOM: '/dashboard/classroom',
+      HOMEWORK: '/dashboard/homework',
+      PAYMENT: '/dashboard/payment',
+    },
+    DASHBOARD_TEACHER_TABS: {
+      USER: '/dashboard/user',
+      LESSON: '/dashboard/lesson',
+      CLASSROOM: '/dashboard/classroom',
+    },
+  },
 };
