@@ -2,8 +2,8 @@ import styled, { css } from 'styled-components';
 import { LinkBase } from 'styles/globalStyles';
 
 export const NavigatorContainer = styled.div`
-  width: 20rem;
-  height: 3rem;
+  max-width: 25rem;
+  width: 100%;
   border-radius: 48px;
   display: flex;
   justify-content: space-between;
@@ -25,13 +25,29 @@ const shapes = {
   `,
 };
 
+export const DashboardContainer = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 0.75rem;
+`;
+
+export const DashboardContent = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
 export const DashboardLink = styled(LinkBase)<{
   $type: 'left' | 'middle' | 'right';
   $isActive: boolean;
 }>`
   flex: 1;
   border: 3px solid transparent;
-  padding: 0.5rem 1rem;
+  padding: 0.25rem;
+  text-transform: capitalize;
+  text-align: center;
+  transition: background-color 0.5 ease-in-out;
 
   &:hover {
     text-decoration: none;
@@ -44,6 +60,7 @@ export const DashboardLink = styled(LinkBase)<{
           color: ${({ theme }) => theme.colors.white};
 
           :hover {
+            background-color: ${({ theme }) => theme.colors.primary.darkest};
             color: ${({ theme }) => theme.colors.white};
           }
         `
