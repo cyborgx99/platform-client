@@ -34,8 +34,8 @@ const PageHeader = ({ onToggleNavbar }: IPageHeaderInterface) => {
     },
   });
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    await logout();
   };
 
   const handleLanguageChange = async () => {

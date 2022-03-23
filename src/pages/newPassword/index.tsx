@@ -63,7 +63,7 @@ const NewPassword = () => {
   };
 
   return (
-    <PageLayout>
+    <PageLayout title='Set new password'>
       <Formik<INewPasswordFormValues>
         onSubmit={handleSetNewPassword}
         initialValues={initialValues}

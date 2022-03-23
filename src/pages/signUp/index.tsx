@@ -5,7 +5,7 @@ import SignUpForm from './signUpForm';
 
 const SignUpPage = () => {
   return (
-    <PageLayout>
+    <PageLayout title='Sign up'>
       <SignUpForm />
     </PageLayout>
   );

@@ -20,6 +20,8 @@ const getNavLinks = (userRole?: Role) => {
   switch (userRole) {
     case Role.User:
       return pathKeys.user;
+    case Role.Teacher:
+      return pathKeys.teacher;
     default:
       return pathKeys.unathorized;
   }

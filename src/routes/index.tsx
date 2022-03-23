@@ -1,11 +1,14 @@
 import { useAuth } from 'auth';
 import Spinner from 'components/spinner';
-import React, { Suspense } from 'react';
+import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import { dashboardTabs } from './dashboardStudentTabs';
+import { pathKeys } from './pathKeys';
 import ProtectedRoute from './protectedRoute';
 import { unathorizedRoutes } from './unathorizedRoutes';
-import { userRoutes } from './userRoutes';
+
+const DashboardPage = lazy(() => import('../pages/dashboard'));
 
 const AppRoutes = () => {
   const { user, loading } = useAuth();
@@ -18,7 +21,10 @@ const AppRoutes = () => {
         <Routes>
           <Route
             element={
-              <ProtectedRoute redirectPath='/dashboard' isAllowed={!user} />
+              <ProtectedRoute
+                redirectPath={pathKeys.user.DASHBOARD}
+                isAllowed={!user}
+              />
             }>
             {unathorizedRoutes.map(({ path, Component }, i) => (
               <Route
@@ -31,16 +37,23 @@ const AppRoutes = () => {
           </Route>
           <Route
             element={
-              <ProtectedRoute redirectPath='/login' isAllowed={!!user} />
-            }>
-            {userRoutes.map(({ path, Component }, i) => (
-              <Route
-                path={path}
-                key={path}
-                index={i === 0}
-                element={<Component />}
+              <ProtectedRoute
+                redirectPath={pathKeys.unathorized.LOGIN}
+                isAllowed={!!user}
               />
-            ))}
+            }>
+            <Route path={pathKeys.user.DASHBOARD} element={<DashboardPage />}>
+              {user &&
+                dashboardTabs[user.role].map(({ Component, path }, i) => (
+                  <Route
+                    path={path}
+                    key={path}
+                    index={i === 0}
+                    element={<Component />}
+                  />
+                ))}
+              <Route path='*' />
+            </Route>
           </Route>
         </Routes>
       </Suspense>
