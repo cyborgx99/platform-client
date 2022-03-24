@@ -1,6 +1,6 @@
 import { useApolloClient, useMutation } from '@apollo/client';
+import { LOGOUT } from 'apollo/graphql';
 import { Mutation } from 'apollo/graphql/generated.types';
-import { LOGOUT } from 'apollo/graphql/mutations/logout';
 import { ReactComponent as Show } from 'assets/icons/dial.svg';
 import { ReactComponent as Ru } from 'assets/icons/ru.svg';
 import { ReactComponent as Ua } from 'assets/icons/ua.svg';

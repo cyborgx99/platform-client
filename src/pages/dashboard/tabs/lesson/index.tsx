@@ -1,35 +1,36 @@
-import { useMutation } from '@apollo/client';
-import {
-  Mutation,
-  MutationUploadFileArgs,
-} from 'apollo/graphql/generated.types';
-import { UPLOAD_FILE } from 'apollo/graphql/mutations/uploadFile';
+import { ReactComponent as Plus } from 'assets/icons/brush-and-pencil.svg';
+import Card from 'components/card';
+import IconComponent from 'components/icon';
 import React from 'react';
 
+import { iconContainerStyle, LessonTabWrapper } from './style';
+
 const LessonTab = () => {
-  const [upload] =
-    useMutation<Pick<Mutation, 'uploadFile'>, MutationUploadFileArgs>(
-      UPLOAD_FILE
-    );
-
-  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-
-    await upload({
-      variables: {
-        file,
-      },
-    });
+  const handleAddLesson = () => {
+    console.log(123);
   };
 
   return (
-    <div>
-      <input
-        type='file'
-        accept='image/png, image/gif, image/jpeg'
-        onChange={handleChange}
+    <LessonTabWrapper>
+      <IconComponent
+        onClick={handleAddLesson}
+        iconContainerStyle={iconContainerStyle}
+        title='Add lesson'
+        Svg={Plus}
       />
-    </div>
+      <Card
+        onLeftClick={() => {
+          console.log(123);
+        }}
+        onRightClick={() => {
+          console.log(123);
+        }}
+        imageUrl='https://res.cloudinary.com/cyborgx999/image/upload/v1648131622/platform/lessons/photography-01-800x400_obxyix.jpg'
+        imageAlt='Card'
+        cardTitle='My card title'>
+        <p>123123</p>
+      </Card>
+    </LessonTabWrapper>
   );
 };
 

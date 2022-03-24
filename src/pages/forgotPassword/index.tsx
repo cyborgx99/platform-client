@@ -1,9 +1,9 @@
 import { useMutation } from '@apollo/client';
+import { RESET_PASSWORD_LINK } from 'apollo/graphql';
 import {
   Mutation,
   MutationResetPasswordLinkArgs,
 } from 'apollo/graphql/generated.types';
-import { RESET_PASSWORD_LINK } from 'apollo/graphql/mutations/resetPasswordLink';
 import PageLayout from 'components/page';
 import Success from 'components/success';
 import { Formik } from 'formik';
