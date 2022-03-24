@@ -10,6 +10,7 @@ const ButtonComponent: React.FC<ButtonProps> = ({
   isLoading,
   children,
   variant,
+  shape = 'round',
   onClick,
 }) => {
   return (
@@ -17,6 +18,7 @@ const ButtonComponent: React.FC<ButtonProps> = ({
       data-cy-button
       $variant={variant}
       $width={width}
+      $shape={shape}
       onClick={onClick}
       disabled={isLoading}
       type={type}>
