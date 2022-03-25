@@ -3,7 +3,7 @@ import Spinner from 'components/spinner';
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { dashboardTabs } from './dashboardStudentTabs';
+import { dashboardTabs } from './dashboardTabs';
 import { pathKeys } from './pathKeys';
 import ProtectedRoute from './protectedRoute';
 import { unathorizedRoutes } from './unathorizedRoutes';

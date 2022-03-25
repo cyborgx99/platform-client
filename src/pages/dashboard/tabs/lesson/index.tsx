@@ -1,19 +1,21 @@
 import { ReactComponent as Plus } from 'assets/icons/brush-and-pencil.svg';
 import Card from 'components/card';
 import IconComponent from 'components/icon';
+import Modal from 'components/modal';
 import React from 'react';
 
 import { iconContainerStyle, LessonTabWrapper } from './style';
 
 const LessonTab = () => {
-  const handleAddLesson = () => {
+  const goToCreateLessonPage = () => {
     console.log(123);
   };
 
   return (
     <LessonTabWrapper>
+      <Modal></Modal>
       <IconComponent
-        onClick={handleAddLesson}
+        onClick={goToCreateLessonPage}
         iconContainerStyle={iconContainerStyle}
         title='Add lesson'
         Svg={Plus}

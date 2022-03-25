@@ -9,17 +9,10 @@ export type ButtonVariant =
 export type ButtonWidth = 'min' | 'full';
 export type ButtonShape = 'circle' | 'round' | 'rectangle';
 
-export type ButtonVariantStyle = {
-  [key in ButtonVariant]: CssStyleProp;
-};
+export type ButtonVariantStyle = Record<ButtonVariant, CssStyleProp>;
+export type ButtonWidthStyle = Record<ButtonWidth, CssStyleProp>;
+export type ButtonShapeStyle = Record<ButtonShape, CssStyleProp>;
 
-export type ButtonWidthStyle = {
-  [key in ButtonWidth]: CssStyleProp;
-};
-
-export type ButtonShapeStyle = {
-  [key in ButtonShape]: CssStyleProp;
-};
 interface BasicButtonProps {
   variant: ButtonVariant;
   isLoading?: boolean;
