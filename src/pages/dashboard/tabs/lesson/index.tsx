@@ -1,7 +1,6 @@
 import { ReactComponent as Plus } from 'assets/icons/brush-and-pencil.svg';
 import Card from 'components/card';
 import IconComponent from 'components/icon';
-import Modal from 'components/modal';
 import React from 'react';
 
 import { iconContainerStyle, LessonTabWrapper } from './style';
@@ -13,7 +12,6 @@ const LessonTab = () => {
 
   return (
     <LessonTabWrapper>
-      <Modal></Modal>
       <IconComponent
         onClick={goToCreateLessonPage}
         iconContainerStyle={iconContainerStyle}

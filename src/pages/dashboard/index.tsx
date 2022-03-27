@@ -2,10 +2,11 @@ import { Role } from 'apollo/graphql/generated.types';
 import { useAuth } from 'auth';
 import PageLayout from 'components/page';
 import Spinner from 'components/spinner';
+import TabNavigator from 'components/tabNabigator';
 import React, { Suspense } from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import { pathKeys } from 'routes/pathKeys';
 
-import DashboardTabNavigator from './dashboardTabNavigator';
 import { DashboardContainer, DashboardContent } from './styles';
 
 const defaultDashboardPath = (role?: Role) => {
@@ -16,6 +17,17 @@ const defaultDashboardPath = (role?: Role) => {
       return 'user';
     default:
       return '2';
+  }
+};
+
+const getNavTabs = (userRole?: Role) => {
+  switch (userRole) {
+    case Role.User:
+      return pathKeys.tabs.DASHBOARD_STUDENT_TABS;
+    case Role.Teacher:
+      return pathKeys.tabs.DASHBOARD_TEACHER_TABS;
+    default:
+      return { link: '' };
   }
 };
 
@@ -30,7 +42,7 @@ const DashboardPage = () => {
   return (
     <PageLayout title='Dashboard'>
       <DashboardContainer>
-        <DashboardTabNavigator />
+        <TabNavigator tabs={getNavTabs(user?.role)} />
         <DashboardContent>
           <Suspense fallback={<Spinner type='animated' />}>
             <Outlet />
