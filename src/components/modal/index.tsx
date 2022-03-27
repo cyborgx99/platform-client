@@ -4,27 +4,26 @@ import Portal from 'components/portal';
 import React from 'react';
 
 import { deleteIconStyle, ModalHeader, ModalWrapper, Overlay } from './styles';
+import { IModalProps } from './types';
 
-const Modal = () => {
-  return (
+const Modal: React.FC<IModalProps> = ({ children, isShown, onClose }) => {
+  return isShown ? (
     <Portal id='modal'>
       <Overlay>
         <ModalWrapper>
           <ModalHeader>
             <IconComponent
               iconStyle={deleteIconStyle}
-              title='Close navbar'
-              onClick={() => {
-                console.log(123);
-              }}
+              title='Close modal'
+              onClick={onClose}
               Svg={Close}
             />
           </ModalHeader>
-          123123
+          {children}
         </ModalWrapper>
       </Overlay>
     </Portal>
-  );
+  ) : null;
 };
 
 export default Modal;
