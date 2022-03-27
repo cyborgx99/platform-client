@@ -35,7 +35,10 @@
       "payment": "Оплата",
       "classroom": "Класс",
       "lesson": "Урок",
-      "homework": "Д/з"
+      "homework": "Д/з",
+      "image": "Картинки",
+      "content": "Контент",
+      "grammar": "Грамматика"
     }
   },
   "errorBoundary": {

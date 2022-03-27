@@ -25,6 +25,9 @@
     "alreadyHaveAccount": "Already have an account?",
     "footer": "All rights reserved. (Apparently)"
   },
+  "createLesson": {
+    "url": "Url"
+  },
   "navigation": {
     "home": "Home",
     "login": "Login",
@@ -35,7 +38,10 @@
       "payment": "Payment",
       "classroom": "Classroom",
       "lesson": "Lesson",
-      "homework": "Homework"
+      "homework": "Homework",
+      "image": "Image",
+      "content": "Content",
+      "grammar": "Grammar"
     }
   },
   "errorBoundary": {
