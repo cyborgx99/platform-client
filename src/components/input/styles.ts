@@ -37,3 +37,8 @@ export const StyledInput = styled.input<{ $hasError: boolean }>`
 export const ErrorMessage = styled(SpanBase)`
   color: ${({ theme }) => theme.colors.red.base};
 `;
+
+export const PreviewImg = styled.img`
+  width: 100%;
+  height: 100%;
+`;
