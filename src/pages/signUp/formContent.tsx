@@ -1,5 +1,5 @@
+import ApolloErrorMessage from 'components/apolloErrorMessage';
 import ButtonComponent from 'components/button';
-import ErrorMessage from 'components/errorMessage';
 import FormInput from 'components/input';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -33,7 +33,7 @@ const FormContent = ({ error, loading }: FormContentProps) => {
         variant='primary'>
         {t('pages.auth.signUpButton')}
       </ButtonComponent>
-      <ErrorMessage error={error} />
+      <ApolloErrorMessage error={error} />
       <LinkContainer>
         <ParagraphBase $textType='normalText' $textWeight='regular'>
           {t('pages.auth.alreadyHaveAccount')}{' '}
