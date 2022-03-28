@@ -4,10 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { LabelBase } from 'styles/globalStyles';
 
 import {
-  ErrorMessage,
   InputContainer,
   PreviewImg,
   StyledInput,
+  ValidationErrorMessage,
 } from './styles';
 import { IFormInputProps } from './types';
 
@@ -23,7 +23,7 @@ const FormInput = ({
 
   return (
     <InputContainer>
-      {imagePreview && !hasError && (
+      {imagePreview && !hasError && field.value && (
         <PreviewImg src={field.value} alt='Preview' />
       )}
       <LabelBase $textType='largeText' $textWeight='medium'>
@@ -36,12 +36,12 @@ const FormInput = ({
         name={name}
         type={type}
       />
-      <ErrorMessage
+      <ValidationErrorMessage
         data-cy-error={name}
         $textType='normalText'
         $textWeight='regular'>
         {hasError ? t(`errors.${error}`, { min: 2, max: 32 }) : ''}
-      </ErrorMessage>
+      </ValidationErrorMessage>
     </InputContainer>
   );
 };

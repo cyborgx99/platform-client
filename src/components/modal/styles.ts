@@ -3,8 +3,10 @@ import styled, { css } from 'styled-components';
 export const ModalWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
   padding: 0.5rem;
-  margin: 2rem 0;
+  margin: 2rem 0.5rem;
   border-radius: 4px;
+  max-width: 25rem;
+  width: 100%;
 `;
 
 export const ModalHeader = styled.div`
