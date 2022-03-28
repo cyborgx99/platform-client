@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { SpanBase } from 'styles/globalStyles';
 
 export const UploadButtonContainer = styled.div`
   display: flex;
@@ -14,4 +15,8 @@ export const FileInput = styled.input`
 export const PreviewImg = styled.img`
   width: 100%;
   height: 100%;
+`;
+
+export const ValidationErrorMessage = styled(SpanBase)`
+  color: ${({ theme }) => theme.colors.red.base};
 `;
