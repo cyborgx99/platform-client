@@ -4,5 +4,8 @@ export { SET_NEW_PASSWORD } from './mutations/auth/setNewPassword';
 export { SIGN_IN } from './mutations/auth/signIn';
 export { SIGN_UP } from './mutations/auth/signUp';
 export { CREATE_LESSON } from './mutations/lesson/createLesson';
+export { CREATE_LESSON_IMAGE } from './mutations/lessonImage/createLessonImage';
+export { UPLOAD_FILE } from './mutations/uploadFile';
+export { GET_LESSON_IMAGES } from './queries/getLessonImages';
 export { GET_USER } from './queries/getUser';
 export { GET_USERS } from './queries/getUsers';
