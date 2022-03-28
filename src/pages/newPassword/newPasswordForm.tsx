@@ -1,5 +1,5 @@
+import ApolloErrorMessage from 'components/apolloErrorMessage';
 import ButtonComponent from 'components/button';
-import ErrorMessage from 'components/errorMessage';
 import FormInput from 'components/input';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -28,7 +28,7 @@ const NewPasswordForm = ({ error, loading }: INewPasswordFormProps) => {
         variant='primary'>
         {t('pages.auth.setPasswordButton')}
       </ButtonComponent>
-      <ErrorMessage error={error} />
+      <ApolloErrorMessage error={error} />
     </FormBase>
   );
 };

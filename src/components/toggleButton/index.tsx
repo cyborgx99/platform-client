@@ -4,15 +4,15 @@ import { TogglerContainer } from './styles';
 import TogglePart from './togglePart';
 import { IToggleButtonProps } from './types';
 
-const ToggleButton = ({
+const ToggleButton = <T extends string>({
   onSetValue,
   currentValue,
   options,
-}: IToggleButtonProps) => {
+}: IToggleButtonProps<T>) => {
   return (
     <TogglerContainer>
       {options.map((opt) => (
-        <TogglePart
+        <TogglePart<T>
           key={opt}
           currentValue={currentValue}
           value={opt}

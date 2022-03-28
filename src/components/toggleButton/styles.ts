@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 export const TogglerContainer = styled.div`
   display: flex;
+  margin: 0.5rem 0;
   border: 1px solid ${({ theme }) => theme.colors.gray.base};
   & button + button {
     border-left: 1px solid ${({ theme }) => theme.colors.gray.base};

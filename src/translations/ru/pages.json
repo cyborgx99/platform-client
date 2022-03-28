@@ -25,11 +25,19 @@
     "alreadyHaveAccount": "Уже есть аккаунт?",
     "footer": "Все права защищены. (Кажется)"
   },
+  "createLesson": {
+    "url": "Url",
+    "upload": "Загрузить",
+    "create": "Создать",
+    "title": "Заголовок",
+    "selectImage": "Выбрать изображение"
+  },
   "navigation": {
     "home": "Главная страница",
     "login": "Логин",
     "sign-up": "Регистрация",
     "dashboard": "Дашборд",
+    "create-lesson": "Создать урок",
     "tabs": {
       "user": "Пользователь",
       "payment": "Оплата",

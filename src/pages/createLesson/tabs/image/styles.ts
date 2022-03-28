@@ -1,9 +1,16 @@
 import styled, { css } from 'styled-components';
+import { FormBase } from 'styles/globalStyles';
 
 export const ImageTabWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
   gap: 1rem;
+`;
+
+export const StyledImageForm = styled(FormBase)`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 `;
 
 export const iconContainerStyle = css`

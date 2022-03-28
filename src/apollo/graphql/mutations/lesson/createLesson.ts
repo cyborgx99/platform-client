@@ -7,7 +7,7 @@ export const CREATE_LESSON = gql`
       image {
         id
         url
-        baseImageId
+        publicId
       }
       title
       description

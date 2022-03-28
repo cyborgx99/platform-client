@@ -5,8 +5,8 @@ import {
   SignInMutationVariables,
 } from 'apollo/graphql/generated.types';
 import { useAuth } from 'auth';
+import ApolloErrorMessage from 'components/apolloErrorMessage';
 import ButtonComponent from 'components/button';
-import ErrorMessage from 'components/errorMessage';
 import FormInput from 'components/input';
 import { Formik } from 'formik';
 import React from 'react';
@@ -74,7 +74,7 @@ const SignInForm = () => {
           variant='primary'>
           {t('pages.auth.signInButton')}
         </ButtonComponent>
-        <ErrorMessage error={error} />
+        <ApolloErrorMessage error={error} />
         <LinkContainer>
           <ParagraphBase $textType='normalText' $textWeight='regular'>
             {t('pages.auth.doNotHaveAccount')}{' '}

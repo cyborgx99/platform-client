@@ -10,14 +10,14 @@ import {
 } from './styles';
 import { ICardComponentProps } from './types';
 
-const Card = ({
+const Card: React.FC<ICardComponentProps> = ({
   imageAlt,
   imageUrl,
   cardTitle,
   children,
   onLeftClick,
   onRightClick,
-}: ICardComponentProps) => {
+}) => {
   return (
     <CardContainer>
       <ContentWrapper>
@@ -33,7 +33,7 @@ const Card = ({
             shape='rectangle'
             variant='primary'
             onClick={onLeftClick}>
-            Left
+            Edit
           </ButtonComponent>
         )}
         {onRightClick && (
@@ -43,7 +43,7 @@ const Card = ({
             variant='secondary'
             shape='rectangle'
             onClick={onRightClick}>
-            Right
+            Delete
           </ButtonComponent>
         )}
       </ActionContainer>

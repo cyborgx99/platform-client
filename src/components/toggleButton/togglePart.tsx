@@ -3,11 +3,11 @@ import React from 'react';
 import { TogglePartButton } from './styles';
 import { IToggleButtonPartProps } from './types';
 
-const TogglePart = ({
+const TogglePart = <T extends string>({
   value,
   onSetValue,
   currentValue,
-}: IToggleButtonPartProps) => {
+}: IToggleButtonPartProps<T>) => {
   const isActive = currentValue === value;
   const onClick = () => {
     onSetValue(value);

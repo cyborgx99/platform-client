@@ -1,5 +1,5 @@
+import ApolloErrorMessage from 'components/apolloErrorMessage';
 import ButtonComponent from 'components/button';
-import ErrorMessage from 'components/errorMessage';
 import FormInput from 'components/input';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -21,7 +21,7 @@ const ForgotPasswordForm = ({ error, loading }: IForgotPasswordFormProps) => {
         variant='primary'>
         {t('pages.auth.resetButton')}
       </ButtonComponent>
-      <ErrorMessage error={error} />
+      <ApolloErrorMessage error={error} />
     </FormBase>
   );
 };

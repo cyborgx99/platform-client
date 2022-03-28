@@ -20,6 +20,7 @@ export const CardImage = styled.img`
   object-fit: cover;
   width: 100%;
   transition: transform 0.2s ease-in-out;
+  border-radius: 8px;
 
   &:hover {
     transform: scale(1.0125);
