@@ -26,13 +26,18 @@
     "footer": "All rights reserved. (Apparently)"
   },
   "createLesson": {
-    "url": "Url"
+    "url": "Url",
+    "upload": "Upload",
+    "create": "Create",
+    "title": "Title",
+    "selectImage": "Select image"
   },
   "navigation": {
     "home": "Home",
     "login": "Login",
     "sign-up": "Sign-Up",
     "dashboard": "Dashboard",
+    "create-lesson": "Create lesson",
     "tabs": {
       "user": "User",
       "payment": "Payment",
