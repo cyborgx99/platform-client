@@ -5,9 +5,7 @@ export interface IRouteInterface {
   Component: React.LazyExoticComponent<() => JSX.Element>;
 }
 
-export type DashboardTabs = {
-  [key in Role]: IRouteInterface[];
-};
+export type DashboardTabs = Record<Role, IRouteInterface[]>;
 
 export interface ProtectedRouteProps {
   isAllowed: boolean;

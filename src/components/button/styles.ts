@@ -1,6 +1,13 @@
 import styled, { css } from 'styled-components';
 
-import { ButtonVariantStyle, ButtonWidthStyle } from './types';
+import {
+  ButtonShape,
+  ButtonShapeStyle,
+  ButtonVariant,
+  ButtonVariantStyle,
+  ButtonWidth,
+  ButtonWidthStyle,
+} from './types';
 
 const types: ButtonVariantStyle = {
   primary: css`
@@ -31,6 +38,34 @@ const types: ButtonVariantStyle = {
       background-color: ${({ theme }) => theme.colors.secondary.light};
     }
   `,
+  danger: css`
+    color: ${({ theme }) => theme.colors.white};
+    border: 1px solid ${({ theme }) => theme.colors.red.base};
+    background-color: ${({ theme }) => theme.colors.red.base};
+    &:hover {
+      cursor: pointer;
+      background-color: ${({ theme }) => theme.colors.red.darkest};
+    }
+
+    &:focus {
+      outline: 2px solid ${({ theme }) => theme.colors.red.darkest};
+      background-color: ${({ theme }) => theme.colors.red.light};
+    }
+  `,
+  success: css`
+    color: ${({ theme }) => theme.colors.white};
+    border: 1px solid ${({ theme }) => theme.colors.green.base};
+    background-color: ${({ theme }) => theme.colors.green.base};
+    &:hover {
+      cursor: pointer;
+      background-color: ${({ theme }) => theme.colors.green.darkest};
+    }
+
+    &:focus {
+      outline: 2px solid ${({ theme }) => theme.colors.green.darkest};
+      background-color: ${({ theme }) => theme.colors.green.light};
+    }
+  `,
   textOnly: css`
     color: ${({ theme }) => theme.colors.black.base};
     border: 2px solid ${({ theme }) => theme.colors.gray.base};
@@ -56,19 +91,33 @@ const buttonWidth: ButtonWidthStyle = {
   `,
 };
 
+const buttonShape: ButtonShapeStyle = {
+  circle: css`
+    border-radius: 50%;
+  `,
+  round: css`
+    border-radius: 48px;
+  `,
+  rectangle: css`
+    border-radius: 2px;
+  `,
+};
+
 export const StyledButton = styled.button<{
-  $variant: 'primary' | 'secondary' | 'textOnly';
-  $width: 'min' | 'full';
+  $variant: ButtonVariant;
+  $width: ButtonWidth;
+  $shape: ButtonShape;
 }>`
   padding: 0.45rem 0.75rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 48px;
+
+  ${({ $shape }) => buttonShape[$shape]};
 
   ${({ $width }) => buttonWidth[$width]};
 
-  ${({ $variant }) => types[$variant]}
+  ${({ $variant }) => types[$variant]};
 
-  ${({ theme }) => theme.typography.normalText.regular}
+  ${({ theme }) => theme.typography.normalText.regular};
 `;

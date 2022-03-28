@@ -1,15 +1,17 @@
 import { lazy } from 'react';
 
-import { pathKeys } from './pathKeys';
-import { DashboardTabs } from './types';
+import { pathKeys } from '../pathKeys';
+import { DashboardTabs } from '../types';
 
-const HomeworkTab = lazy(() => import('../pages/dashboard/tabs/homework'));
-const PaymentsTab = lazy(() => import('../pages/dashboard/tabs/payment'));
+const HomeworkTab = lazy(() => import('../../pages/dashboard/tabs/homework'));
+const PaymentsTab = lazy(() => import('../../pages/dashboard/tabs/payment'));
 
-const UserTab = lazy(() => import('../pages/dashboard/tabs/user'));
-const LessonTab = lazy(() => import('../pages/dashboard/tabs/lesson'));
+const UserTab = lazy(() => import('../../pages/dashboard/tabs/user'));
+const LessonTab = lazy(() => import('../../pages/dashboard/tabs/lesson'));
 
-const ClassroomsTab = lazy(() => import('../pages/dashboard/tabs/classroom'));
+const ClassroomsTab = lazy(
+  () => import('../../pages/dashboard/tabs/classroom')
+);
 
 export const dashboardTabs: DashboardTabs = {
   USER: [

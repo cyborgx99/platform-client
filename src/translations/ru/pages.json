@@ -25,17 +25,28 @@
     "alreadyHaveAccount": "Уже есть аккаунт?",
     "footer": "Все права защищены. (Кажется)"
   },
+  "createLesson": {
+    "url": "Url",
+    "upload": "Загрузить",
+    "create": "Создать",
+    "title": "Заголовок",
+    "selectImage": "Выбрать изображение"
+  },
   "navigation": {
     "home": "Главная страница",
     "login": "Логин",
     "sign-up": "Регистрация",
     "dashboard": "Дашборд",
+    "create-lesson": "Создать урок",
     "tabs": {
       "user": "Пользователь",
       "payment": "Оплата",
       "classroom": "Класс",
       "lesson": "Урок",
-      "homework": "Д/з"
+      "homework": "Д/з",
+      "image": "Картинки",
+      "content": "Контент",
+      "grammar": "Грамматика"
     }
   },
   "errorBoundary": {

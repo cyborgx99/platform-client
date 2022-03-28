@@ -1,9 +1,9 @@
 import { useMutation } from '@apollo/client';
+import { SET_NEW_PASSWORD } from 'apollo/graphql';
 import {
   Mutation,
   MutationSetNewPasswordArgs,
 } from 'apollo/graphql/generated.types';
-import { SET_NEW_PASSWORD } from 'apollo/graphql/mutations/setNewPassword';
 import PageLayout from 'components/page';
 import Success from 'components/success';
 import { Formik } from 'formik';
