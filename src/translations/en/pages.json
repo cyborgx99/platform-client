@@ -30,7 +30,8 @@
     "upload": "Upload",
     "create": "Create",
     "title": "Title",
-    "selectImage": "Select image"
+    "selectImage": "Select image",
+    "imageCreated": "Your lesson image has been created."
   },
   "navigation": {
     "home": "Home",

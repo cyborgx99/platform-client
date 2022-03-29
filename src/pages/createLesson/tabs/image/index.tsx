@@ -11,7 +11,7 @@ import Modal from 'components/modal';
 import Spinner from 'components/spinner';
 import React, { useState } from 'react';
 
-import CreateImageForm from './createImageForm';
+import CreateImage from './createImage';
 import { iconContainerStyle, ImageTabWrapper } from './styles';
 
 const ImageTab = () => {
@@ -40,7 +40,7 @@ const ImageTab = () => {
   return (
     <ImageTabWrapper>
       <Modal onClose={closeModal} isShown={isModalShown}>
-        <CreateImageForm />
+        <CreateImage />
       </Modal>
       <IconComponent
         onClick={openModal}
