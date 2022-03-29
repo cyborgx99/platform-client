@@ -1,24 +1,34 @@
 import styled, { css } from 'styled-components';
 
-export const IconContainer = styled.div`
+export const SuccessIconContainer = styled.div`
   width: 7.5rem;
   height: 7.5rem;
   border-radius: 50%;
-  background-color: ${({ theme }) => theme.colors.green.base};
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: ${({ theme }) => theme.colors.green.base};
 `;
 
-export const iconStyles = css`
+export const successIconStyles = css`
   width: 5rem;
   height: 5rem;
+
   path {
     fill: ${({ theme }) => theme.colors.white};
   }
 `;
 
-export const SuccessContainer = styled.div`
+export const errorIconStyles = css`
+  width: 7.5rem;
+  height: 7.5rem;
+
+  path {
+    fill: ${({ theme }) => theme.colors.red.base};
+  }
+`;
+
+export const ResultContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -19,7 +19,7 @@ const flagIcon: LanguageFlags = {
   en: En,
 };
 
-const PageError = ({ reload }: ErrorPageProps) => {
+const ErrorPage = ({ reload }: ErrorPageProps) => {
   const { t, i18n } = useTranslation();
   const handleLanguageChange = async () => {
     await changeLanguage(switchLanguage(i18n.language as Languages));
@@ -49,4 +49,4 @@ const PageError = ({ reload }: ErrorPageProps) => {
   );
 };
 
-export default PageError;
+export default ErrorPage;

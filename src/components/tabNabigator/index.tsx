@@ -18,16 +18,16 @@ const getLinkType = (index = 0, maxIndex = 0) => {
 
 const TabNavigator = ({ tabs }: ITabNavigatorProps) => {
   const location = useLocation();
-  const linkMap = Object.values(tabs);
+  const links = Object.values(tabs);
   const { t } = useTranslation();
 
   return (
     <NavigatorContainer>
-      {linkMap.map((link, i) => (
+      {links.map((link, i) => (
         <TabNavigatorLink
           key={link}
           $isActive={location.pathname === link}
-          $type={getLinkType(i, linkMap.length - 1)}
+          $type={getLinkType(i, links.length - 1)}
           $textType='normalText'
           $textWeight='regular'
           to={link}>
