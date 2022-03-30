@@ -5,7 +5,7 @@ import {
   MutationSetNewPasswordArgs,
 } from 'apollo/graphql/generated.types';
 import PageLayout from 'components/page';
-import Success from 'components/success';
+import ResultWrapper from 'components/result';
 import { Formik } from 'formik';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -68,16 +68,13 @@ const NewPassword = () => {
         onSubmit={handleSetNewPassword}
         initialValues={initialValues}
         validationSchema={newPasswordValidationSchema}>
-        {isSuccessShown ? (
-          <Success
-            onContinue={handleContinue}
-            text={t('pages.auth.setPasswordSuccessText')}
-            title={t('pages.auth.setPasswordSuccessTitle')}
-            buttonText={t('pages.auth.successButton')}
-          />
-        ) : (
+        <ResultWrapper
+          isShown={isSuccessShown}
+          onContinue={handleContinue}
+          message={t('pages.auth.setPasswordSuccessText')}
+          type='success'>
           <NewPasswordForm error={error} loading={loading} />
-        )}
+        </ResultWrapper>
       </Formik>
     </PageLayout>
   );

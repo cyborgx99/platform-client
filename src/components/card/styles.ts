@@ -6,10 +6,15 @@ export const CardContainer = styled.div`
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.colors.gray.base};
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const ContentWrapper = styled.div`
   padding: 0.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const CardHeaderThree = styled(HeaderThreeBase)`
@@ -21,6 +26,7 @@ export const CardImage = styled.img`
   width: 100%;
   transition: transform 0.2s ease-in-out;
   border-radius: 8px;
+  flex: 1;
 
   &:hover {
     transform: scale(1.0125);

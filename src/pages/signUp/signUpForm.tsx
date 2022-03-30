@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/client';
 import { SIGN_UP } from 'apollo/graphql';
 import { Mutation } from 'apollo/graphql/generated.types';
-import Success from 'components/success';
+import ResultWrapper from 'components/result';
 import { Formik } from 'formik';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -62,16 +62,13 @@ const SignUpForm = () => {
       initialValues={initialValues}
       validationSchema={signUpValidationSchema}>
       <>
-        {isSuccessShown ? (
-          <Success
-            onContinue={handleContinue}
-            title={t('pages.auth.signUpSuccessTitle')}
-            text={t('pages.auth.signUpSuccessText')}
-            buttonText={t('pages.auth.successButton')}
-          />
-        ) : (
+        <ResultWrapper
+          isShown={isSuccessShown}
+          onContinue={handleContinue}
+          type='success'
+          message={t('pages.auth.signUpSuccessText')}>
           <FormContent loading={loading} error={error} />
-        )}
+        </ResultWrapper>
       </>
     </Formik>
   );

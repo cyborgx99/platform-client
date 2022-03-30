@@ -5,7 +5,7 @@ import {
   MutationResetPasswordLinkArgs,
 } from 'apollo/graphql/generated.types';
 import PageLayout from 'components/page';
-import Success from 'components/success';
+import ResultWrapper from 'components/result';
 import { Formik } from 'formik';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -60,16 +60,13 @@ const ForgotPasswordPage = () => {
         onSubmit={handleSendResetPasswordLink}
         initialValues={initialValues}
         validationSchema={resetPasswordValidationSchema}>
-        {isSuccessShown ? (
-          <Success
-            title={t('pages.auth.passwordResetTitle')}
-            text={t('pages.auth.passwordResetText')}
-            buttonText={t('pages.auth.successButton')}
-            onContinue={handleContinue}
-          />
-        ) : (
+        <ResultWrapper
+          message={t('pages.auth.passwordResetText')}
+          isShown={isSuccessShown}
+          type='success'
+          onContinue={handleContinue}>
           <ForgotPasswordForm error={error} loading={loading} />
-        )}
+        </ResultWrapper>
       </Formik>
     </PageLayout>
   );

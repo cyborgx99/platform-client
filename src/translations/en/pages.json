@@ -30,7 +30,8 @@
     "upload": "Upload",
     "create": "Create",
     "title": "Title",
-    "selectImage": "Select image"
+    "selectImage": "Select image",
+    "imageCreated": "Your lesson image has been created."
   },
   "navigation": {
     "home": "Home",
@@ -53,5 +54,10 @@
     "explanation": "An error has occurred. In some cases, reloading the page can resolve the issue. If the error persists, please contact us.",
     "header": "Something went wrong",
     "reloadButton": "Reload"
+  },
+  "resultWrapper": {
+    "success": "Success!",
+    "error": "Error!",
+    "continue": "Continue"
   }
 }
