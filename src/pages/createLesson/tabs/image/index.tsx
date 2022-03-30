@@ -7,65 +7,120 @@ import {
 import { ReactComponent as Plus } from 'assets/icons/plus.svg';
 import Card from 'components/card';
 import IconComponent from 'components/icon';
+import RegularInput from 'components/input/regularInput';
 import Modal from 'components/modal';
-import Spinner from 'components/spinner';
+import { useDebouncedValue } from 'hooks/useDebouncedValue';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import CreateImage from './createImage';
-import { iconContainerStyle, ImageTabWrapper } from './styles';
+import DeleteImage from './deleteImage';
+import EditImage from './editImage';
+import { iconContainerStyle, ImagesWrapper, ImageTabWrapper } from './styles';
 
 const ImageTab = () => {
-  const [isModalShown, setIsModalShown] = useState(false);
-  const [limit, _setLimit] = useState(20);
-  const { data, loading } = useQuery<
+  const [isCreateModalShown, setIsCreateModalShown] = useState(false);
+  const [isEditModalShown, setIsEditModalShown] = useState(false);
+  const [currentImageId, setCurrentImageId] = useState<string>('');
+  const [isDeleteModalShown, setIsDeleteModalShown] = useState(false);
+  const [limit, setLimit] = useState(20);
+  const [search, setSearch] = useState('');
+  const debouncedSearch: string = useDebouncedValue<string>(search, 500);
+  const { t } = useTranslation();
+
+  console.log(setLimit);
+
+  const { data } = useQuery<
     Pick<Query, 'getLessonImages'>,
     QueryGetLessonImagesArgs
   >(GET_LESSON_IMAGES, {
     variables: {
       offset: 0,
       limit,
+      search: debouncedSearch,
     },
   });
 
-  const closeModal = () => {
-    setIsModalShown(false);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
   };
 
-  const openModal = () => {
-    setIsModalShown(true);
+  const currentImage = data?.getLessonImages.data.find(
+    (image) => image?.id === currentImageId
+  );
+
+  const openCreateModal = () => {
+    setIsCreateModalShown(true);
   };
 
-  if (loading) return <Spinner type='animated' />;
+  const closeCreateModal = () => {
+    setIsCreateModalShown(false);
+  };
+
+  const openEditModal = (id: string) => {
+    setCurrentImageId(id);
+    setIsEditModalShown(true);
+  };
+
+  const closeEditModal = () => {
+    setIsEditModalShown(false);
+    setCurrentImageId('');
+  };
+
+  const openDeleteModal = (id: string) => {
+    setCurrentImageId(id);
+    setIsDeleteModalShown(true);
+  };
+
+  const closeDeleteModal = () => {
+    setIsDeleteModalShown(false);
+    setCurrentImageId('');
+  };
 
   return (
-    <ImageTabWrapper>
-      <Modal onClose={closeModal} isShown={isModalShown}>
+    <>
+      <Modal onClose={closeCreateModal} isShown={isCreateModalShown}>
         <CreateImage />
       </Modal>
-      <IconComponent
-        onClick={openModal}
-        iconContainerStyle={iconContainerStyle}
-        title='Add lesson'
-        Svg={Plus}
-      />
-      {data?.getLessonImages.data.map(
-        (lessonImage) =>
-          lessonImage && (
-            <Card
-              key={lessonImage.id}
-              onLeftClick={() => {
-                console.log(123);
-              }}
-              onRightClick={() => {
-                console.log(123);
-              }}
-              imageUrl={lessonImage.url}
-              imageAlt='Lesson image'
-              cardTitle={lessonImage.title}
-            />
-          )
-      )}
-    </ImageTabWrapper>
+      <Modal onClose={closeEditModal} isShown={isEditModalShown}>
+        {currentImage && <EditImage currentImage={currentImage} />}
+      </Modal>
+      <Modal onClose={closeDeleteModal} isShown={isDeleteModalShown}>
+        {currentImage && (
+          <DeleteImage onClose={closeDeleteModal} currentImage={currentImage} />
+        )}
+      </Modal>
+      <ImageTabWrapper>
+        <RegularInput
+          title='Seacrh'
+          placeholder={t('pages.createLesson.search')}
+          value={search}
+          onChange={handleChange}
+        />
+        <IconComponent
+          onClick={openCreateModal}
+          iconContainerStyle={iconContainerStyle}
+          title='Add image'
+          Svg={Plus}
+        />
+      </ImageTabWrapper>
+      <ImagesWrapper>
+        {data?.getLessonImages.data.map(
+          (lessonImage) =>
+            lessonImage && (
+              <Card
+                data={lessonImage.id}
+                key={lessonImage.id}
+                onLeftClick={openEditModal}
+                onRightClick={openDeleteModal}
+                imageUrl={lessonImage.url}
+                imageAlt='Lesson image'
+                cardTitle={lessonImage.title}
+              />
+            )
+        )}
+      </ImagesWrapper>
+    </>
   );
 };
 

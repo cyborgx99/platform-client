@@ -2,6 +2,12 @@ import styled, { css } from 'styled-components';
 import { FormBase } from 'styles/globalStyles';
 
 export const ImageTabWrapper = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+`;
+
+export const ImagesWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
   gap: 1rem;
@@ -16,17 +22,17 @@ export const StyledImageForm = styled(FormBase)`
 export const iconContainerStyle = css`
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 8px;
-  border: 1px solid ${({ theme }) => theme.colors.gray.base};
+  /* border: 1px solid ${({ theme }) => theme.colors.gray.base}; */
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  min-height: 18rem;
+  /* width: 100%; */
+  /* min-height: 18rem; */
 
   & svg {
-    height: 7.5rem;
-    width: 7.5rem;
+    height: 2.25rem;
+    width: 2.25rem;
     transition: transform 0.2s ease-in-out;
 
     path {

@@ -13,6 +13,7 @@ import {
   IImageFormProps,
   IImageFormValues,
   ImageFormOption,
+  ImageFormText,
   ImageInput,
 } from './types';
 import { imageFormOptions } from './utils';
@@ -22,12 +23,23 @@ const ImageForm = ({
   onSubmit,
   validationSchema,
   error,
+  type = 'create',
   loading,
 }: IImageFormProps) => {
   const formikRef = useRef<FormikProps<IImageFormValues>>(null);
   const [toggleValue, setToggleValue] = useState(imageFormOptions[0]);
   const [isSuccessShown, setIsSuccessShown] = useState(false);
   const { t } = useTranslation();
+  const textData: ImageFormText = {
+    create: {
+      message: t('pages.createLesson.imageCreated'),
+      button: t('pages.createLesson.create'),
+    },
+    edit: {
+      message: t('pages.createLesson.imageUpdated'),
+      button: t('pages.createLesson.update'),
+    },
+  };
 
   const handleContinue = () => {
     if (!formikRef.current) return;
@@ -64,13 +76,14 @@ const ImageForm = ({
       onSubmit={handleSubmit}
       initialValues={initialValues}
       innerRef={formikRef}
+      enableReinitialize
       validationSchema={validationSchema}>
       <StyledImageForm>
         <ResultWrapper
           isShown={isSuccessShown}
           onContinue={handleContinue}
           type='success'
-          message={t('pages.createLesson.imageCreated')}>
+          message={textData[type].message}>
           <>
             <ToggleButton<ImageFormOption>
               options={imageFormOptions}
@@ -88,7 +101,7 @@ const ImageForm = ({
               isLoading={loading}
               type='submit'
               variant='primary'>
-              {t('pages.createLesson.create')}
+              {textData[type].button}
             </ButtonComponent>
             <ApolloErrorMessage error={error} />
           </>

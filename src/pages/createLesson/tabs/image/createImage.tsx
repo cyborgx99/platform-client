@@ -1,5 +1,9 @@
 import { ApolloError, useMutation } from '@apollo/client';
-import { CREATE_LESSON_IMAGE, UPLOAD_FILE } from 'apollo/graphql';
+import {
+  CREATE_LESSON_IMAGE,
+  GET_LESSON_IMAGES,
+  UPLOAD_FILE,
+} from 'apollo/graphql';
 import {
   CreateLessonImageMutationVariables,
   Mutation,
@@ -8,15 +12,16 @@ import {
 import React from 'react';
 
 import ImageForm from './imageForm';
-import { IImageFormValues } from './types';
+import { IImageFormValues, isEditImageForm } from './types';
 import { imageFormValidationSchema, initialValues } from './utils';
 
 const CreateImage = () => {
-  const [createImage, { loading, error }] =
-    useMutation<
-      Pick<Mutation, 'createLessonImage'>,
-      CreateLessonImageMutationVariables
-    >(CREATE_LESSON_IMAGE);
+  const [createImage, { loading, error }] = useMutation<
+    Pick<Mutation, 'createLessonImage'>,
+    CreateLessonImageMutationVariables
+  >(CREATE_LESSON_IMAGE, {
+    refetchQueries: [GET_LESSON_IMAGES, 'getLessonImages'],
+  });
   const [uploadImage, { loading: uploadLoading, error: uploadError }] =
     useMutation<Pick<Mutation, 'uploadFile'>, UploadFileMutationVariables>(
       UPLOAD_FILE
@@ -26,13 +31,14 @@ const CreateImage = () => {
   const createError = error || uploadError;
 
   const handleCreateImage = async (values: IImageFormValues) => {
+    if (isEditImageForm(values)) return;
     const input: {
       url: string | undefined;
       publicId: string | null;
       title: string;
     } = { url: undefined, publicId: null, title: values.title };
 
-    if (values.file && !values.url) {
+    if (values.file) {
       const { data } = await uploadImage({
         variables: {
           file: values.file,
@@ -65,6 +71,7 @@ const CreateImage = () => {
 
   return (
     <ImageForm
+      type='create'
       error={createError}
       loading={createLoading}
       onSubmit={handleCreateImage}
