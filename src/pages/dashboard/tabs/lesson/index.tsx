@@ -19,6 +19,7 @@ const LessonTab = () => {
         Svg={Plus}
       />
       <Card
+        data={{ id: '1' }}
         onLeftClick={() => {
           console.log(123);
         }}

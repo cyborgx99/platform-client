@@ -34,6 +34,26 @@ export const StyledInput = styled.input<{ $hasError: boolean }>`
   }
 `;
 
+export const RegularInputContainer = styled.div`
+  position: relative;
+`;
+
+export const searchIconContainer = css`
+  position: absolute;
+  left: 0.25rem;
+  top: 0.375rem;
+
+  & svg {
+    path {
+      fill: ${({ theme }) => theme.colors.secondary.darkest};
+    }
+  }
+`;
+
+export const StyledRegularInput = styled(StyledInput)<{ $hasIcon?: boolean }>`
+  padding-left: ${({ $hasIcon }) => ($hasIcon ? '2rem' : '0')};
+`;
+
 export const ValidationErrorMessage = styled(SpanBase)`
   color: ${({ theme }) => theme.colors.red.base};
 `;

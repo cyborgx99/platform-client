@@ -1,12 +1,38 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
-export const ModalWrapper = styled.div`
+const slideDown = keyframes`
+  from {
+    transform: translateY(-200%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+
+`;
+
+const slideUp = keyframes`
+  from {
+    transform: translateY(0);
+    
+  }
+
+  to {
+    transform: translateY(-200%);
+  }
+
+`;
+
+export const ModalWrapper = styled.div<{ $isCloseAnimation: boolean }>`
   background-color: ${({ theme }) => theme.colors.white};
   padding: 0.5rem;
   margin: 2rem 0.5rem;
   border-radius: 4px;
   max-width: 25rem;
   width: 100%;
+  animation: ${({ $isCloseAnimation }) =>
+      $isCloseAnimation ? slideUp : slideDown}
+    0.4s ease-in-out forwards;
 `;
 
 export const ModalHeader = styled.div`

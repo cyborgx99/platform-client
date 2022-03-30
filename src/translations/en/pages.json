@@ -31,7 +31,11 @@
     "create": "Create",
     "title": "Title",
     "selectImage": "Select image",
-    "imageCreated": "Your lesson image has been created."
+    "imageCreated": "Your lesson image has been created.",
+    "imageUpdated": "Your lesson image has been updated.",
+    "update": "Update",
+    "confirmDelete": "Confirm delete",
+    "search": "Search"
   },
   "navigation": {
     "home": "Home",
