@@ -1,7 +1,9 @@
-export interface ICardComponentProps {
+export interface ICardComponentProps<T> {
+  data: T;
   imageUrl: string;
   imageAlt: string;
   cardTitle: string;
-  onLeftClick?: () => void;
-  onRightClick?: () => void;
+  onLeftClick?: (data: T) => void;
+  onRightClick?: (data: T) => void;
+  children?: React.ReactNode;
 }

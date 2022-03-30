@@ -10,14 +10,23 @@ import {
 } from './styles';
 import { ICardComponentProps } from './types';
 
-const Card: React.FC<ICardComponentProps> = ({
+const Card = <T,>({
   imageAlt,
+  data,
   imageUrl,
   cardTitle,
   children,
   onLeftClick,
   onRightClick,
-}) => {
+}: ICardComponentProps<T>) => {
+  const handleLeftClick = () => {
+    onLeftClick?.(data);
+  };
+
+  const handleRightClick = () => {
+    onRightClick?.(data);
+  };
+
   return (
     <CardContainer>
       <ContentWrapper>
@@ -32,7 +41,7 @@ const Card: React.FC<ICardComponentProps> = ({
             type='button'
             shape='rectangle'
             variant='primary'
-            onClick={onLeftClick}>
+            onClick={handleLeftClick}>
             Edit
           </ButtonComponent>
         )}
@@ -42,7 +51,7 @@ const Card: React.FC<ICardComponentProps> = ({
             type='button'
             variant='secondary'
             shape='rectangle'
-            onClick={onRightClick}>
+            onClick={handleRightClick}>
             Delete
           </ButtonComponent>
         )}
