@@ -22,13 +22,10 @@ export const StyledImageForm = styled(FormBase)`
 export const iconContainerStyle = css`
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 8px;
-  /* border: 1px solid ${({ theme }) => theme.colors.gray.base}; */
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* width: 100%; */
-  /* min-height: 18rem; */
 
   & svg {
     height: 2.25rem;
@@ -43,7 +40,7 @@ export const iconContainerStyle = css`
   &:hover {
     & svg {
       cursor: pointer;
-      transform: scale(1.0125);
+      transform: scale(1.1125);
 
       path {
         cursor: pointer;
