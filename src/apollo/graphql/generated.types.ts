@@ -22,6 +22,10 @@ export type AuthSuccessResponse = {
   success: Scalars['Boolean'];
 };
 
+export type CreateLessonContentInput = {
+  sentences: Array<LessonContentSentenceInput>;
+};
+
 export type CreateLessonImageInput = {
   publicId?: InputMaybe<Scalars['String']>;
   title: Scalars['String'];
@@ -74,6 +78,38 @@ export type Lesson = {
   title: Scalars['String'];
 };
 
+export type LessonContent = {
+  __typename?: 'LessonContent';
+  id: Scalars['ID'];
+  sentences: Array<LessonContentSentence>;
+};
+
+export type LessonContentSentence = {
+  __typename?: 'LessonContentSentence';
+  id: Scalars['ID'];
+  sentence: Array<LessonContentSentencePart>;
+  sentenceType: LessonSentenceType;
+};
+
+export type LessonContentSentenceInput = {
+  id: Scalars['ID'];
+  sentence: Array<LessonContentSentencePartInput>;
+  sentenceType: LessonSentenceType;
+};
+
+export type LessonContentSentencePart = {
+  __typename?: 'LessonContentSentencePart';
+  id: Scalars['ID'];
+  part: Scalars['String'];
+  partType: PartType;
+};
+
+export type LessonContentSentencePartInput = {
+  id: Scalars['ID'];
+  part: Scalars['String'];
+  partType: PartType;
+};
+
 export type LessonImage = {
   __typename?: 'LessonImage';
   id: Scalars['ID'];
@@ -83,9 +119,18 @@ export type LessonImage = {
   url: Scalars['String'];
 };
 
+export enum LessonSentenceType {
+  Gap = 'Gap',
+  Multi = 'Multi',
+  Scramble = 'Scramble',
+  Text = 'Text',
+  Title = 'Title'
+}
+
 export type Mutation = {
   __typename?: 'Mutation';
   createLesson: Lesson;
+  createLessonContent: LessonContent;
   createLessonImage: LessonImage;
   deleteLessonImage: LessonImage;
   logout: AuthSuccessResponse;
@@ -100,6 +145,11 @@ export type Mutation = {
 
 export type MutationCreateLessonArgs = {
   input: CreateLessonInput;
+};
+
+
+export type MutationCreateLessonContentArgs = {
+  input: CreateLessonContentInput;
 };
 
 
@@ -141,6 +191,13 @@ export type MutationUpdateLessonImageArgs = {
 export type MutationUploadFileArgs = {
   file: Scalars['Upload'];
 };
+
+export enum PartType {
+  Gap = 'Gap',
+  Regular = 'Regular',
+  RightAnswer = 'RightAnswer',
+  WrongAnswer = 'WrongAnswer'
+}
 
 export type Query = {
   __typename?: 'Query';
