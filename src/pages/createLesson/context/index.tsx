@@ -1,14 +1,5 @@
-import {
-  LessonContentSentence,
-  LessonSentenceType,
-} from 'apollo/graphql/generated.types';
-import React, {
-  createContext,
-  Reducer,
-  useContext,
-  useReducer,
-  useState,
-} from 'react';
+import { LessonSentenceType } from 'apollo/graphql/generated.types';
+import React, { createContext, Reducer, useContext, useReducer } from 'react';
 
 import { lessonContentReducer } from '../reducer';
 import {
@@ -19,10 +10,6 @@ import {
 
 const initialValues = {
   toggleValue: LessonSentenceType.Gap,
-  setToggleValue: () => {
-    throw new Error('Called setToggleValue without provider');
-  },
-  currentSentence: {} as LessonContentSentence,
   sentences: [],
   dispatch: () => {
     throw new Error('Called dispatch without provider');
@@ -35,18 +22,13 @@ const CreateLessonContentContext =
 export const CreateLessonContentProvider = ({
   children,
 }: ICreateLessonContextProviderProps) => {
-  const [toggleValue, setToggleValue] = useState<LessonSentenceType>(
-    LessonSentenceType.Gap
-  );
   const [state, dispatch] = useReducer<
     Reducer<ILessonContentContextValues, LessonContentAction>
   >(lessonContentReducer, initialValues);
 
   const value: ILessonContentContextValues = {
-    toggleValue,
-    setToggleValue,
+    toggleValue: state.toggleValue,
     sentences: state.sentences,
-    currentSentence: state.currentSentence,
     dispatch,
   };
 
