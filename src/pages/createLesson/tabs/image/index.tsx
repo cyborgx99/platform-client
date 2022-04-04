@@ -5,6 +5,7 @@ import {
   QueryGetLessonImagesArgs,
 } from 'apollo/graphql/generated.types';
 import { ReactComponent as Plus } from 'assets/icons/plus.svg';
+import { ReactComponent as Search } from 'assets/icons/search.svg';
 import Card from 'components/card';
 import IconComponent from 'components/icon';
 import RegularInput from 'components/input/regularInput';
@@ -92,6 +93,7 @@ const ImageTab = () => {
       </Modal>
       <ImageTabWrapper>
         <RegularInput
+          Svg={Search}
           title='Seacrh'
           placeholder={t('pages.createLesson.search')}
           value={search}

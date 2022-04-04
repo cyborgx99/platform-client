@@ -24,6 +24,10 @@ export const IconContainer = styled.button<{
     width: 1.5rem;
     height: 1.5rem;
 
+    :hover {
+      transform: scale(0.95);
+    }
+
     ${({ $iconStyle }) => $iconStyle}
   }
   ${({ $iconContainerStyle }) => $iconContainerStyle}

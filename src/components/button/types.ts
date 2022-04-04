@@ -18,6 +18,7 @@ interface BasicButtonProps {
   isLoading?: boolean;
   width?: ButtonWidth;
   shape?: ButtonShape;
+  disabled?: boolean;
 }
 
 interface SubmitButtonProps extends BasicButtonProps {
