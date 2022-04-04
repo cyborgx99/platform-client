@@ -1,35 +1,27 @@
-import {
-  LessonContentSentence,
-  LessonContentSentencePart,
-  PartType,
-} from 'apollo/graphql/generated.types';
+import { LessonContentSentence } from 'apollo/graphql/generated.types';
 import ButtonComponent from 'components/button';
 import { useCreateLesson } from 'pages/createLesson/context';
-import { changePartType, createSentence } from 'pages/createLesson/reducer';
+import { createSentence } from 'pages/createLesson/reducer';
 import React, { useState } from 'react';
-import { HeaderThreeBase } from 'styles/globalStyles';
 
 import { StyledTextArea } from '../styles';
 import { LessonContentActionTypes } from '../types';
 import GapFormSpan from './gapFormSpan';
-import { FormWrapper, GapFormWrapper } from './styles';
+import { GapFormWrapper } from './styles';
 
-const GapForm = () => {
-  const [value, setValue] = useState('');
+const ScrambleForm = () => {
   const [isEditing, setIsEditing] = useState(true);
   const { dispatch, toggleValue } = useCreateLesson();
+  const [value, setValue] = useState('');
   const [currentSentence, setCurrentSentence] =
     useState<LessonContentSentence | null>(null);
-  const hasGap = currentSentence?.sentenceParts.some(
-    (part) => part.partType === PartType.Gap
-  );
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value);
   };
 
-  const handleCreateSentence = () => {
-    const sentence = createSentence(value, toggleValue);
+  const handleScrambleSentence = () => {
+    const sentence = createSentence(value, toggleValue, true);
     setCurrentSentence(sentence);
     setIsEditing((prev) => !prev);
   };
@@ -44,29 +36,8 @@ const GapForm = () => {
     setValue('');
   };
 
-  const handleSpanClick = (part: LessonContentSentencePart) => {
-    if (!currentSentence) return;
-    let newType = PartType.Regular;
-    if (part.partType === PartType.Regular) {
-      newType = PartType.Gap;
-    }
-
-    setCurrentSentence((prev) => {
-      if (!prev) return prev;
-      return {
-        ...prev,
-        sentenceParts: changePartType(
-          currentSentence.sentenceParts,
-          part.id,
-          newType
-        ),
-      };
-    });
-  };
-
   return (
-    <FormWrapper>
-      <HeaderThreeBase>Enter a sentence</HeaderThreeBase>
+    <div>
       {isEditing ? (
         <StyledTextArea
           minRows={2}
@@ -77,7 +48,7 @@ const GapForm = () => {
       ) : (
         <GapFormWrapper>
           {currentSentence?.sentenceParts.map((part) => (
-            <GapFormSpan onClick={handleSpanClick} key={part.id} data={part} />
+            <GapFormSpan key={part.id} data={part} />
           ))}
         </GapFormWrapper>
       )}
@@ -87,20 +58,19 @@ const GapForm = () => {
         shape='rectangle'
         type='button'
         variant='primary'
-        onClick={handleCreateSentence}>
-        {isEditing ? 'Select a gap' : 'Edit sentence'}
+        onClick={handleScrambleSentence}>
+        {isEditing ? 'Scramble sentence' : 'Edit sentence'}
       </ButtonComponent>
       <ButtonComponent
         width='full'
         shape='rectangle'
-        disabled={!currentSentence || !hasGap}
         type='button'
         variant='secondary'
         onClick={handleAddSentence}>
         Add sentence
       </ButtonComponent>
-    </FormWrapper>
+    </div>
   );
 };
 
-export default GapForm;
+export default ScrambleForm;

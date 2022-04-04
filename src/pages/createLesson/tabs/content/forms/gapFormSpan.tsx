@@ -8,10 +8,10 @@ const GapFormSpan = ({
   onClick,
 }: {
   data: LessonContentSentencePart;
-  onClick: (data: LessonContentSentencePart) => void;
+  onClick?: (data: LessonContentSentencePart) => void;
 }) => {
   const handleClick = () => {
-    onClick(data);
+    onClick?.(data);
   };
 
   return (
