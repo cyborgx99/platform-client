@@ -1,4 +1,5 @@
 import { ReactComponent as Plus } from 'assets/icons/plus.svg';
+import { ReactComponent as Search } from 'assets/icons/search.svg';
 import IconComponent from 'components/icon';
 import RegularInput from 'components/input/regularInput';
 import Modal from 'components/modal';
@@ -36,6 +37,7 @@ const ContentTab = () => {
       </Modal>
       <ContentTabWrapper>
         <RegularInput
+          Svg={Search}
           title='Seacrh'
           placeholder={t('pages.createLesson.search')}
           value={search}
