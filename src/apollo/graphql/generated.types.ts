@@ -87,14 +87,16 @@ export type LessonContent = {
 export type LessonContentSentence = {
   __typename?: 'LessonContentSentence';
   id: Scalars['ID'];
-  sentence: Array<LessonContentSentencePart>;
+  sentenceParts: Array<LessonContentSentencePart>;
   sentenceType: LessonSentenceType;
+  text?: Maybe<Scalars['String']>;
 };
 
 export type LessonContentSentenceInput = {
   id: Scalars['ID'];
-  sentence: Array<LessonContentSentencePartInput>;
+  sentenceParts: Array<LessonContentSentencePartInput>;
   sentenceType: LessonSentenceType;
+  text?: InputMaybe<Scalars['String']>;
 };
 
 export type LessonContentSentencePart = {

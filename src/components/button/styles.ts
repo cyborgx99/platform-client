@@ -82,6 +82,17 @@ const types: ButtonVariantStyle = {
   `,
 };
 
+const disabledStyle = css`
+  background-color: ${({ theme }) => theme.colors.gray.base};
+  border-color: ${({ theme }) => theme.colors.gray.base};
+  cursor: default;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.gray.base};
+    border-color: ${({ theme }) => theme.colors.gray.base};
+    cursor: default;
+  }
+`;
+
 const buttonWidth: ButtonWidthStyle = {
   min: css`
     min-width: 7rem;
@@ -107,6 +118,7 @@ export const StyledButton = styled.button<{
   $variant: ButtonVariant;
   $width: ButtonWidth;
   $shape: ButtonShape;
+  disabled: boolean;
 }>`
   padding: 0.45rem 0.75rem;
   display: flex;
@@ -120,4 +132,6 @@ export const StyledButton = styled.button<{
   ${({ $variant }) => types[$variant]};
 
   ${({ theme }) => theme.typography.normalText.regular};
+
+  ${({ disabled }) => disabled && disabledStyle};
 `;
