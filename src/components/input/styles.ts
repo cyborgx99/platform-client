@@ -51,7 +51,7 @@ export const searchIconContainer = css`
 `;
 
 export const StyledRegularInput = styled(StyledInput)<{ $hasIcon?: boolean }>`
-  padding-left: ${({ $hasIcon }) => ($hasIcon ? '2rem' : '0')};
+  padding-left: ${({ $hasIcon }) => ($hasIcon ? '2rem' : '0.25rem')};
 `;
 
 export const ValidationErrorMessage = styled(SpanBase)`

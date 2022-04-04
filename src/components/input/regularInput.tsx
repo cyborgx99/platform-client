@@ -1,4 +1,3 @@
-import { ReactComponent as Search } from 'assets/icons/search.svg';
 import IconComponent from 'components/icon';
 import React from 'react';
 
@@ -14,15 +13,17 @@ const RegularInput = ({
   placeholder,
   title,
   onChange,
-  Svg = Search,
+  Svg,
 }: IRegularInputProps) => {
   return (
     <RegularInputContainer>
-      <IconComponent
-        iconContainerStyle={searchIconContainer}
-        title='Search Icon'
-        Svg={Svg}
-      />
+      {Svg && (
+        <IconComponent
+          iconContainerStyle={searchIconContainer}
+          title='Search Icon'
+          Svg={Svg}
+        />
+      )}
       <StyledRegularInput
         title={title}
         $hasIcon={Boolean(Svg)}

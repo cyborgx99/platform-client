@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 
 export interface IToggleButtonProps<T extends string> {
-  onSetValue: Dispatch<SetStateAction<T>>;
+  onSetValue: Dispatch<SetStateAction<T>> | ((value: T) => void);
   currentValue: T;
   options: T[];
 }
