@@ -37,6 +37,18 @@
     "confirmDelete": "Confirm delete",
     "search": "Search"
   },
+  "lessonContent": {
+    "enterSentence": "Enter sentence",
+    "editSentence": "Edit sentence",
+    "enterContentTitle": "Enter title",
+    "selectGap": "Select gap",
+    "addSentence": "Add sentence",
+    "save": "Save",
+    "addOption": "Add option",
+    "options": "Options",
+    "scrambleSentence": "Scramble sentence",
+    "createdSentences": "Created sentences"
+  },
   "navigation": {
     "home": "Home",
     "login": "Login",

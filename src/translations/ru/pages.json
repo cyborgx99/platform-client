@@ -37,6 +37,18 @@
     "confirmDelete": "Подтвердить удаление",
     "search": "Поиск"
   },
+  "lessonContent": {
+    "enterSentence": "Введите предложение",
+    "editSentence": "Редактировать предложение",
+    "enterContentTitle": "Введите заголовок",
+    "selectGap": "Выберите пробел",
+    "addSentence": "Добавить",
+    "save": "Сохранить",
+    "addOption": "Добавить вариант",
+    "options": "Варианты",
+    "scrambleSentence": "Перемешать",
+    "createdSentences": "Созданные предложения"
+  },
   "navigation": {
     "home": "Главная страница",
     "login": "Логин",
