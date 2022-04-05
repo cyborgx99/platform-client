@@ -13,6 +13,8 @@ const RegularInput = ({
   placeholder,
   title,
   onChange,
+  hasError = false,
+  maxLength,
   Svg,
 }: IRegularInputProps) => {
   return (
@@ -29,7 +31,8 @@ const RegularInput = ({
         $hasIcon={Boolean(Svg)}
         value={value}
         onChange={onChange}
-        $hasError={false}
+        maxLength={maxLength}
+        $hasError={hasError}
         placeholder={placeholder}
       />
     </RegularInputContainer>

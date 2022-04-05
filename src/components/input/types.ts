@@ -9,6 +9,8 @@ export interface IRegularInputProps {
   value: string | number;
   title: string;
   placeholder?: string;
+  hasError?: boolean;
+  maxLength?: number;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   Svg?: React.FunctionComponent<
     React.SVGProps<SVGSVGElement> & {
