@@ -7,11 +7,8 @@ import {
 import { shuffleArray } from 'utils';
 import { v4 as uuid } from 'uuid';
 
-import {
-  ILessonContentContextValues,
-  LessonContentAction,
-  LessonContentActionTypes,
-} from '../tabs/content/types';
+import { ILessonContentContextValues } from '../context/types';
+import { LessonContentAction, LessonContentActionTypes } from './types';
 
 export const createSentenceParts = (
   value: string,
@@ -36,12 +33,12 @@ export const createSentenceParts = (
 export const createSentence = (
   value: string,
   type: LessonSentenceType,
-  shuffle?: boolean
+  shuffle?: boolean,
+  textOnly?: boolean
 ): LessonContentSentence => {
-  const parts = createSentenceParts(value, shuffle);
   const sentence: LessonContentSentence = {
     id: uuid(),
-    sentenceParts: parts,
+    sentenceParts: textOnly ? [] : createSentenceParts(value, shuffle),
     sentenceType: type,
     text: value,
   };
@@ -93,6 +90,12 @@ export const lessonContentReducer = (
       return {
         ...state,
         sentences: removeById(state.sentences, action.payload),
+      };
+
+    case LessonContentActionTypes.CLEAR_SENTENCES:
+      return {
+        ...state,
+        sentences: [],
       };
 
     default:
