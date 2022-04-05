@@ -1,9 +1,9 @@
 import { LessonContentSentencePart } from 'apollo/graphql/generated.types';
 import React from 'react';
 
-import { StyledGapSpan } from '../styles';
+import { StyledFormSpan } from '../styles';
 
-const GapFormSpan = ({
+const FormSpan = ({
   data,
   onClick,
 }: {
@@ -15,10 +15,10 @@ const GapFormSpan = ({
   };
 
   return (
-    <StyledGapSpan onClick={handleClick} $type={data.partType}>
+    <StyledFormSpan onClick={handleClick} $type={data.partType}>
       {data.part}
-    </StyledGapSpan>
+    </StyledFormSpan>
   );
 };
 
-export default GapFormSpan;
+export default FormSpan;

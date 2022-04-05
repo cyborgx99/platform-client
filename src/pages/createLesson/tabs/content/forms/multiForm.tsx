@@ -7,24 +7,30 @@ import {
 import ButtonComponent from 'components/button';
 import Checkbox from 'components/checkbox';
 import RegularInput from 'components/input/regularInput';
+import TextArea from 'components/textArea';
 import { useCreateLesson } from 'pages/createLesson/context';
 import { removeById } from 'pages/createLesson/reducer';
+import { LessonContentActionTypes } from 'pages/createLesson/reducer/types';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { HeaderThreeBase } from 'styles/globalStyles';
 import { v4 as uuid } from 'uuid';
 
-import { StyledTextArea } from '../styles';
-import { LessonContentActionTypes } from '../types';
-import GapFormSpan from './gapFormSpan';
-import { FormWrapper, GapFormWrapper } from './styles';
+import { FormWrapper, MultiInputsWrapper, SpanWrapper } from '../styles';
+import FormSpan from './formSpan';
 
 const MultiForm = () => {
+  const { t } = useTranslation();
   const [value, setValue] = useState('');
   const [optionValue, setOptionValue] = useState('');
-  const [isCorrectOptionChecked, setIsCorrectOptionChecked] = useState(false);
-  const { dispatch } = useCreateLesson();
   const [options, setOptions] =
     useState<LessonContentSentencePart[] | null>(null);
+  const [isCorrectOptionChecked, setIsCorrectOptionChecked] = useState(false);
+  const { dispatch } = useCreateLesson();
+  const hasRightAnswer = Boolean(
+    options?.some((option) => option.partType === PartType.RightAnswer)
+  );
+  const isAddDisabled = !options || !hasRightAnswer || !value;
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value);
@@ -77,29 +83,29 @@ const MultiForm = () => {
 
   return (
     <FormWrapper>
-      <HeaderThreeBase>Enter a sentence</HeaderThreeBase>
-      <StyledTextArea
-        minRows={2}
-        maxRows={4}
-        value={value}
-        onChange={handleChange}
-      />
-      <HeaderThreeBase>Add an option</HeaderThreeBase>
-      <Checkbox
-        title='Correct answer'
-        isChecked={isCorrectOptionChecked}
-        onChange={handleCheckboxClick}
-      />
-      <RegularInput
-        title='option'
-        onChange={handleOptionChange}
-        value={optionValue}
-      />
-      <GapFormWrapper>
+      <HeaderThreeBase>
+        {t('pages.lessonContent.enterSentence')}
+      </HeaderThreeBase>
+      <TextArea title='Sentence' value={value} onChange={handleChange} />
+      <HeaderThreeBase>{t('pages.lessonContent.addOption')}</HeaderThreeBase>
+      <MultiInputsWrapper>
+        <Checkbox
+          title='Correct answer'
+          isChecked={isCorrectOptionChecked}
+          onChange={handleCheckboxClick}
+        />
+        <RegularInput
+          title='option'
+          onChange={handleOptionChange}
+          value={optionValue}
+        />
+      </MultiInputsWrapper>
+      <HeaderThreeBase>{t('pages.lessonContent.options')}</HeaderThreeBase>
+      <SpanWrapper>
         {options?.map((part) => (
-          <GapFormSpan onClick={handleRemoveOption} key={part.id} data={part} />
+          <FormSpan onClick={handleRemoveOption} key={part.id} data={part} />
         ))}
-      </GapFormWrapper>
+      </SpanWrapper>
       <ButtonComponent
         disabled={!optionValue}
         width='full'
@@ -107,15 +113,16 @@ const MultiForm = () => {
         type='button'
         variant='primary'
         onClick={handleAddOption}>
-        Add option
+        {t('pages.lessonContent.addOption')}
       </ButtonComponent>
       <ButtonComponent
+        disabled={isAddDisabled}
         width='full'
         shape='rectangle'
         type='button'
         variant='secondary'
         onClick={handleAddSentence}>
-        Add sentence
+        {t('pages.lessonContent.addSentence')}
       </ButtonComponent>
     </FormWrapper>
   );

@@ -1,15 +1,18 @@
 import { LessonContentSentence } from 'apollo/graphql/generated.types';
 import ButtonComponent from 'components/button';
+import TextArea from 'components/textArea';
 import { useCreateLesson } from 'pages/createLesson/context';
 import { createSentence } from 'pages/createLesson/reducer';
+import { LessonContentActionTypes } from 'pages/createLesson/reducer/types';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { HeaderThreeBase } from 'styles/globalStyles';
 
-import { StyledTextArea } from '../styles';
-import { LessonContentActionTypes } from '../types';
-import GapFormSpan from './gapFormSpan';
-import { GapFormWrapper } from './styles';
+import { FormWrapper, SpanWrapper } from '../styles';
+import FormSpan from './formSpan';
 
 const ScrambleForm = () => {
+  const { t } = useTranslation();
   const [isEditing, setIsEditing] = useState(true);
   const { dispatch, toggleValue } = useCreateLesson();
   const [value, setValue] = useState('');
@@ -37,20 +40,20 @@ const ScrambleForm = () => {
   };
 
   return (
-    <div>
+    <FormWrapper>
       {isEditing ? (
-        <StyledTextArea
-          minRows={2}
-          maxRows={4}
-          value={value}
-          onChange={handleChange}
-        />
+        <>
+          <HeaderThreeBase>
+            {t('pages.lessonContent.enterSentence')}
+          </HeaderThreeBase>
+          <TextArea title='Sentence' value={value} onChange={handleChange} />
+        </>
       ) : (
-        <GapFormWrapper>
+        <SpanWrapper>
           {currentSentence?.sentenceParts.map((part) => (
-            <GapFormSpan key={part.id} data={part} />
+            <FormSpan key={part.id} data={part} />
           ))}
-        </GapFormWrapper>
+        </SpanWrapper>
       )}
       <ButtonComponent
         disabled={!value}
@@ -59,17 +62,20 @@ const ScrambleForm = () => {
         type='button'
         variant='primary'
         onClick={handleScrambleSentence}>
-        {isEditing ? 'Scramble sentence' : 'Edit sentence'}
+        {isEditing
+          ? t('pages.lessonContent.scrambleSentence')
+          : t('pages.lessonContent.editSentence')}
       </ButtonComponent>
       <ButtonComponent
+        disabled={!currentSentence}
         width='full'
         shape='rectangle'
         type='button'
         variant='secondary'
         onClick={handleAddSentence}>
-        Add sentence
+        {t('pages.lessonContent.addSentence')}
       </ButtonComponent>
-    </div>
+    </FormWrapper>
   );
 };
 
