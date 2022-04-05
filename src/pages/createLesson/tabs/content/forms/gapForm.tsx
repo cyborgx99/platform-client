@@ -4,17 +4,19 @@ import {
   PartType,
 } from 'apollo/graphql/generated.types';
 import ButtonComponent from 'components/button';
+import TextArea from 'components/textArea';
 import { useCreateLesson } from 'pages/createLesson/context';
 import { changePartType, createSentence } from 'pages/createLesson/reducer';
+import { LessonContentActionTypes } from 'pages/createLesson/reducer/types';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { HeaderThreeBase } from 'styles/globalStyles';
 
-import { StyledTextArea } from '../styles';
-import { LessonContentActionTypes } from '../types';
-import GapFormSpan from './gapFormSpan';
-import { FormWrapper, GapFormWrapper } from './styles';
+import { FormWrapper, SpanWrapper } from '../styles';
+import FormSpan from './formSpan';
 
 const GapForm = () => {
+  const { t } = useTranslation();
   const [value, setValue] = useState('');
   const [isEditing, setIsEditing] = useState(true);
   const { dispatch, toggleValue } = useCreateLesson();
@@ -66,20 +68,17 @@ const GapForm = () => {
 
   return (
     <FormWrapper>
-      <HeaderThreeBase>Enter a sentence</HeaderThreeBase>
+      <HeaderThreeBase>
+        {t('pages.lessonContent.enterSentence')}
+      </HeaderThreeBase>
       {isEditing ? (
-        <StyledTextArea
-          minRows={2}
-          maxRows={4}
-          value={value}
-          onChange={handleChange}
-        />
+        <TextArea title='Sentence' value={value} onChange={handleChange} />
       ) : (
-        <GapFormWrapper>
+        <SpanWrapper>
           {currentSentence?.sentenceParts.map((part) => (
-            <GapFormSpan onClick={handleSpanClick} key={part.id} data={part} />
+            <FormSpan onClick={handleSpanClick} key={part.id} data={part} />
           ))}
-        </GapFormWrapper>
+        </SpanWrapper>
       )}
       <ButtonComponent
         disabled={!value}
@@ -88,7 +87,9 @@ const GapForm = () => {
         type='button'
         variant='primary'
         onClick={handleCreateSentence}>
-        {isEditing ? 'Select a gap' : 'Edit sentence'}
+        {isEditing
+          ? t('pages.lessonContent.selectGap')
+          : t('pages.lessonContent.editSentence')}
       </ButtonComponent>
       <ButtonComponent
         width='full'
@@ -97,7 +98,7 @@ const GapForm = () => {
         type='button'
         variant='secondary'
         onClick={handleAddSentence}>
-        Add sentence
+        {t('pages.lessonContent.addSentence')}
       </ButtonComponent>
     </FormWrapper>
   );

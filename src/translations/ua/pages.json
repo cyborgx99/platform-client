@@ -37,6 +37,18 @@
     "confirmDelete": "Підтвердити видалення",
     "search": "Пошук"
   },
+  "lessonContent": {
+    "enterSentence": "Введіть речення",
+    "editSentence": "Редагувати речення",
+    "enterContentTitle": "Введіть заголовок",
+    "selectGap": "Виберіть пробіл",
+    "addSentence": "Добавити",
+    "save": "Зберегти",
+    "addOption": "Добавити варіант",
+    "options": "Варіанти",
+    "scrambleSentence": "Перемішати",
+    "createdSentences": "Створені речення"
+  },
   "navigation": {
     "home": "Головна сторінка",
     "login": "Логін",

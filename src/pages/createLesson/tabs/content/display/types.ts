@@ -1,6 +1,7 @@
 import {
   LessonContentSentence,
   LessonContentSentencePart,
+  LessonSentenceType,
 } from 'apollo/graphql/generated.types';
 
 export interface ISentenceDisplayProps {
@@ -24,3 +25,5 @@ export interface ITextDisplayProps {
 export interface IScrambleDisplayProps {
   parts: LessonContentSentencePart[];
 }
+
+export type DisplayComponentType = Record<LessonSentenceType, JSX.Element>;

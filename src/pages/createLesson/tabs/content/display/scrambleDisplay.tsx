@@ -1,15 +1,16 @@
 import React from 'react';
 
-import GapFormSpan from '../forms/gapFormSpan';
+import FormSpan from '../forms/formSpan';
+import { SpanWrapper } from '../styles';
 import { IScrambleDisplayProps } from './types';
 
 const ScrambleDisplay = ({ parts }: IScrambleDisplayProps) => {
   return (
-    <>
+    <SpanWrapper>
       {parts.map((part) => {
-        return <GapFormSpan key={part.id} data={part} />;
+        return <FormSpan key={part.id} data={part} />;
       })}
-    </>
+    </SpanWrapper>
   );
 };
 

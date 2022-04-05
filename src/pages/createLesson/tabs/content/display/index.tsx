@@ -1,15 +1,16 @@
 import { useCreateLesson } from 'pages/createLesson/context';
+import { LessonContentActionTypes } from 'pages/createLesson/reducer/types';
 import React from 'react';
+import { ParagraphBase } from 'styles/globalStyles';
 
-import { LessonContentActionTypes } from '../types';
+import { SentenceDisplayContainer } from '../styles';
 import GapDisplay from './gapDisplay';
 import MultiDisplay from './multiDisplay';
 import ScrambleDisplay from './scrambleDisplay';
-import { SentenceDisplayContainer } from './styles';
 import TextDisplay from './textDisplay';
-import { ISentenceDisplayProps } from './types';
+import { DisplayComponentType, ISentenceDisplayProps } from './types';
 
-const SentenceDisplay = ({ sentence }: ISentenceDisplayProps) => {
+const SentenceDisplay = ({ sentence, index }: ISentenceDisplayProps) => {
   const { dispatch } = useCreateLesson();
   const handleRemoveSentence = () => {
     dispatch({
@@ -18,7 +19,7 @@ const SentenceDisplay = ({ sentence }: ISentenceDisplayProps) => {
     });
   };
 
-  const display = {
+  const displayComponent: DisplayComponentType = {
     Gap: <GapDisplay parts={sentence.sentenceParts} />,
     Multi: (
       <MultiDisplay text={sentence.text ?? ''} parts={sentence.sentenceParts} />
@@ -30,7 +31,10 @@ const SentenceDisplay = ({ sentence }: ISentenceDisplayProps) => {
 
   return (
     <SentenceDisplayContainer onClick={handleRemoveSentence} tabIndex={0}>
-      {display[sentence.sentenceType]}
+      <ParagraphBase $textType='normalText' $textWeight='regular'>
+        {index + 1}.
+      </ParagraphBase>
+      {displayComponent[sentence.sentenceType]}
     </SentenceDisplayContainer>
   );
 };

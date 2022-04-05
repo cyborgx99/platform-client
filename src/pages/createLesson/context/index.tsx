@@ -2,11 +2,12 @@ import { LessonSentenceType } from 'apollo/graphql/generated.types';
 import React, { createContext, Reducer, useContext, useReducer } from 'react';
 
 import { lessonContentReducer } from '../reducer';
+import { LessonContentAction } from '../reducer/types';
+import {} from '../tabs/content/types';
 import {
   ICreateLessonContextProviderProps,
   ILessonContentContextValues,
-  LessonContentAction,
-} from '../tabs/content/types';
+} from './types';
 
 const initialValues = {
   toggleValue: LessonSentenceType.Gap,
