@@ -30,7 +30,7 @@ const Card = <T,>({
   return (
     <CardContainer>
       <ContentWrapper>
-        <CardImage src={imageUrl} alt={imageAlt} />
+        {imageUrl && <CardImage src={imageUrl} alt={imageAlt} />}
         <CardHeaderThree>{cardTitle}</CardHeaderThree>
         {children}
       </ContentWrapper>

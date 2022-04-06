@@ -34,7 +34,7 @@ export const TabNavigatorLink = styled(LinkBase)<{
   padding: 0.25rem;
   text-transform: capitalize;
   text-align: center;
-  transition: background-color 0.5 ease-in-out;
+  transition: background-color, color 0.4s ease-in-out;
 
   &:hover {
     text-decoration: none;

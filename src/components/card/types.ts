@@ -1,7 +1,7 @@
 export interface ICardComponentProps<T> {
   data: T;
-  imageUrl: string;
-  imageAlt: string;
+  imageUrl?: string;
+  imageAlt?: string;
   cardTitle: string;
   onLeftClick?: (data: T) => void;
   onRightClick?: (data: T) => void;
