@@ -11,6 +11,11 @@ export interface ILessonContentContextValues {
   dispatch: React.Dispatch<LessonContentAction>;
 }
 
+export interface ILessonContentReducerState {
+  toggleValue: LessonSentenceType;
+  sentences: LessonContentSentence[];
+}
+
 export interface ICreateLessonContextProviderProps {
   children: React.ReactNode;
 }
