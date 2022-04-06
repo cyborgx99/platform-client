@@ -20,7 +20,7 @@ const TextForm = () => {
 
   const handleAddSentence = () => {
     if (!value) return;
-    const sentence = createSentence(value, toggleValue, false, true);
+    const sentence = createSentence(value, toggleValue, false, []);
     dispatch({
       type: LessonContentActionTypes.ADD_SENTENCE,
       payload: sentence,
