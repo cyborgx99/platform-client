@@ -47,7 +47,9 @@
     "addOption": "Add option",
     "options": "Options",
     "scrambleSentence": "Scramble sentence",
-    "createdSentences": "Created sentences"
+    "createdSentences": "Created sentences",
+    "createSuccess": "Content has been created.",
+    "updateSuccess": "Content has been updated."
   },
   "navigation": {
     "home": "Home",

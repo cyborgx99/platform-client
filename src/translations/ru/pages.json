@@ -47,7 +47,9 @@
     "addOption": "Добавить вариант",
     "options": "Варианты",
     "scrambleSentence": "Перемешать",
-    "createdSentences": "Созданные предложения"
+    "createdSentences": "Созданные предложения",
+    "createSuccess": "Предложения созданы успешно.",
+    "updateSuccess": "Предложения изменены успешно."
   },
   "navigation": {
     "home": "Главная страница",
