@@ -5,6 +5,7 @@ import { CssStyleProp } from 'styles/types';
 export const ContentTabWrapper = styled.div`
   display: flex;
   gap: 1rem;
+  margin-bottom: 1rem;
 `;
 
 export const CreateContentWrapper = styled.div`
@@ -20,7 +21,7 @@ export const DisplaySentencesWrapper = styled.div`
   overflow-y: auto;
 `;
 
-export const SentenceDisplayContainer = styled.div`
+export const SentencePreviewContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -28,14 +29,14 @@ export const SentenceDisplayContainer = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.colors.black.base};
 `;
 
-export const MultiDisplayWrapper = styled.div`
+export const MultiPreviewWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0.5rem;
   gap: 0.5rem;
 `;
 
-export const MultiDisplayOptionsWrapper = styled.div`
+export const MultiPreviewOptionsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
@@ -84,4 +85,12 @@ export const StyledFormSpan = styled.span<{ $type: PartType }>`
   border: 2px solid transparent;
 
   ${({ $type }) => spanStyles[$type]}
+`;
+
+export const ContentWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: 1rem;
+  align-items: start;
+  grid-auto-flow: dense;
 `;

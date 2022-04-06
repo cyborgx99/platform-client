@@ -92,6 +92,31 @@ export default createGlobalStyle`
   font-family: 'Inter', sans-serif
 }
 
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: ${({ theme }) => theme.colors.gray.base};
+  border-radius: 48px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 48px;
+  background-image: linear-gradient(180deg, ${({ theme }) =>
+    theme.colors.primary.base} 0%, ${({ theme }) =>
+  theme.colors.secondary.base} 99%);
+  box-shadow: inset 2px 2px 5px 0 rgba(${({ theme }) =>
+    theme.colors.white}, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+
+  background-image: linear-gradient(180deg, ${({ theme }) =>
+    theme.colors.primary.darkest} 0%, ${({ theme }) =>
+  theme.colors.secondary.darkest} 99%);
+
+}
 
 /* Remove default margin */
 body,

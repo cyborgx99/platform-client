@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
+import { GET_USERS } from 'apollo/graphql';
 import { Query, QueryGetUsersArgs } from 'apollo/graphql/generated.types';
-import { GET_USERS } from 'apollo/graphql/queries/getUsers';
 import React, { useState } from 'react';
 
 import { UserTabWrapper } from './style';
