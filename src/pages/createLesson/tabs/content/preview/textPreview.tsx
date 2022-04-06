@@ -2,10 +2,10 @@ import { PartType } from 'apollo/graphql/generated.types';
 import React from 'react';
 
 import { StyledFormSpan } from '../styles';
-import { ITextDisplayProps } from './types';
+import { ITextPreviewProps } from './types';
 
-const TextDisplay = ({ text }: ITextDisplayProps) => {
+const TextPreview = ({ text }: ITextPreviewProps) => {
   return <StyledFormSpan $type={PartType.Regular}>{text}</StyledFormSpan>;
 };
 
-export default TextDisplay;
+export default TextPreview;

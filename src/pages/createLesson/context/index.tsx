@@ -7,9 +7,15 @@ import {} from '../tabs/content/types';
 import {
   ICreateLessonContextProviderProps,
   ILessonContentContextValues,
+  ILessonContentReducerState,
 } from './types';
 
-const initialValues = {
+const initialReducerValues: ILessonContentReducerState = {
+  toggleValue: LessonSentenceType.Gap,
+  sentences: [],
+};
+
+const initialContextValues: ILessonContentContextValues = {
   toggleValue: LessonSentenceType.Gap,
   sentences: [],
   dispatch: () => {
@@ -18,23 +24,23 @@ const initialValues = {
 };
 
 const CreateLessonContentContext =
-  createContext<ILessonContentContextValues>(initialValues);
+  createContext<ILessonContentContextValues>(initialContextValues);
 
 export const CreateLessonContentProvider = ({
   children,
 }: ICreateLessonContextProviderProps) => {
   const [state, dispatch] = useReducer<
-    Reducer<ILessonContentContextValues, LessonContentAction>
-  >(lessonContentReducer, initialValues);
+    Reducer<ILessonContentReducerState, LessonContentAction>
+  >(lessonContentReducer, initialReducerValues);
 
-  const value: ILessonContentContextValues = {
+  const providerValue: ILessonContentContextValues = {
     toggleValue: state.toggleValue,
     sentences: state.sentences,
     dispatch,
   };
 
   return (
-    <CreateLessonContentContext.Provider value={value}>
+    <CreateLessonContentContext.Provider value={providerValue}>
       {children}
     </CreateLessonContentContext.Provider>
   );

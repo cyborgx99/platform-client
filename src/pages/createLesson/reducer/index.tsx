@@ -7,7 +7,7 @@ import {
 import { shuffleArray } from 'utils';
 import { v4 as uuid } from 'uuid';
 
-import { ILessonContentContextValues } from '../context/types';
+import { ILessonContentReducerState } from '../context/types';
 import { LessonContentAction, LessonContentActionTypes } from './types';
 
 export const createSentenceParts = (
@@ -34,13 +34,14 @@ export const createSentence = (
   value: string,
   type: LessonSentenceType,
   shuffle?: boolean,
-  textOnly?: boolean
+  parts?: LessonContentSentencePart[]
 ): LessonContentSentence => {
+  const trimmedValue = value.trim();
   const sentence: LessonContentSentence = {
     id: uuid(),
-    sentenceParts: textOnly ? [] : createSentenceParts(value, shuffle),
+    sentenceParts: parts ? parts : createSentenceParts(trimmedValue, shuffle),
     sentenceType: type,
-    text: value,
+    text: trimmedValue,
   };
 
   return sentence;
@@ -70,9 +71,9 @@ export const removeById = <T extends { id: string }>(
 };
 
 export const lessonContentReducer = (
-  state: ILessonContentContextValues,
+  state: ILessonContentReducerState,
   action: LessonContentAction
-): ILessonContentContextValues => {
+): ILessonContentReducerState => {
   switch (action.type) {
     case LessonContentActionTypes.CHANGE_LESSON_SENTENCE_TYPE:
       return {

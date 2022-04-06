@@ -4,26 +4,26 @@ import {
   LessonSentenceType,
 } from 'apollo/graphql/generated.types';
 
-export interface ISentenceDisplayProps {
+export interface ISentencePreviewProps {
   sentence: LessonContentSentence;
   index: number;
 }
 
-export interface ISentenceDisplayPartsProps {
+export interface ISentencePreviewPartsProps {
   parts: LessonContentSentencePart[];
 }
 
-export interface IMultiDisplayProps {
+export interface IMultiPreviewProps {
   parts: LessonContentSentencePart[];
   text: string;
 }
 
-export interface ITextDisplayProps {
+export interface ITextPreviewProps {
   text: string;
 }
 
-export interface IScrambleDisplayProps {
+export interface IScramblePreviewProps {
   parts: LessonContentSentencePart[];
 }
 
-export type DisplayComponentType = Record<LessonSentenceType, JSX.Element>;
+export type PreviewSentenceType = Record<LessonSentenceType, JSX.Element>;

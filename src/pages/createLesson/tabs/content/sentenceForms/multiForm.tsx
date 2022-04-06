@@ -1,7 +1,5 @@
 import {
-  LessonContentSentence,
   LessonContentSentencePart,
-  LessonSentenceType,
   PartType,
 } from 'apollo/graphql/generated.types';
 import ButtonComponent from 'components/button';
@@ -9,7 +7,7 @@ import Checkbox from 'components/checkbox';
 import RegularInput from 'components/input/regularInput';
 import TextArea from 'components/textArea';
 import { useCreateLesson } from 'pages/createLesson/context';
-import { removeById } from 'pages/createLesson/reducer';
+import { createSentence, removeById } from 'pages/createLesson/reducer';
 import { LessonContentActionTypes } from 'pages/createLesson/reducer/types';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -26,7 +24,7 @@ const MultiForm = () => {
   const [options, setOptions] =
     useState<LessonContentSentencePart[] | null>(null);
   const [isCorrectOptionChecked, setIsCorrectOptionChecked] = useState(false);
-  const { dispatch } = useCreateLesson();
+  const { dispatch, toggleValue } = useCreateLesson();
   const hasRightAnswer = Boolean(
     options?.some((option) => option.partType === PartType.RightAnswer)
   );
@@ -47,7 +45,7 @@ const MultiForm = () => {
   const handleAddOption = () => {
     const option = {
       id: uuid(),
-      part: optionValue,
+      part: optionValue.trim(),
       partType: isCorrectOptionChecked
         ? PartType.RightAnswer
         : PartType.WrongAnswer,
@@ -63,12 +61,8 @@ const MultiForm = () => {
   const handleAddSentence = () => {
     if (!options) return;
 
-    const sentence: LessonContentSentence = {
-      id: uuid(),
-      sentenceType: LessonSentenceType.Multi,
-      sentenceParts: options,
-      text: value,
-    };
+    const sentence = createSentence(value, toggleValue, false, options);
+
     dispatch({
       type: LessonContentActionTypes.ADD_SENTENCE,
       payload: sentence,

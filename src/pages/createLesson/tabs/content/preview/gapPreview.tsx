@@ -1,10 +1,10 @@
 import React from 'react';
 
-import FormSpan from '../forms/formSpan';
+import FormSpan from '../sentenceForms/formSpan';
 import { SpanWrapper } from '../styles';
-import { IScrambleDisplayProps } from './types';
+import { ISentencePreviewPartsProps } from './types';
 
-const ScrambleDisplay = ({ parts }: IScrambleDisplayProps) => {
+const GapPreview = ({ parts }: ISentencePreviewPartsProps) => {
   return (
     <SpanWrapper>
       {parts.map((part) => {
@@ -14,4 +14,4 @@ const ScrambleDisplay = ({ parts }: IScrambleDisplayProps) => {
   );
 };
 
-export default ScrambleDisplay;
+export default GapPreview;

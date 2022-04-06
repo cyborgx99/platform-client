@@ -47,7 +47,9 @@
     "addOption": "Добавити варіант",
     "options": "Варіанти",
     "scrambleSentence": "Перемішати",
-    "createdSentences": "Створені речення"
+    "createdSentences": "Створені речення",
+    "createSuccess": "Речення створені успішно.",
+    "updateSuccess": "Речення змінені успішно."
   },
   "navigation": {
     "home": "Головна сторінка",
