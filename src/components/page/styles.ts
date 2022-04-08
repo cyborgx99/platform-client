@@ -26,6 +26,7 @@ export const PageContent = styled.section`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.white};
   position: relative;
+  margin-bottom: 1rem;
 `;
 
 export const PageContentScrollable = styled.div`
@@ -37,7 +38,6 @@ export const PageContentScrollable = styled.div`
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
 `;
 
 export const PageFooter = styled.footer`

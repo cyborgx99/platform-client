@@ -28,7 +28,7 @@ const Card = <T,>({
   };
 
   return (
-    <CardContainer>
+    <CardContainer data-cy-card>
       <ContentWrapper>
         {imageUrl && <CardImage src={imageUrl} alt={imageAlt} />}
         <CardHeaderThree>{cardTitle}</CardHeaderThree>

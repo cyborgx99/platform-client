@@ -20,7 +20,7 @@ const Modal: React.FC<IModalProps> = ({ children, isShown, onClose }) => {
   return isShown ? (
     <Portal id='modal'>
       <Overlay>
-        <ModalWrapper $isCloseAnimation={isAnimationDown}>
+        <ModalWrapper data-cy-modal $isCloseAnimation={isAnimationDown}>
           <ModalHeader>
             <IconComponent
               iconStyle={deleteIconStyle}
