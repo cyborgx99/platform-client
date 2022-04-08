@@ -1,4 +1,4 @@
-Cypress.Commands.add('resetTestDatabase', () => {
+Cypress.Commands.add('resetTestDatabase', { prevSubject: 'optional' }, () => {
   const command = 'cd ../../platform-server && yarn test:reset';
 
   // Make sure we don't end up on a page that doesn't exist anymore after the
