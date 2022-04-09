@@ -6,6 +6,7 @@ export { SIGN_UP } from './mutations/auth/signUp';
 export { CREATE_LESSON } from './mutations/lesson/createLesson';
 export { CREATE_LESSON_CONTENT } from './mutations/lesson/lessonContent/createLessonContent';
 export { DELETE_LESSON_CONTENT } from './mutations/lesson/lessonContent/deleteLessonContent';
+export { UPDATE_LESSON_CONTENT } from './mutations/lesson/lessonContent/updateLessonContent';
 export { CREATE_LESSON_IMAGE } from './mutations/lesson/lessonImage/createLessonImage';
 export { DELETE_LESSON_IMAGE } from './mutations/lesson/lessonImage/deleteLessonImage';
 export { UPDATE_LESSON_IMAGE } from './mutations/lesson/lessonImage/updateLessonImage';
