@@ -18,6 +18,7 @@ import { useTranslation } from 'react-i18next';
 import { iconContainerStyle } from '../image/styles';
 import CreateContent from './createContent';
 import DeleteContent from './deleteContent';
+import EditContent from './editContent';
 import SentencePreview from './preview';
 import { ContentTabWrapper, ContentWrapper } from './styles';
 
@@ -26,9 +27,10 @@ const ContentTab = () => {
   const [search, setSearch] = useState('');
   const [isCreateModalShown, setIsCreateModalShown] = useState(false);
   const [isDeleteModalShown, setIsDeleteModalShown] = useState(false);
+  const [isEditModalShown, setIsEditModalShown] = useState(false);
   const [currentContentId, setCurrentContentId] = useState('');
   const [limit, setLimit] = useState(20);
-  const debouncedSearch: string = useDebouncedValue<string>(search, 500);
+  const debouncedSearch = useDebouncedValue<string>(search, 500);
   const { data } = useQuery<
     Pick<Query, 'getLessonContents'>,
     GetLessonImagesQueryVariables
@@ -63,8 +65,19 @@ const ContentTab = () => {
     setIsDeleteModalShown(true);
   };
 
+  const openEditModal = (id: string) => {
+    setCurrentContentId(id);
+    setIsEditModalShown(true);
+  };
+
   const closeDeleteModal = () => {
+    setCurrentContentId('');
     setIsDeleteModalShown(false);
+  };
+
+  const closeEditModal = () => {
+    setCurrentContentId('');
+    setIsEditModalShown(false);
   };
 
   return (
@@ -73,6 +86,13 @@ const ContentTab = () => {
         <CreateLessonContentProvider>
           <CreateContent />
         </CreateLessonContentProvider>
+      </Modal>
+      <Modal onClose={closeEditModal} isShown={isEditModalShown}>
+        {currentContent && (
+          <CreateLessonContentProvider lessonContent={currentContent}>
+            <EditContent />
+          </CreateLessonContentProvider>
+        )}
       </Modal>
       <Modal onClose={closeDeleteModal} isShown={isDeleteModalShown}>
         {currentContent && (
@@ -104,9 +124,7 @@ const ContentTab = () => {
               <Card
                 data={lessonContent.id}
                 key={lessonContent.id}
-                onLeftClick={() => {
-                  console.log(123);
-                }}
+                onLeftClick={openEditModal}
                 onRightClick={openDeleteModal}
                 cardTitle={lessonContent.title}>
                 {lessonContent.sentences.map((sentence, index) => (

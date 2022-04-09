@@ -10,11 +10,6 @@ import {
   ILessonContentReducerState,
 } from './types';
 
-const initialReducerValues: ILessonContentReducerState = {
-  toggleValue: LessonSentenceType.Gap,
-  sentences: [],
-};
-
 const initialContextValues: ILessonContentContextValues = {
   toggleValue: LessonSentenceType.Gap,
   sentences: [],
@@ -28,7 +23,13 @@ const CreateLessonContentContext =
 
 export const CreateLessonContentProvider = ({
   children,
+  lessonContent,
 }: ICreateLessonContextProviderProps) => {
+  const initialReducerValues: ILessonContentReducerState = {
+    toggleValue: LessonSentenceType.Gap,
+    sentences: lessonContent?.sentences ?? [],
+  };
+
   const [state, dispatch] = useReducer<
     Reducer<ILessonContentReducerState, LessonContentAction>
   >(lessonContentReducer, initialReducerValues);
@@ -36,6 +37,7 @@ export const CreateLessonContentProvider = ({
   const providerValue: ILessonContentContextValues = {
     toggleValue: state.toggleValue,
     sentences: state.sentences,
+    lessonContent,
     dispatch,
   };
 
