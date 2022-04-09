@@ -10,7 +10,7 @@ describe('Lesson image frow flow (only for teachers)', () => {
 
   it('Can upload an image via url', () => {
     const validImageUrl =
-      'https://images.pexels.com/photos/774731/pexels-photo-774731.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
+      'https://raw.githubusercontent.com/reactjs/reactjs.org/main/src/icons/logo.svg';
     const title = 'New Image';
 
     cy.get('[data-cy-icon="Add image"]').click();
@@ -71,10 +71,61 @@ describe('Lesson image frow flow (only for teachers)', () => {
   });
 
   it('Can edit an existing lesson image', () => {
-    cy.findByText('My Image')
+    const oldTitle = 'My Image';
+
+    const newTitle = 'New Title';
+
+    const newUrl =
+      'https://upload.wikimedia.org/wikipedia/commons/9/95/Vue.js_Logo_2.svg';
+
+    cy.findByText(oldTitle)
       .parents('[data-cy-card]')
       .within(() => {
         cy.findByText('Edit').click();
       });
+
+    isInViewport('[data-cy-modal]').within(() => {
+      cy.get('input[name="title"]').clear().type(newTitle);
+      cy.get('input[name="url"]').clear().type(newUrl);
+
+      cy.get('[alt="Preview"]', { timeout: 10000 })
+        .should('be.visible')
+        .and(($img: JQuery<HTMLImageElement>) => {
+          expect($img[0].naturalWidth).to.be.greaterThan(0);
+        });
+
+      cy.get('button[data-cy-button][type="submit"]').click();
+
+      cy.contains('Your lesson image has been updated.', {
+        timeout: 10000,
+      }).should('be.visible');
+
+      cy.get('button[data-cy-button][type="button"]')
+        .contains('Continue')
+        .click();
+
+      cy.get('[data-cy-icon="Close modal"]').click();
+    });
+
+    cy.findByText(newTitle)
+      .parents('[data-cy-card]')
+      .within(() => {
+        cy.get('img').should('have.attr', 'src', newUrl);
+      });
+  });
+
+  it('Can delete an existing lesson image', () => {
+    const title = 'My Image';
+    cy.findByText(title)
+      .parents('[data-cy-card]')
+      .within(() => {
+        cy.findByText('Delete').click();
+      });
+
+    isInViewport('[data-cy-modal]').within(() => {
+      cy.get('button[data-cy-button][type="button"]').click();
+    });
+
+    cy.findByText(title).should('not.exist');
   });
 });
