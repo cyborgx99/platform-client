@@ -25,6 +25,7 @@ const TabNavigator = ({ tabs }: ITabNavigatorProps) => {
     <NavigatorContainer>
       {links.map((link, i) => (
         <TabNavigatorLink
+          data-cy-tab-link
           key={link}
           $isActive={location.pathname === link}
           $type={getLinkType(i, links.length - 1)}

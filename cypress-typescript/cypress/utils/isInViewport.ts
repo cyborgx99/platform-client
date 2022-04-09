@@ -1,6 +1,6 @@
 export function isInViewport(selector: string) {
   cy.get(selector).then(($el) => {
-    cy.window().then((window) => {
+    cy.window().should((window) => {
       const message = `Expected to find element with selector ${selector} in viewport`;
       const { documentElement } = window.document;
       const bottom = documentElement.clientHeight;
