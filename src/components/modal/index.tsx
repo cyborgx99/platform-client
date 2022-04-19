@@ -6,18 +6,24 @@ import React, { useEffect, useState } from 'react';
 import { deleteIconStyle, ModalHeader, ModalWrapper, Overlay } from './styles';
 import { IModalProps } from './types';
 
-const Modal: React.FC<IModalProps> = ({ children, isShown, onClose }) => {
+const Modal = <Params,>({
+  isOpen,
+  closeModal,
+  renderContent,
+  params,
+}: IModalProps<Params>) => {
   const [isAnimationDown, setIsAnimationDown] = useState(false);
 
   useEffect(() => {
     setIsAnimationDown(false);
-  }, [isShown]);
+  }, [isOpen]);
 
   const handleClose = () => {
     setIsAnimationDown(true);
-    setTimeout(onClose, 400);
+    setTimeout(closeModal, 400);
   };
-  return isShown ? (
+
+  return isOpen && params !== null ? (
     <Portal id='modal'>
       <Overlay>
         <ModalWrapper data-cy-modal $isCloseAnimation={isAnimationDown}>
@@ -29,7 +35,7 @@ const Modal: React.FC<IModalProps> = ({ children, isShown, onClose }) => {
               Svg={Close}
             />
           </ModalHeader>
-          {children}
+          {renderContent({ params })}
         </ModalWrapper>
       </Overlay>
     </Portal>

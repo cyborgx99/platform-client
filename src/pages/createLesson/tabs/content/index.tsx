@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/client';
 import {
   GetLessonImagesQueryVariables,
+  LessonContent,
   Query,
 } from 'apollo/graphql/generated.types';
 import { GET_LESSON_CONTENTS } from 'apollo/graphql/queries/lesson/getLessonContents';
@@ -10,6 +11,7 @@ import Card from 'components/card';
 import IconComponent from 'components/icon';
 import RegularInput from 'components/input/regularInput';
 import Modal from 'components/modal';
+import { useModalState, useModalStateWithParams } from 'hooks';
 import { useDebouncedValue } from 'hooks/useDebouncedValue';
 import { CreateLessonContentProvider } from 'pages/createLesson/context';
 import React, { useState } from 'react';
@@ -25,10 +27,9 @@ import { ContentTabWrapper, ContentWrapper } from './styles';
 const ContentTab = () => {
   const { t } = useTranslation();
   const [search, setSearch] = useState('');
-  const [isCreateModalShown, setIsCreateModalShown] = useState(false);
-  const [isDeleteModalShown, setIsDeleteModalShown] = useState(false);
-  const [isEditModalShown, setIsEditModalShown] = useState(false);
-  const [currentContentId, setCurrentContentId] = useState('');
+  const createContentModalState = useModalState();
+  const editContentModalState = useModalStateWithParams<LessonContent>();
+  const deleteContentModalState = useModalStateWithParams<LessonContent>();
   const [limit, setLimit] = useState(20);
   const debouncedSearch = useDebouncedValue<string>(search, 500);
   const { data } = useQuery<
@@ -42,66 +43,33 @@ const ContentTab = () => {
     },
   });
 
-  const currentContent = data?.getLessonContents.data.find(
-    (content) => content?.id === currentContentId
-  );
-
   console.log(setLimit);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
 
-  const openCreateModal = () => {
-    setIsCreateModalShown(true);
-  };
-
-  const closeCreateModal = () => {
-    setIsCreateModalShown(false);
-  };
-
-  const openDeleteModal = (id: string) => {
-    setCurrentContentId(id);
-    setIsDeleteModalShown(true);
-  };
-
-  const openEditModal = (id: string) => {
-    setCurrentContentId(id);
-    setIsEditModalShown(true);
-  };
-
-  const closeDeleteModal = () => {
-    setCurrentContentId('');
-    setIsDeleteModalShown(false);
-  };
-
-  const closeEditModal = () => {
-    setCurrentContentId('');
-    setIsEditModalShown(false);
-  };
-
   return (
     <>
-      <Modal onClose={closeCreateModal} isShown={isCreateModalShown}>
-        <CreateLessonContentProvider>
-          <CreateContent />
-        </CreateLessonContentProvider>
-      </Modal>
-      <Modal onClose={closeEditModal} isShown={isEditModalShown}>
-        {currentContent && (
-          <CreateLessonContentProvider lessonContent={currentContent}>
-            <EditContent />
-          </CreateLessonContentProvider>
-        )}
-      </Modal>
-      <Modal onClose={closeDeleteModal} isShown={isDeleteModalShown}>
-        {currentContent && (
-          <DeleteContent
-            onClose={closeDeleteModal}
-            currentContent={currentContent}
-          />
-        )}
-      </Modal>
+      <CreateLessonContentProvider>
+        <Modal
+          {...createContentModalState}
+          renderContent={() => <CreateContent />}
+        />
+        <Modal
+          {...editContentModalState}
+          renderContent={() => <EditContent />}
+        />
+        <Modal
+          {...deleteContentModalState}
+          renderContent={({ params }) => (
+            <DeleteContent
+              onClose={deleteContentModalState.closeModal}
+              currentContent={params}
+            />
+          )}
+        />
+      </CreateLessonContentProvider>
       <ContentTabWrapper>
         <RegularInput
           Svg={Search}
@@ -111,7 +79,7 @@ const ContentTab = () => {
           onChange={handleChange}
         />
         <IconComponent
-          onClick={openCreateModal}
+          onClick={createContentModalState.openModal}
           iconContainerStyle={iconContainerStyle}
           title='Add content'
           Svg={Plus}
@@ -122,10 +90,10 @@ const ContentTab = () => {
           (lessonContent) =>
             lessonContent && (
               <Card
-                data={lessonContent.id}
+                data={lessonContent}
                 key={lessonContent.id}
-                onLeftClick={openEditModal}
-                onRightClick={openDeleteModal}
+                onLeftClick={editContentModalState.openModal}
+                onRightClick={deleteContentModalState.openModal}
                 cardTitle={lessonContent.title}>
                 {lessonContent.sentences.map((sentence, index) => (
                   <SentencePreview

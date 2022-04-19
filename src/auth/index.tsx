@@ -1,13 +1,13 @@
 import { useQuery } from '@apollo/client';
 import { GET_USER } from 'apollo/graphql';
 import { Query } from 'apollo/graphql/generated.types';
+import Spinner from 'components/spinner';
 import React, { createContext, useContext } from 'react';
 
 import { IAuthContext, IAuthContextProviderProps } from './types';
 
 const AuthContext = createContext<IAuthContext>({
   user: undefined,
-  loading: true,
   refetch: () => {
     throw new Error('Called "refetch" without provider.');
   },
@@ -26,9 +26,10 @@ export const AuthContextProvider = ({
 
   const value: IAuthContext = {
     user: data?.getUser,
-    loading,
     refetch,
   };
+
+  if (loading) return <Spinner type='animated' />;
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

@@ -20,6 +20,7 @@ const initialContextValues: ILessonContentContextValues = {
 
 const CreateLessonContentContext =
   createContext<ILessonContentContextValues>(initialContextValues);
+CreateLessonContentContext.displayName = 'CreateLessonContentContext';
 
 export const CreateLessonContentProvider = ({
   children,
@@ -48,4 +49,12 @@ export const CreateLessonContentProvider = ({
   );
 };
 
-export const useCreateLesson = () => useContext(CreateLessonContentContext);
+export const useCreateLesson = () => {
+  const context = useContext(CreateLessonContentContext);
+  if (!context) {
+    throw new Error(
+      'Cannot be rendered outside of the CreateLessonContentContext'
+    );
+  }
+  return context;
+};
