@@ -9,5 +9,6 @@
   "imageUrl": "Invalid image url.",
   "USER_CONFLICT": "Cannot register this user.",
   "NO_INTERNET": "No internet connection.",
-  "NETWORK_ERROR": "A network error has occured."
+  "NETWORK_ERROR": "A network error has occured.",
+  "INVALID_CREDENTIALS": "Invalid credentials."
 }
