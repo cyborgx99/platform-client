@@ -4,7 +4,6 @@ export const omitTypenameDeep = <T>(variables: T): Omit<T, '__typename'> =>
   cloneDeepWith<T>(variables, (value) => {
     if (value && value.__typename) {
       const { __typename, ...valWithoutTypename } = value;
-      console.log(valWithoutTypename);
       return omitTypenameDeep(valWithoutTypename);
     }
 

@@ -75,6 +75,12 @@ export const lessonContentReducer = (
   action: LessonContentAction
 ): ILessonContentReducerState => {
   switch (action.type) {
+    case LessonContentActionTypes.LOAD_SENTENCES:
+      return {
+        ...state,
+        sentences: action.payload,
+      };
+
     case LessonContentActionTypes.CHANGE_LESSON_SENTENCE_TYPE:
       return {
         ...state,

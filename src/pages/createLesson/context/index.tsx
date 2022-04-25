@@ -24,11 +24,10 @@ CreateLessonContentContext.displayName = 'CreateLessonContentContext';
 
 export const CreateLessonContentProvider = ({
   children,
-  lessonContent,
 }: ICreateLessonContextProviderProps) => {
   const initialReducerValues: ILessonContentReducerState = {
     toggleValue: LessonSentenceType.Gap,
-    sentences: lessonContent?.sentences ?? [],
+    sentences: [],
   };
 
   const [state, dispatch] = useReducer<
@@ -38,7 +37,6 @@ export const CreateLessonContentProvider = ({
   const providerValue: ILessonContentContextValues = {
     toggleValue: state.toggleValue,
     sentences: state.sentences,
-    lessonContent,
     dispatch,
   };
 

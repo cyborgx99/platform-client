@@ -7,6 +7,7 @@ export enum LessonContentActionTypes {
   ADD_SENTENCE = 'ADD_SENTENCE',
   REMOVE_SENTENCE = 'REMOVE_SENTENCE',
   CHANGE_LESSON_SENTENCE_TYPE = 'CHANGE_LESSON_SENTENCE_TYPE',
+  LOAD_SENTENCES = 'LOAD_SENTENCES',
   CLEAR_SENTENCES = 'CLEAR_SENTENCES',
 }
 
@@ -29,8 +30,14 @@ type ClearSentences = {
   type: LessonContentActionTypes.CLEAR_SENTENCES;
 };
 
+type LoadSentences = {
+  type: LessonContentActionTypes.LOAD_SENTENCES;
+  payload: LessonContentSentence[];
+};
+
 export type LessonContentAction =
   | AddSentence
   | RemoveSentence
   | ChangeLessonSentenceType
-  | ClearSentences;
+  | ClearSentences
+  | LoadSentences;

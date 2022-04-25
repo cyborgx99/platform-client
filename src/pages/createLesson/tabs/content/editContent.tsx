@@ -5,29 +5,42 @@ import {
   Mutation,
   UpdateLessonContentMutationVariables,
 } from 'apollo/graphql/generated.types';
+import { GET_LESSON_CONTENTS } from 'apollo/graphql/queries/lesson/getLessonContents';
 import { useCreateLesson } from 'pages/createLesson/context';
 import { LessonContentActionTypes } from 'pages/createLesson/reducer/types';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { omitTypenameDeep } from 'utils';
 
 import ContentForm from './contentForm';
+import { IEditContentProps } from './types';
 
-const EditContent = () => {
+const EditContent = ({ lessonContent }: IEditContentProps) => {
   const { t } = useTranslation();
-  const { sentences, dispatch, lessonContent } = useCreateLesson();
+  const { sentences, dispatch } = useCreateLesson();
   const [title, setTitle] = useState(lessonContent?.title ?? '');
   const [updateContent, { error, loading }] = useMutation<
     Pick<Mutation, 'updateLessonContent'>,
     UpdateLessonContentMutationVariables
-  >(UPDATE_LESSON_CONTENT);
+  >(UPDATE_LESSON_CONTENT, {
+    refetchQueries: [GET_LESSON_CONTENTS, 'getLessonContents'],
+  });
   const [isSuccessShown, setIsSuccessShown] = useState(false);
+
+  const loadSentences = React.useCallback(() => {
+    dispatch({
+      type: LessonContentActionTypes.LOAD_SENTENCES,
+      payload: lessonContent.sentences,
+    });
+  }, [dispatch, lessonContent.sentences]);
+
+  useEffect(() => {
+    loadSentences();
+  }, [loadSentences]);
 
   const handleContinue = () => {
     setIsSuccessShown(false);
   };
-
-  console.log(sentences);
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);

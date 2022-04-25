@@ -58,7 +58,7 @@ const ContentTab = () => {
         />
         <Modal
           {...editContentModalState}
-          renderContent={() => <EditContent />}
+          renderContent={({ params }) => <EditContent lessonContent={params} />}
         />
         <Modal
           {...deleteContentModalState}

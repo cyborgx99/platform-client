@@ -20,5 +20,4 @@ export interface ILessonContentReducerState {
 
 export interface ICreateLessonContextProviderProps {
   children: React.ReactNode;
-  lessonContent?: LessonContent;
 }
