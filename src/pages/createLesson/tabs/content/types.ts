@@ -11,6 +11,10 @@ export interface IDeleteContentProps {
   onClose: () => void;
 }
 
+export interface IEditContentProps {
+  lessonContent: LessonContent;
+}
+
 export interface IContentFormProps {
   onContinue: () => void;
   isSuccessShown: boolean;

@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/client';
 import { GET_LESSON_IMAGES } from 'apollo/graphql';
 import {
+  LessonImage,
   Query,
   QueryGetLessonImagesArgs,
 } from 'apollo/graphql/generated.types';
@@ -10,6 +11,7 @@ import Card from 'components/card';
 import IconComponent from 'components/icon';
 import RegularInput from 'components/input/regularInput';
 import Modal from 'components/modal';
+import { useModalState, useModalStateWithParams } from 'hooks';
 import { useDebouncedValue } from 'hooks/useDebouncedValue';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -20,10 +22,9 @@ import EditImage from './editImage';
 import { iconContainerStyle, ImagesWrapper, ImageTabWrapper } from './styles';
 
 const ImageTab = () => {
-  const [isCreateModalShown, setIsCreateModalShown] = useState(false);
-  const [isEditModalShown, setIsEditModalShown] = useState(false);
-  const [currentImageId, setCurrentImageId] = useState<string>('');
-  const [isDeleteModalShown, setIsDeleteModalShown] = useState(false);
+  const createModalState = useModalState();
+  const editModalState = useModalStateWithParams<LessonImage>();
+  const deleteModalState = useModalStateWithParams<LessonImage>();
   const [limit, setLimit] = useState(20);
   const [search, setSearch] = useState('');
   const debouncedSearch: string = useDebouncedValue<string>(search, 500);
@@ -46,51 +47,22 @@ const ImageTab = () => {
     setSearch(e.target.value);
   };
 
-  const currentImage = data?.getLessonImages.data.find(
-    (image) => image?.id === currentImageId
-  );
-
-  const openCreateModal = () => {
-    setIsCreateModalShown(true);
-  };
-
-  const closeCreateModal = () => {
-    setIsCreateModalShown(false);
-  };
-
-  const openEditModal = (id: string) => {
-    setCurrentImageId(id);
-    setIsEditModalShown(true);
-  };
-
-  const closeEditModal = () => {
-    setIsEditModalShown(false);
-    setCurrentImageId('');
-  };
-
-  const openDeleteModal = (id: string) => {
-    setCurrentImageId(id);
-    setIsDeleteModalShown(true);
-  };
-
-  const closeDeleteModal = () => {
-    setIsDeleteModalShown(false);
-    setCurrentImageId('');
-  };
-
   return (
     <>
-      <Modal onClose={closeCreateModal} isShown={isCreateModalShown}>
-        <CreateImage />
-      </Modal>
-      <Modal onClose={closeEditModal} isShown={isEditModalShown}>
-        {currentImage && <EditImage currentImage={currentImage} />}
-      </Modal>
-      <Modal onClose={closeDeleteModal} isShown={isDeleteModalShown}>
-        {currentImage && (
-          <DeleteImage onClose={closeDeleteModal} currentImage={currentImage} />
+      <Modal {...createModalState} renderContent={() => <CreateImage />} />
+      <Modal
+        {...editModalState}
+        renderContent={({ params }) => <EditImage currentImage={params} />}
+      />
+      <Modal
+        {...deleteModalState}
+        renderContent={({ params }) => (
+          <DeleteImage
+            onClose={deleteModalState.closeModal}
+            currentImage={params}
+          />
         )}
-      </Modal>
+      />
       <ImageTabWrapper>
         <RegularInput
           Svg={Search}
@@ -100,7 +72,7 @@ const ImageTab = () => {
           onChange={handleChange}
         />
         <IconComponent
-          onClick={openCreateModal}
+          onClick={createModalState.openModal}
           iconContainerStyle={iconContainerStyle}
           title='Add image'
           Svg={Plus}
@@ -111,10 +83,10 @@ const ImageTab = () => {
           (lessonImage) =>
             lessonImage && (
               <Card
-                data={lessonImage.id}
+                data={lessonImage}
                 key={lessonImage.id}
-                onLeftClick={openEditModal}
-                onRightClick={openDeleteModal}
+                onLeftClick={editModalState.openModal}
+                onRightClick={deleteModalState.openModal}
                 imageUrl={lessonImage.url}
                 imageAlt='Lesson image'
                 cardTitle={lessonImage.title}

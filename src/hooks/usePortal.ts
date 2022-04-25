@@ -1,21 +1,21 @@
 import { useEffect, useRef } from 'react';
 
 // Creates DOM element to be used as React root.
-function createRootElement(id: string): HTMLElement {
+const createRootElement = (id: string): HTMLElement => {
   const rootContainer = document.createElement('div');
   rootContainer.setAttribute('id', id);
   return rootContainer;
-}
+};
 
 // Appends element as last child of body.
-function addRootElement(rootElem: Element) {
+const addRootElement = (rootElem: Element) => {
   if (document.body.lastElementChild) {
     document.body.insertBefore(
       rootElem,
       document.body.lastElementChild.nextElementSibling
     );
   }
-}
+};
 
 /**
  * Hook to create a React Portal.
@@ -24,7 +24,7 @@ function addRootElement(rootElem: Element) {
  * exists.
  **/
 
-export function usePortal(id: string) {
+export const usePortal = (id: string) => {
   const rootElemRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(
@@ -64,12 +64,12 @@ export function usePortal(id: string) {
    *   ever run once.
    * @link https://reactjs.org/docs/hooks-faq.html#how-to-create-expensive-objects-lazily
    */
-  function getRootElem() {
+  const getRootElem = () => {
     if (!rootElemRef.current) {
       rootElemRef.current = document.createElement('div');
     }
     return rootElemRef.current;
-  }
+  };
 
   return getRootElem();
-}
+};

@@ -13,9 +13,7 @@ import { unathorizedRoutes } from './unathorizedRoutes';
 const DashboardPage = lazy(() => import('../pages/dashboard'));
 
 const AppRoutes = () => {
-  const { user, loading } = useAuth();
-
-  if (loading) return <Spinner type='animated' />;
+  const { user } = useAuth();
 
   return (
     <BrowserRouter>
