@@ -65,7 +65,7 @@
       "homework": "Д/з",
       "image": "Картинки",
       "content": "Контент",
-      "grammar": "Грамматика"
+      "assemble": "Создать"
     }
   },
   "errorBoundary": {

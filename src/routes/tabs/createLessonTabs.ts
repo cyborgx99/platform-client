@@ -4,7 +4,7 @@ import { IRouteInterface } from 'routes/types';
 
 const ImageTab = lazy(() => import('../../pages/createLesson/tabs/image'));
 const ContentTab = lazy(() => import('../../pages/createLesson/tabs/content'));
-const GrammarTab = lazy(() => import('../../pages/createLesson/tabs/grammar'));
+const GrammarTab = lazy(() => import('../../pages/createLesson/tabs/assemble'));
 
 export const createLessonTabs: IRouteInterface[] = [
   {
@@ -16,7 +16,7 @@ export const createLessonTabs: IRouteInterface[] = [
     Component: ContentTab,
   },
   {
-    path: pathKeys.tabs.CREATE_LESSON_TABS.GRAMMAR,
+    path: pathKeys.tabs.CREATE_LESSON_TABS.ASSEMBLE,
     Component: GrammarTab,
   },
 ];
