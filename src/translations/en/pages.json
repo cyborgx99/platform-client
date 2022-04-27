@@ -30,12 +30,14 @@
     "upload": "Upload",
     "create": "Create",
     "title": "Title",
+    "description": "Description",
     "selectImage": "Select image",
     "imageCreated": "Your lesson image has been created.",
     "imageUpdated": "Your lesson image has been updated.",
     "update": "Update",
     "confirmDelete": "Confirm delete",
-    "search": "Search"
+    "search": "Search",
+    "addPage": "Add page"
   },
   "lessonContent": {
     "enterSentence": "Enter sentence",

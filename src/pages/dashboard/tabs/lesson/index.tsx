@@ -27,7 +27,6 @@ const LessonTab = () => {
           console.log(123);
         }}
         imageUrl='https://res.cloudinary.com/cyborgx999/image/upload/v1648131622/platform/lessons/photography-01-800x400_obxyix.jpg'
-        imageAlt='Card'
         cardTitle='My card title'>
         <p>123123</p>
       </Card>

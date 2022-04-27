@@ -11,7 +11,6 @@ import {
 import { ICardComponentProps } from './types';
 
 const Card = <T,>({
-  imageAlt,
   data,
   imageUrl,
   cardTitle,
@@ -19,6 +18,8 @@ const Card = <T,>({
   onLeftClick,
   onRightClick,
 }: ICardComponentProps<T>) => {
+  const isActionContainerShown = Boolean(onLeftClick || onRightClick);
+
   const handleLeftClick = () => {
     onLeftClick?.(data);
   };
@@ -30,32 +31,34 @@ const Card = <T,>({
   return (
     <CardContainer data-cy-card>
       <ContentWrapper>
-        {imageUrl && <CardImage src={imageUrl} alt={imageAlt} />}
+        {imageUrl && <CardImage src={imageUrl} alt={cardTitle} />}
         <CardHeaderThree>{cardTitle}</CardHeaderThree>
         {children}
       </ContentWrapper>
-      <ActionContainer>
-        {onLeftClick && (
-          <ButtonComponent
-            width='full'
-            type='button'
-            shape='rectangle'
-            variant='primary'
-            onClick={handleLeftClick}>
-            Edit
-          </ButtonComponent>
-        )}
-        {onRightClick && (
-          <ButtonComponent
-            width='full'
-            type='button'
-            variant='secondary'
-            shape='rectangle'
-            onClick={handleRightClick}>
-            Delete
-          </ButtonComponent>
-        )}
-      </ActionContainer>
+      {isActionContainerShown && (
+        <ActionContainer>
+          {onLeftClick && (
+            <ButtonComponent
+              width='full'
+              type='button'
+              shape='rectangle'
+              variant='primary'
+              onClick={handleLeftClick}>
+              Edit
+            </ButtonComponent>
+          )}
+          {onRightClick && (
+            <ButtonComponent
+              width='full'
+              type='button'
+              variant='secondary'
+              shape='rectangle'
+              onClick={handleRightClick}>
+              Delete
+            </ButtonComponent>
+          )}
+        </ActionContainer>
+      )}
     </CardContainer>
   );
 };

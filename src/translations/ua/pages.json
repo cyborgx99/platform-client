@@ -30,12 +30,14 @@
     "upload": "Завантажити",
     "create": "Створити",
     "title": "Заголовок",
+    "description": "Описання",
     "selectImage": "Вибрати зображення",
     "imageCreated": "Зображення було створено",
     "imageUpdated": "Изображение было змінено",
     "update": "Змінити",
     "confirmDelete": "Підтвердити видалення",
-    "search": "Пошук"
+    "search": "Пошук",
+    "addPage": "Добавити сторінку"
   },
   "lessonContent": {
     "enterSentence": "Введіть речення",

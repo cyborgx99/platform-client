@@ -88,7 +88,6 @@ const ImageTab = () => {
                 onLeftClick={editModalState.openModal}
                 onRightClick={deleteModalState.openModal}
                 imageUrl={lessonImage.url}
-                imageAlt='Lesson image'
                 cardTitle={lessonImage.title}
               />
             )

@@ -29,7 +29,7 @@ export const pathKeys = {
     CREATE_LESSON_TABS: {
       IMAGE: '/create-lesson/image',
       CONTENT: '/create-lesson/content',
-      ASSEMBLE: '/create-lesson/assemble',
+      LESSON: '/create-lesson/lesson',
     },
   },
 };

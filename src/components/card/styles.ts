@@ -5,7 +5,7 @@ export const CardContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.colors.gray.base};
-  cursor: pointer;
+
   display: flex;
   flex-direction: column;
 `;
@@ -22,7 +22,7 @@ export const CardHeaderThree = styled(HeaderThreeBase)`
 `;
 
 export const CardImage = styled.img`
-  object-fit: cover;
+  object-fit: contain;
   width: 100%;
   transition: transform 0.2s ease-in-out;
   border-radius: 8px;

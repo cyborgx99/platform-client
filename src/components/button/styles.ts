@@ -110,7 +110,7 @@ const buttonShape: ButtonShapeStyle = {
     border-radius: 48px;
   `,
   rectangle: css`
-    border-radius: 2px;
+    border-radius: 4px;
   `,
 };
 

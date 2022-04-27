@@ -2,15 +2,17 @@ import { ReactComponent as Plus } from 'assets/icons/plus.svg';
 import { ReactComponent as Search } from 'assets/icons/search.svg';
 import IconComponent from 'components/icon';
 import RegularInput from 'components/input/regularInput';
+import Modal from 'components/modal';
 import { useModalState } from 'hooks';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { iconContainerStyle } from '../image/styles';
-import { AssembleTabSearchWrapper } from './styles';
+import CreateLesson from './createLesson';
+import { LessonSearchWrapper } from './styles';
 
-const AssembleLessonTab = () => {
-  const createContentModalState = useModalState();
+const LessonTab = () => {
+  const createLessonModalState = useModalState();
   const { t } = useTranslation();
   const [search, setSearch] = useState('');
 
@@ -19,7 +21,11 @@ const AssembleLessonTab = () => {
   };
   return (
     <>
-      <AssembleTabSearchWrapper>
+      <Modal
+        {...createLessonModalState}
+        renderContent={() => <CreateLesson />}
+      />
+      <LessonSearchWrapper>
         <RegularInput
           Svg={Search}
           title='Seacrh'
@@ -28,14 +34,14 @@ const AssembleLessonTab = () => {
           onChange={handleChange}
         />
         <IconComponent
-          onClick={createContentModalState.openModal}
+          onClick={createLessonModalState.openModal}
           iconContainerStyle={iconContainerStyle}
           title='Add content'
           Svg={Plus}
         />
-      </AssembleTabSearchWrapper>
+      </LessonSearchWrapper>
     </>
   );
 };
 
-export default AssembleLessonTab;
+export default LessonTab;
