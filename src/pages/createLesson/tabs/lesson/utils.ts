@@ -8,13 +8,7 @@ export const lessonFormValidationSchema: ILessonFormValidationSchema = yup
   .shape({
     title: stringRequiredMinMax,
     description: stringRequiredMinMax,
-    pages: yup
-      .array()
-      .of(
-        yup.object().shape({
-          lessonImageId: stringRequiredMinMax,
-          lessonContentId: stringRequiredMinMax,
-        })
-      )
-      .min(1, 'required'),
+    selectedImage: yup.object().default(null).nullable(true),
+    selectedContent: yup.object().default(null).nullable(true),
+    pages: yup.array(),
   });

@@ -13,6 +13,8 @@ import { lessonFormValidationSchema } from './utils';
 const initialValues: ILessonFormValues = {
   title: '',
   description: '',
+  selectedImage: null,
+  selectedContent: null,
   pages: [],
 };
 

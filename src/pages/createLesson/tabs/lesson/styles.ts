@@ -12,3 +12,25 @@ export const StyledlessonForm = styled(FormBase)`
   flex-direction: column;
   width: 100%;
 `;
+
+const idealSize = '5rem';
+const maxColumns = 2;
+const gap = '0.5rem';
+
+export const SelectImageContainer = styled.div`
+  margin: 0.5rem 0;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(max(100% / ${maxColumns} - ${gap}, ${idealSize}), 100%), 1fr)
+  );
+  gap: ${gap};
+  overflow: auto;
+  min-height: 13rem;
+  max-height: 26rem;
+`;
+
+export const NoItemsWrapper = styled.div`
+  justify-self: center;
+  align-self: center;
+`;
