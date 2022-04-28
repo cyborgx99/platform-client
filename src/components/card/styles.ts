@@ -1,24 +1,39 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { HeaderThreeBase } from 'styles/globalStyles';
 
-export const CardContainer = styled.div`
+const isSelected = css`
+  box-shadow: ${({ theme }) => `${theme.colors.green.base}50`} 0px 1px 2px 0px,
+    ${({ theme }) => `${theme.colors.green.base}30`} 0px 2px 6px 2px;
+  border: 2px solid ${({ theme }) => theme.colors.green.base};
+`;
+
+export const CardContainer = styled.div<{ $isSelected?: boolean }>`
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.colors.gray.base};
-
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
   display: flex;
   flex-direction: column;
+
+  ${({ $isSelected }) => $isSelected && isSelected}
 `;
 
-export const ContentWrapper = styled.div`
+export const ContentWrapper = styled.button`
   padding: 0.5rem;
   flex: 1;
   display: flex;
   flex-direction: column;
+  background: none;
+  border: none;
+
+  &:focus-visible {
+    outline: 2px solid ${({ theme }) => theme.colors.yellow.base};
+  }
 `;
 
 export const CardHeaderThree = styled(HeaderThreeBase)`
   margin: 0.5rem 0;
+  font-size: 1.25rem;
 `;
 
 export const CardImage = styled.img`

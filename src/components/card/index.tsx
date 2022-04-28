@@ -15,10 +15,16 @@ const Card = <T,>({
   imageUrl,
   cardTitle,
   children,
+  isSelected,
+  onCardClick,
   onLeftClick,
   onRightClick,
 }: ICardComponentProps<T>) => {
   const isActionContainerShown = Boolean(onLeftClick || onRightClick);
+
+  const handleCardClick = () => {
+    onCardClick?.(data);
+  };
 
   const handleLeftClick = () => {
     onLeftClick?.(data);
@@ -29,8 +35,11 @@ const Card = <T,>({
   };
 
   return (
-    <CardContainer data-cy-card>
-      <ContentWrapper>
+    <CardContainer $isSelected={isSelected} data-cy-card>
+      <ContentWrapper
+        type='button'
+        disabled={Boolean(!onCardClick)}
+        onClick={handleCardClick}>
         {imageUrl && <CardImage src={imageUrl} alt={cardTitle} />}
         <CardHeaderThree>{cardTitle}</CardHeaderThree>
         {children}

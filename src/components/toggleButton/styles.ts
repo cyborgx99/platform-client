@@ -21,6 +21,10 @@ export const TogglePartButton = styled.button<{ $isActive: boolean }>`
   color: ${({ theme }) => theme.colors.gray.darkest};
   font-weight: ${({ theme }) => theme.typography.fontWeights.bold};
 
+  &:focus-visible {
+    outline: 2px solid ${({ theme }) => theme.colors.yellow.base};
+  }
+
   ${({ $isActive }) =>
     $isActive &&
     css`
