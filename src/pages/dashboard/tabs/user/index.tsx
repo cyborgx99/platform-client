@@ -7,34 +7,32 @@ import { UserTabWrapper } from './style';
 import UserCard from './userCard';
 
 const UserTab = () => {
-  const [limit, setLimit] = useState(20);
+  const [offset, setOffset] = useState(0);
   const { data, fetchMore } = useQuery<
     Pick<Query, 'getUsers'>,
     QueryGetUsersArgs
   >(GET_USERS, {
     variables: {
-      offset: 0,
-      limit,
+      offset: offset,
+      limit: 2,
     },
   });
 
   const handleFetchMore = async () => {
     if (!data) return;
     const offset = data.getUsers.data.length;
-    const result = await fetchMore({
+    fetchMore({
       variables: {
         offset,
-        limit,
       },
     });
 
-    setLimit(offset + result.data.getUsers.data.length);
+    setOffset(offset);
   };
-
-  console.log(handleFetchMore);
 
   return (
     <UserTabWrapper>
+      <button onClick={handleFetchMore}>Fetch more</button>
       {data &&
         data?.getUsers.data.map((user) => (
           <UserCard key={user?.id} user={user} />
