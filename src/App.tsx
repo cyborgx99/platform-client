@@ -2,7 +2,7 @@ import ApolloClientProvider from 'apollo';
 import { AuthContextProvider } from 'auth';
 import { envConfig, envConfigValidator } from 'enValidation';
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components/macro';
 
 import AppRoutes from './routes';
 import GlobalCSS from './styles/globalStyles';

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { FormBase } from 'styles/globalStyles';
 
 export const LessonSearchWrapper = styled.div`

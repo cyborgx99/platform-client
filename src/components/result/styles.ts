@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 
 export const SuccessIconContainer = styled.div`
   width: 7.5rem;

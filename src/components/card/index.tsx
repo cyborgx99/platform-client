@@ -40,7 +40,9 @@ const Card = <T,>({
         type='button'
         disabled={Boolean(!onCardClick)}
         onClick={handleCardClick}>
-        {imageUrl && <CardImage src={imageUrl} alt={cardTitle} />}
+        {imageUrl && (
+          <CardImage loading='lazy' src={imageUrl} alt={cardTitle} />
+        )}
         <CardHeaderThree>{cardTitle}</CardHeaderThree>
         {children}
       </ContentWrapper>

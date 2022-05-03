@@ -1,5 +1,5 @@
 import { PartType } from 'apollo/graphql/generated.types';
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 import { CssStyleProp } from 'styles/types';
 
 export const ContentTabWrapper = styled.div`

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components/macro';
 import { myTheme } from '../src/styles/theme';
 
 export const parameters = {

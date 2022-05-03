@@ -3,7 +3,7 @@ import {
   FlattenInterpolation,
   FlattenSimpleInterpolation,
   ThemeProps,
-} from 'styled-components';
+} from 'styled-components/macro';
 
 export type CssStyleProp =
   | FlattenSimpleInterpolation

@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 import { HeaderThreeBase } from 'styles/globalStyles';
 
 const isSelected = css`
@@ -42,6 +42,7 @@ export const CardImage = styled.img`
   transition: transform 0.2s ease-in-out;
   border-radius: 8px;
   flex: 1;
+  max-height: 10rem;
 
   &:hover {
     transform: scale(1.0125);

@@ -1,5 +1,5 @@
 import reactTextareaAutosize from 'react-textarea-autosize';
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 
 const border = css`
   border: 2px solid ${({ theme }) => theme.colors.secondary.light};

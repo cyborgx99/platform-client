@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 
 export const StyledLabel = styled.label`
   width: max-content;

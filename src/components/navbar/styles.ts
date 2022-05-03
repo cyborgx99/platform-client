@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 
 export const deleteIconStyle = css`
   width: 1.3rem;
