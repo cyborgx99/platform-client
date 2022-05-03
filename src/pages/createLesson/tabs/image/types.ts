@@ -1,5 +1,5 @@
 import { ApolloError } from '@apollo/client';
-import { LessonImage } from 'apollo/graphql/generated.types';
+import { LessonImage, SortOrder } from 'apollo/graphql/generated.types';
 import { Maybe } from 'graphql/jsutils/Maybe';
 import { SchemaOf } from 'yup';
 
@@ -32,6 +32,16 @@ export type ImageFormOption = 'url' | 'upload';
 export type ImageInput = Record<ImageFormOption, JSX.Element>;
 
 export type ImageFormOptions = ImageFormOption[];
+
+export type LimitOption = {
+  label: string;
+  value: number;
+};
+
+export type OrderOption = {
+  label: string;
+  value: SortOrder;
+};
 
 export interface IEditImageProps {
   currentImage: LessonImage;
