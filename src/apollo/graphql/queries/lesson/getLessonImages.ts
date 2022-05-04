@@ -20,6 +20,7 @@ export const GET_LESSON_IMAGES = gql`
         publicId
       }
       totalCount
+      hasMore
     }
   }
 `;

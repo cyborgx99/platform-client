@@ -17,6 +17,8 @@ export const GET_LESSON_CONTENTS = gql`
           sentenceType
         }
       }
+      totalCount
+      hasMore
     }
   }
 `;
