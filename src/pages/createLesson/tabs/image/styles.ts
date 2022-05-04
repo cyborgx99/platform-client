@@ -1,3 +1,4 @@
+import { InView } from 'react-intersection-observer';
 import styled, { css } from 'styled-components/macro';
 import { FormBase } from 'styles/globalStyles';
 
@@ -50,4 +51,9 @@ export const iconContainerStyle = css`
       }
     }
   }
+`;
+
+export const StyledInView = styled(InView)`
+  text-align: center;
+  margin-top: 0.5rem;
 `;

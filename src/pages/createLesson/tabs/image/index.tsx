@@ -17,12 +17,17 @@ import { useModalState, useModalStateWithParams } from 'hooks';
 import { useDebouncedValue } from 'hooks/useDebouncedValue';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Waypoint } from 'react-waypoint';
+import { ParagraphBase } from 'styles/globalStyles';
 
 import CreateImage from './createImage';
 import DeleteImage from './deleteImage';
 import EditImage from './editImage';
-import { iconContainerStyle, ImagesWrapper, ImageTabWrapper } from './styles';
+import {
+  iconContainerStyle,
+  ImagesWrapper,
+  ImageTabWrapper,
+  StyledInView,
+} from './styles';
 import { LimitOption, OrderOption } from './types';
 import { loadOptions, loadOrderOptions, options, orderOptions } from './utils';
 
@@ -34,7 +39,7 @@ const ImageTab = () => {
 
   const [lessonImageVariables, setLessonImageVariables] =
     useState<QueryGetLessonImagesArgs>({
-      limit: 10,
+      limit: 5,
       search: '',
       offset: 0,
       sortOrder: SortOrder.Asc,
@@ -78,8 +83,8 @@ const ImageTab = () => {
     });
   };
 
-  const handleFetchMore = async () => {
-    if (!data) return;
+  const handleFetchMore = async (isInView: boolean) => {
+    if (!data || !data.getLessonImages.hasMore || !isInView) return;
 
     const offset = data.getLessonImages.data.length;
     fetchMore({
@@ -149,7 +154,11 @@ const ImageTab = () => {
             )
         )}
       </ImagesWrapper>
-      <Waypoint onEnter={handleFetchMore} />
+      <StyledInView onChange={handleFetchMore}>
+        <ParagraphBase $textType='normalText' $textWeight='medium'>
+          The end of the list.
+        </ParagraphBase>
+      </StyledInView>
     </>
   );
 };
