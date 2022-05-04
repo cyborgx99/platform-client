@@ -19,6 +19,7 @@ interface BasicButtonProps {
   width?: ButtonWidth;
   shape?: ButtonShape;
   disabled?: boolean;
+  children?: React.ReactNode;
 }
 
 interface SubmitButtonProps extends BasicButtonProps {

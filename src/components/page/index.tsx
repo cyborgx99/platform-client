@@ -15,7 +15,7 @@ import {
 } from './styles';
 import { IPageProps } from './types';
 
-const PageLayout: React.FC<IPageProps> = ({ children, title }) => {
+const PageLayout = ({ children, title }: IPageProps) => {
   const [isNavbarShown, setIsNavbarShown] = useState(false);
   const { user } = useAuth();
   const { t } = useTranslation();

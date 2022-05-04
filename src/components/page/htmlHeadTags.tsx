@@ -2,11 +2,9 @@ import { truncate } from 'lodash-es';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-interface HtmlHeadTagsProps {
-  title: string | null;
-}
+import { HtmlHeadTagsProps } from './types';
 
-const HtmlHeadTags: React.FC<HtmlHeadTagsProps> = ({ title }) => (
+const HtmlHeadTags = ({ title }: HtmlHeadTagsProps) => (
   <Helmet>
     <title>
       {title

@@ -4,7 +4,7 @@ import React from 'react';
 import { StyledButton } from './styles';
 import { ButtonProps } from './types';
 
-const ButtonComponent: React.FC<ButtonProps> = ({
+const ButtonComponent = ({
   type = 'submit',
   disabled = false,
   width = 'min',
@@ -13,7 +13,7 @@ const ButtonComponent: React.FC<ButtonProps> = ({
   variant,
   shape = 'round',
   onClick,
-}) => {
+}: ButtonProps) => {
   return (
     <StyledButton
       data-cy-button

@@ -1,9 +1,9 @@
 import { render, RenderOptions } from '@testing-library/react';
-import React, { FC, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { ThemeProvider } from 'styled-components/macro';
 import { myTheme } from 'styles/theme';
 
-const AllTheProviders: FC = ({ children }) => {
+const AllTheProviders = ({ children }: { children: React.ReactNode }) => {
   return <ThemeProvider theme={myTheme}>{children}</ThemeProvider>;
 };
 

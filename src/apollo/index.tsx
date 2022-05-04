@@ -75,7 +75,7 @@ const client = new ApolloClient({
   },
 });
 
-const ApolloClientProvider: React.FC = ({ children }) => {
+const ApolloClientProvider = ({ children }: { children: React.ReactNode }) => {
   return <ApolloProvider client={client}>{children}</ApolloProvider>;
 };
 
