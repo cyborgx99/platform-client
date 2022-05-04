@@ -97,6 +97,7 @@ const ContentTab = () => {
                 cardTitle={lessonContent.title}>
                 {lessonContent.sentences.map((sentence, index) => (
                   <SentencePreview
+                    canRemoveSentence
                     key={sentence.id}
                     index={index}
                     sentence={sentence}

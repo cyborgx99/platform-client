@@ -10,10 +10,15 @@ import ScramblePreview from './scramblePreview';
 import TextPreview from './textPreview';
 import { ISentencePreviewProps, PreviewSentenceType } from './types';
 
-const SentencePreview = ({ sentence, index }: ISentencePreviewProps) => {
+const SentencePreview = ({
+  sentence,
+  index,
+  canRemoveSentence,
+}: ISentencePreviewProps) => {
   const { dispatch } = useCreateLesson();
 
   const handleRemoveSentence = () => {
+    if (!canRemoveSentence) return;
     dispatch({
       type: LessonContentActionTypes.REMOVE_SENTENCE,
       payload: sentence.id,

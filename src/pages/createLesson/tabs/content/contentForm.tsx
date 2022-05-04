@@ -75,7 +75,12 @@ const ContentForm = ({
             </HeaderThreeBase>
           )}
           {sentences.map((sentence, i) => (
-            <SentencePreview index={i} key={sentence.id} sentence={sentence} />
+            <SentencePreview
+              canRemoveSentence
+              index={i}
+              key={sentence.id}
+              sentence={sentence}
+            />
           ))}
         </DisplaySentencesWrapper>
         <HeaderThreeBase>

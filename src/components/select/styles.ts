@@ -29,3 +29,10 @@ export const StyledAsync = styled(AsyncPaginate)`
 export const ValidationErrorMessage = styled(SpanBase)`
   color: ${({ theme }) => theme.colors.red.base};
 `;
+
+export const SelectContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+`;

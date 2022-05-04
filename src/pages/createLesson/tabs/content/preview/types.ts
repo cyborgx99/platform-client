@@ -7,6 +7,7 @@ import {
 export interface ISentencePreviewProps {
   sentence: LessonContentSentence;
   index: number;
+  canRemoveSentence: boolean;
 }
 
 export interface ISentencePreviewPartsProps {

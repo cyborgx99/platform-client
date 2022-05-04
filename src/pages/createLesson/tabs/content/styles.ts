@@ -81,7 +81,6 @@ const spanStyles: Partial<Record<PartType, CssStyleProp>> = {
 };
 
 export const StyledFormSpan = styled.span<{ $type: PartType }>`
-  cursor: pointer;
   border: 2px solid transparent;
 
   ${({ $type }) => spanStyles[$type]}

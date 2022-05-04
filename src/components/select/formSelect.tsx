@@ -5,7 +5,7 @@ import { SingleValue } from 'react-select';
 import { LabelBase } from 'styles/globalStyles';
 
 import DefaultSelectAsync from './';
-import { ValidationErrorMessage } from './styles';
+import { SelectContainer, ValidationErrorMessage } from './styles';
 import { ISelectAsyncProps } from './types';
 
 const FormSelectAsync = <
@@ -23,7 +23,7 @@ const FormSelectAsync = <
   };
 
   return (
-    <>
+    <SelectContainer>
       {props.label && (
         <LabelBase $textType='largeText' $textWeight='medium'>
           {props.label}
@@ -40,7 +40,7 @@ const FormSelectAsync = <
         $textWeight='regular'>
         {hasError ? t(`errors.${error}`, { min: 2, max: 32 }) : ''}
       </ValidationErrorMessage>
-    </>
+    </SelectContainer>
   );
 };
 
