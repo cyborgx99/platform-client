@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { CssStyleProp } from 'styles/types';
 
 export const IconContainer = styled.button<{

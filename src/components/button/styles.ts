@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 
 import {
   ButtonShape,
@@ -110,7 +110,7 @@ const buttonShape: ButtonShapeStyle = {
     border-radius: 48px;
   `,
   rectangle: css`
-    border-radius: 2px;
+    border-radius: 4px;
   `,
 };
 

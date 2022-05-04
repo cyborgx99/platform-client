@@ -1,10 +1,12 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 import { FormBase } from 'styles/globalStyles';
 
 export const ImageTabWrapper = styled.div`
   display: flex;
   gap: 1rem;
   margin-bottom: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
 `;
 
 export const ImagesWrapper = styled.div`

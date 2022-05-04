@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 
 export const TogglerContainer = styled.div`
   display: flex;
@@ -20,6 +20,10 @@ export const TogglePartButton = styled.button<{ $isActive: boolean }>`
   flex: 1;
   color: ${({ theme }) => theme.colors.gray.darkest};
   font-weight: ${({ theme }) => theme.typography.fontWeights.bold};
+
+  &:focus-visible {
+    outline: 2px solid ${({ theme }) => theme.colors.yellow.base};
+  }
 
   ${({ $isActive }) =>
     $isActive &&

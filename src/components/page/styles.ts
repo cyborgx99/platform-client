@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 import { ParagraphBase } from 'styles/globalStyles';
 
 export const showIconStyles = css`

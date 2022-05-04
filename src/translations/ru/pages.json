@@ -30,12 +30,14 @@
     "upload": "Загрузить",
     "create": "Создать",
     "title": "Заголовок",
+    "description": "Описание",
     "selectImage": "Выбрать изображение",
     "imageCreated": "Изображение было создано",
     "imageUpdated": "Изображение было изменено",
     "update": "Изменить",
     "confirmDelete": "Подтвердить удаление",
-    "search": "Поиск"
+    "search": "Поиск",
+    "addPage": "Добавить страницу"
   },
   "lessonContent": {
     "enterSentence": "Введите предложение",
@@ -65,7 +67,7 @@
       "homework": "Д/з",
       "image": "Картинки",
       "content": "Контент",
-      "grammar": "Грамматика"
+      "assemble": "Создать"
     }
   },
   "errorBoundary": {
