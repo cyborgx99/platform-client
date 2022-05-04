@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-import { FormBase } from 'styles/globalStyles';
+import { FormBase, SpanBase } from 'styles/globalStyles';
 
 export const LessonSearchWrapper = styled.div`
   display: flex;
@@ -33,4 +33,21 @@ export const SelectImageContainer = styled.div`
 export const NoItemsWrapper = styled.div`
   justify-self: center;
   align-self: center;
+`;
+
+export const ValidationErrorMessage = styled(SpanBase)`
+  color: ${({ theme }) => theme.colors.red.base};
+`;
+
+export const LessonPageWrapper = styled.div`
+  margin: 0.5rem 0;
+`;
+
+export const PageCardWrapper = styled.div`
+  display: flex;
+  gap: 0.25rem;
+
+  > * {
+    flex: 1;
+  }
 `;

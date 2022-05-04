@@ -18,26 +18,29 @@ import { GetOptionsFunction } from 'components/select/types';
 import { Formik, FormikProps } from 'formik';
 import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { ParagraphBase } from 'styles/globalStyles';
+import { v4 as uuid } from 'uuid';
 
 import SentencePreview from '../content/preview';
-import { StyledlessonForm } from './styles';
-import { ILessonFormProps, ILessonFormValues } from './types';
-
-const getImageOptionValue = (option: LessonImage): string => {
-  return JSON.stringify(option);
-};
-
-const getImageOptionLabel = (option: LessonImage): string => {
-  return option.title;
-};
-
-const getContentOptionValue = (option: LessonContent): string => {
-  return JSON.stringify(option);
-};
-
-const getContentOptionLabel = (option: LessonContent): string => {
-  return option.title;
-};
+import {
+  LessonPageWrapper,
+  PageCardWrapper,
+  StyledlessonForm,
+  ValidationErrorMessage,
+} from './styles';
+import {
+  GetOptionsAdditional,
+  ILessonFormProps,
+  ILessonFormValues,
+  LessonPage,
+} from './types';
+import {
+  getContentOptionLabel,
+  getContentOptionValue,
+  getImageOptionLabel,
+  getImageOptionValue,
+  getOptionsAdditional,
+} from './utils';
 
 const LessonForm = ({
   initialValues,
@@ -64,7 +67,7 @@ const LessonForm = ({
 
   const getImagesOptions: GetOptionsFunction<
     LessonImage,
-    { limit: number; offset: number }
+    GetOptionsAdditional
   > = async (search, options, additional) => {
     const defaultReturn = {
       options: [],
@@ -84,11 +87,9 @@ const LessonForm = ({
 
     if (!data) return defaultReturn;
 
-    const hasMore = data.getLessonImages.totalCount > options.length;
-
     return {
       options: data.getLessonImages.data,
-      hasMore,
+      hasMore: data.getLessonImages.hasMore,
       additional: {
         limit: additional.limit,
         offset: additional.offset + data.getLessonImages.data.length,
@@ -98,7 +99,7 @@ const LessonForm = ({
 
   const getContentOptions: GetOptionsFunction<
     LessonContent,
-    { limit: number; offset: number }
+    GetOptionsAdditional
   > = async (search, options, additional) => {
     const defaultReturn = {
       options: [],
@@ -117,11 +118,9 @@ const LessonForm = ({
 
     if (!data) return defaultReturn;
 
-    const hasMore = data.getLessonContents.totalCount > options.length;
-
     return {
       options: data.getLessonContents.data,
-      hasMore,
+      hasMore: data.getLessonContents.hasMore,
       additional: {
         limit: additional.limit,
         offset: additional.offset + data.getLessonContents.data.length,
@@ -153,12 +152,15 @@ const LessonForm = ({
     if (!formikRef.current.values.selectedImage) return;
     if (!formikRef.current.values.selectedContent) return;
 
+    const lessonPage: LessonPage = {
+      id: uuid(),
+      lessonImage: formikRef.current.values.selectedImage,
+      lessonContent: formikRef.current.values.selectedContent,
+    };
+
     formikRef.current.setFieldValue('pages', [
       ...formikRef.current.values.pages,
-      {
-        lessonImage: formikRef.current.values.selectedImage,
-        lessonContent: formikRef.current.values.selectedContent,
-      },
+      lessonPage,
     ]);
 
     formikRef.current.setFieldValue('selectedImage', null);
@@ -172,7 +174,7 @@ const LessonForm = ({
       enableReinitialize
       innerRef={formikRef}
       validationSchema={validationSchema}>
-      {({ values }) => (
+      {({ values, errors, touched }) => (
         <StyledlessonForm>
           <ResultWrapper
             isShown={isSuccessShown}
@@ -184,7 +186,7 @@ const LessonForm = ({
                 getOptionLabel={getImageOptionLabel}
                 getOptionValue={getImageOptionValue}
                 getOptions={getImagesOptions}
-                additional={{ limit: 4, offset: 0 }}
+                additional={getOptionsAdditional}
                 isClearable
                 name='selectedImage'
                 label='Select image'
@@ -202,7 +204,7 @@ const LessonForm = ({
                 getOptionValue={getContentOptionValue}
                 getOptions={getContentOptions}
                 isClearable
-                additional={{ limit: 4, offset: 0 }}
+                additional={getOptionsAdditional}
                 name='selectedContent'
                 label='Select content'
               />
@@ -213,6 +215,7 @@ const LessonForm = ({
                   cardTitle={values.selectedContent.title}>
                   {values.selectedContent.sentences.map((sentence, index) => (
                     <SentencePreview
+                      canRemoveSentence={false}
                       key={sentence.id}
                       index={index}
                       sentence={sentence}
@@ -220,16 +223,54 @@ const LessonForm = ({
                   ))}
                 </Card>
               )}
-              {`${values.pages[0]}`}
+              {values.pages.map((page, i) => (
+                <LessonPageWrapper key={page.id}>
+                  <ParagraphBase $textType='normalText' $textWeight='medium'>
+                    Page: {i + 1}
+                  </ParagraphBase>
+                  <PageCardWrapper>
+                    <Card
+                      data={page.lessonImage}
+                      key={page.lessonImage.id}
+                      imageUrl={page.lessonImage.url}
+                      cardTitle={page.lessonImage.title}
+                    />
+                    <Card
+                      data={page.lessonContent}
+                      key={page.lessonContent.id}
+                      cardTitle={page.lessonContent.title}>
+                      {page.lessonContent.sentences.map((sentence, index) => (
+                        <SentencePreview
+                          canRemoveSentence={false}
+                          key={sentence.id}
+                          index={index}
+                          sentence={sentence}
+                        />
+                      ))}
+                    </Card>
+                  </PageCardWrapper>
+                </LessonPageWrapper>
+              ))}
               <ButtonComponent
                 onClick={addPage}
                 width='full'
+                disabled={Boolean(
+                  !(values.selectedContent && values.selectedImage)
+                )}
                 isLoading={loading}
                 type='button'
                 shape='rectangle'
                 variant='primary'>
                 {t('pages.createLesson.addPage')}
               </ButtonComponent>
+              <ValidationErrorMessage
+                data-cy-error='pages'
+                $textType='normalText'
+                $textWeight='regular'>
+                {errors.pages && touched.pages
+                  ? t(`errors.${errors.pages}`, { min: 2, max: 32 })
+                  : ''}
+              </ValidationErrorMessage>
               <FormInput
                 label={t('pages.createLesson.title')}
                 name='title'

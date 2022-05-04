@@ -1,6 +1,7 @@
 import { ApolloError } from '@apollo/client';
 import { LessonContent, LessonImage } from 'apollo/graphql/generated.types';
-import { SchemaOf } from 'yup';
+
+import { LessonFormValidationSchema } from './utils';
 
 export type LessonFormOption = 'image' | 'content';
 
@@ -9,6 +10,7 @@ export type LessonFormTypes = 'create' | 'edit';
 export type LessonFormOptions = LessonFormOption[];
 
 export interface LessonPage {
+  id: string;
   lessonImage: LessonImage;
   lessonContent: LessonContent;
 }
@@ -26,13 +28,16 @@ export interface ILessonFormValues {
   pages: LessonPage[];
 }
 
-export type ILessonFormValidationSchema = SchemaOf<ILessonFormValues>;
-
 export interface ILessonFormProps {
   loading: boolean;
   type: LessonFormTypes;
   error: ApolloError | undefined;
   initialValues: ILessonFormValues;
   onSubmit: (values: ILessonFormValues) => Promise<string | undefined>;
-  validationSchema: ILessonFormValidationSchema;
+  validationSchema: LessonFormValidationSchema;
+}
+
+export interface GetOptionsAdditional {
+  limit: number;
+  offset: number;
 }
