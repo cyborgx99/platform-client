@@ -16,6 +16,7 @@ const Card = <T,>({
   cardTitle,
   children,
   isSelected,
+  cardContainerStyles,
   onCardClick,
   onLeftClick,
   onRightClick,
@@ -35,7 +36,10 @@ const Card = <T,>({
   };
 
   return (
-    <CardContainer $isSelected={isSelected} data-cy-card>
+    <CardContainer
+      $cardContainerStyles={cardContainerStyles}
+      $isSelected={isSelected}
+      data-cy-card>
       <ContentWrapper
         type='button'
         disabled={Boolean(!onCardClick)}

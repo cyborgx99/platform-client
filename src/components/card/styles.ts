@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components/macro';
 import { HeaderThreeBase } from 'styles/globalStyles';
+import { CssStyleProp } from 'styles/types';
 
 const isSelected = css`
   box-shadow: ${({ theme }) => `${theme.colors.green.base}50`} 0px 1px 2px 0px,
@@ -7,13 +8,18 @@ const isSelected = css`
   border: 2px solid ${({ theme }) => theme.colors.green.base};
 `;
 
-export const CardContainer = styled.div<{ $isSelected?: boolean }>`
+export const CardContainer = styled.div<{
+  $isSelected?: boolean;
+  $cardContainerStyles?: CssStyleProp;
+}>`
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.colors.gray.base};
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
   display: flex;
   flex-direction: column;
+
+  ${({ $cardContainerStyles }) => $cardContainerStyles};
 
   ${({ $isSelected }) => $isSelected && isSelected}
 `;

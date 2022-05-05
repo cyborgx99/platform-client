@@ -3,20 +3,26 @@ import React from 'react';
 import { IconContainer } from './styles';
 import { IIconComponentProps } from './types';
 
-const IconComponent = ({
+const IconComponent = <T,>({
   Svg,
   title,
   iconStyle,
   iconContainerStyle,
+  data,
   onClick,
-}: IIconComponentProps) => {
+}: IIconComponentProps<T>) => {
+  const handleClick = () => {
+    if (!onClick) return;
+    onClick(data);
+  };
+
   return (
     <IconContainer
       data-cy-icon={title}
       disabled={Boolean(!onClick)}
       $iconContainerStyle={iconContainerStyle}
       $iconStyle={iconStyle}
-      onClick={onClick}>
+      onClick={handleClick}>
       <Svg title={title} />
     </IconContainer>
   );
