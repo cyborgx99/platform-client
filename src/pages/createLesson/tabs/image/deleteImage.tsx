@@ -6,14 +6,11 @@ import {
 } from 'apollo/graphql/generated.types';
 import ApolloErrorMessage from 'components/apolloErrorMessage';
 import ButtonComponent from 'components/button';
-import {
-  CardHeaderThree,
-  CardImage,
-  ContentWrapper,
-} from 'components/card/styles';
+import { CardHeaderThree, CardImage } from 'components/card/styles';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { ContentWrapper } from './styles';
 import { IDeleteImageProps } from './types';
 
 const DeleteImage = ({ currentImage, onClose }: IDeleteImageProps) => {

@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled, { css } from 'styled-components/macro';
 import { FormBase, SpanBase } from 'styles/globalStyles';
 
 export const LessonSearchWrapper = styled.div`
@@ -49,5 +49,33 @@ export const PageCardWrapper = styled.div`
 
   > * {
     flex: 1;
+  }
+`;
+
+export const cardContainerStyles = css`
+  margin-bottom: 0.5rem;
+`;
+
+export const PageTopWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+`;
+
+export const trashIconStyles = css`
+  > svg {
+    width: 1.25rem;
+    height: 1.25rem;
+
+    path {
+      fill: ${({ theme }) => theme.colors.red.base};
+    }
+
+    &:hover {
+      path {
+        fill: ${({ theme }) => theme.colors.red.darkest};
+      }
+    }
   }
 `;

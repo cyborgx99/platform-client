@@ -1,6 +1,6 @@
 import { CssStyleProp } from 'styles/types';
 
-export interface IIconComponentProps {
+export interface IIconComponentProps<T> {
   Svg: React.FunctionComponent<
     React.SVGProps<SVGSVGElement> & {
       title?: string | undefined;
@@ -9,5 +9,6 @@ export interface IIconComponentProps {
   iconStyle?: CssStyleProp;
   iconContainerStyle?: CssStyleProp;
   title: string;
-  onClick?: () => void;
+  data?: T;
+  onClick?: (data?: T) => void;
 }

@@ -57,3 +57,5 @@ export const StyledInView = styled(InView)`
   text-align: center;
   margin-top: 0.5rem;
 `;
+
+export const ContentWrapper = styled.div``;
