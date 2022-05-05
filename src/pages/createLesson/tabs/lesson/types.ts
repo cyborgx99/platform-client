@@ -41,3 +41,7 @@ export interface GetOptionsAdditional {
   limit: number;
   offset: number;
 }
+
+export interface ILessonPageInFormProps {
+  isLoading: boolean;
+}

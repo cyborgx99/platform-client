@@ -18,21 +18,14 @@ import { GetOptionsFunction } from 'components/select/types';
 import { Formik, FormikProps } from 'formik';
 import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ParagraphBase } from 'styles/globalStyles';
-import { v4 as uuid } from 'uuid';
 
 import SentencePreview from '../content/preview';
-import {
-  LessonPageWrapper,
-  PageCardWrapper,
-  StyledlessonForm,
-  ValidationErrorMessage,
-} from './styles';
+import LessonPageInForm from './lessonPageInForm';
+import { cardContainerStyles, StyledlessonForm } from './styles';
 import {
   GetOptionsAdditional,
   ILessonFormProps,
   ILessonFormValues,
-  LessonPage,
 } from './types';
 import {
   getContentOptionLabel,
@@ -147,26 +140,6 @@ const LessonForm = ({
     setIsSuccessShown(false);
   };
 
-  const addPage = () => {
-    if (!formikRef.current) return;
-    if (!formikRef.current.values.selectedImage) return;
-    if (!formikRef.current.values.selectedContent) return;
-
-    const lessonPage: LessonPage = {
-      id: uuid(),
-      lessonImage: formikRef.current.values.selectedImage,
-      lessonContent: formikRef.current.values.selectedContent,
-    };
-
-    formikRef.current.setFieldValue('pages', [
-      ...formikRef.current.values.pages,
-      lessonPage,
-    ]);
-
-    formikRef.current.setFieldValue('selectedImage', null);
-    formikRef.current.setFieldValue('selectedContent', null);
-  };
-
   return (
     <Formik
       onSubmit={handleSubmit}
@@ -174,7 +147,7 @@ const LessonForm = ({
       enableReinitialize
       innerRef={formikRef}
       validationSchema={validationSchema}>
-      {({ values, errors, touched }) => (
+      {({ values }) => (
         <StyledlessonForm>
           <ResultWrapper
             isShown={isSuccessShown}
@@ -193,6 +166,7 @@ const LessonForm = ({
               />
               {values.selectedImage && (
                 <Card
+                  cardContainerStyles={cardContainerStyles}
                   data={values.selectedImage}
                   key={values.selectedImage.id}
                   imageUrl={values.selectedImage.url}
@@ -210,6 +184,7 @@ const LessonForm = ({
               />
               {values.selectedContent && (
                 <Card
+                  cardContainerStyles={cardContainerStyles}
                   data={values.selectedContent}
                   key={values.selectedContent.id}
                   cardTitle={values.selectedContent.title}>
@@ -223,54 +198,7 @@ const LessonForm = ({
                   ))}
                 </Card>
               )}
-              {values.pages.map((page, i) => (
-                <LessonPageWrapper key={page.id}>
-                  <ParagraphBase $textType='normalText' $textWeight='medium'>
-                    Page: {i + 1}
-                  </ParagraphBase>
-                  <PageCardWrapper>
-                    <Card
-                      data={page.lessonImage}
-                      key={page.lessonImage.id}
-                      imageUrl={page.lessonImage.url}
-                      cardTitle={page.lessonImage.title}
-                    />
-                    <Card
-                      data={page.lessonContent}
-                      key={page.lessonContent.id}
-                      cardTitle={page.lessonContent.title}>
-                      {page.lessonContent.sentences.map((sentence, index) => (
-                        <SentencePreview
-                          canRemoveSentence={false}
-                          key={sentence.id}
-                          index={index}
-                          sentence={sentence}
-                        />
-                      ))}
-                    </Card>
-                  </PageCardWrapper>
-                </LessonPageWrapper>
-              ))}
-              <ButtonComponent
-                onClick={addPage}
-                width='full'
-                disabled={Boolean(
-                  !(values.selectedContent && values.selectedImage)
-                )}
-                isLoading={loading}
-                type='button'
-                shape='rectangle'
-                variant='primary'>
-                {t('pages.createLesson.addPage')}
-              </ButtonComponent>
-              <ValidationErrorMessage
-                data-cy-error='pages'
-                $textType='normalText'
-                $textWeight='regular'>
-                {errors.pages && touched.pages
-                  ? t(`errors.${errors.pages}`, { min: 2, max: 32 })
-                  : ''}
-              </ValidationErrorMessage>
+              <LessonPageInForm isLoading={loading} />
               <FormInput
                 label={t('pages.createLesson.title')}
                 name='title'
