@@ -24,7 +24,7 @@ export const CardContainer = styled.div<{
   ${({ $isSelected }) => $isSelected && isSelected}
 `;
 
-export const ContentWrapper = styled.button`
+export const ContentWrapper = styled.div`
   padding: 0.5rem;
   flex: 1;
   display: flex;
