@@ -5,29 +5,13 @@ export const LessonSearchWrapper = styled.div`
   display: flex;
   gap: 1rem;
   margin-bottom: 1rem;
+  align-items: center;
 `;
 
 export const StyledlessonForm = styled(FormBase)`
   display: flex;
   flex-direction: column;
   width: 100%;
-`;
-
-const idealSize = '5rem';
-const maxColumns = 2;
-const gap = '0.5rem';
-
-export const SelectImageContainer = styled.div`
-  margin: 0.5rem 0;
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(min(max(100% / ${maxColumns} - ${gap}, ${idealSize}), 100%), 1fr)
-  );
-  gap: ${gap};
-  overflow: auto;
-  min-height: 13rem;
-  max-height: 26rem;
 `;
 
 export const NoItemsWrapper = styled.div`
@@ -41,11 +25,13 @@ export const ValidationErrorMessage = styled(SpanBase)`
 
 export const LessonPageWrapper = styled.div`
   margin: 0.5rem 0;
+  width: 100%;
 `;
 
 export const PageCardWrapper = styled.div`
   display: flex;
   gap: 0.25rem;
+  flex-direction: column;
 
   > * {
     flex: 1;
@@ -79,3 +65,11 @@ export const trashIconStyles = css`
     }
   }
 `;
+
+export const LessonsContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: 1rem;
+`;
+
+export const DeleteLessonWrapper = styled.div``;
