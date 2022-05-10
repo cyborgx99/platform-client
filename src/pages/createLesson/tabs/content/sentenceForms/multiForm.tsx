@@ -77,11 +77,9 @@ const MultiForm = () => {
 
   return (
     <FormWrapper>
-      <HeaderThreeBase>
-        {t('pages.lessonContent.enterSentence')}
-      </HeaderThreeBase>
+      <HeaderThreeBase>{t('pages.createLesson.enterSentence')}</HeaderThreeBase>
       <TextArea title='Sentence' value={value} onChange={handleChange} />
-      <HeaderThreeBase>{t('pages.lessonContent.addOption')}</HeaderThreeBase>
+      <HeaderThreeBase>{t('pages.createLesson.addOption')}</HeaderThreeBase>
       <MultiInputsWrapper>
         <Checkbox
           title='Correct answer'
@@ -94,7 +92,7 @@ const MultiForm = () => {
           value={optionValue}
         />
       </MultiInputsWrapper>
-      <HeaderThreeBase>{t('pages.lessonContent.options')}</HeaderThreeBase>
+      <HeaderThreeBase>{t('pages.createLesson.options')}</HeaderThreeBase>
       <SpanWrapper>
         {options?.map((part) => (
           <FormSpan onClick={handleRemoveOption} key={part.id} data={part} />
@@ -107,7 +105,7 @@ const MultiForm = () => {
         type='button'
         variant='primary'
         onClick={handleAddOption}>
-        {t('pages.lessonContent.addOption')}
+        {t('pages.createLesson.addOption')}
       </ButtonComponent>
       <ButtonComponent
         disabled={isAddDisabled}
@@ -116,7 +114,7 @@ const MultiForm = () => {
         type='button'
         variant='secondary'
         onClick={handleAddSentence}>
-        {t('pages.lessonContent.addSentence')}
+        {t('pages.createLesson.addSentence')}
       </ButtonComponent>
     </FormWrapper>
   );

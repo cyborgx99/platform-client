@@ -3,14 +3,24 @@ import {
   GetLessonImagesQueryVariables,
   LessonContent,
   Query,
+  QueryGetLessonContentsArgs,
+  SortOrder,
 } from 'apollo/graphql/generated.types';
 import { GET_LESSON_CONTENTS } from 'apollo/graphql/queries/lesson/getLessonContents';
 import { ReactComponent as Plus } from 'assets/icons/plus.svg';
 import { ReactComponent as Search } from 'assets/icons/search.svg';
+import {
+  limitOptions,
+  loadOptions,
+  loadOrderOptions,
+  orderOptions,
+} from 'common/options';
+import { LimitOption, OrderOption } from 'common/types';
 import Card from 'components/card';
 import IconComponent from 'components/icon';
 import RegularInput from 'components/input/regularInput';
 import Modal from 'components/modal';
+import DefaultSelectAsync from 'components/select';
 import { useModalState, useModalStateWithParams } from 'hooks';
 import { useDebouncedValue } from 'hooks/useDebouncedValue';
 import { CreateLessonContentProvider } from 'pages/createLesson/context';
@@ -26,29 +36,57 @@ import { ContentTabWrapper, ContentWrapper } from './styles';
 
 const ContentTab = () => {
   const { t } = useTranslation();
-  const [search, setSearch] = useState('');
+
   const createContentModalState = useModalState();
   const editContentModalState = useModalStateWithParams<LessonContent>();
   const deleteContentModalState = useModalStateWithParams<LessonContent>();
-  const [limit, setLimit] = useState(20);
-  const debouncedSearch = useDebouncedValue<string>(search, 500);
+
+  const [lessonContentVariables, setLessonContentVariables] =
+    useState<QueryGetLessonContentsArgs>({
+      limit: 5,
+      search: '',
+      offset: 0,
+      sortOrder: SortOrder.Asc,
+    });
+
+  const debouncedVariables = useDebouncedValue<QueryGetLessonContentsArgs>(
+    lessonContentVariables,
+    500
+  );
+
   const { data } = useQuery<
     Pick<Query, 'getLessonContents'>,
     GetLessonImagesQueryVariables
   >(GET_LESSON_CONTENTS, {
-    variables: {
-      limit,
-      search: debouncedSearch,
-      offset: 0,
-    },
+    variables: debouncedVariables,
   });
 
-  console.log(setLimit);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLessonContentVariables((previousValue) => {
+      return {
+        ...previousValue,
+        search: e.target.value,
+      };
+    });
   };
 
+  const handleLimitChange = (value: LimitOption | null) => {
+    setLessonContentVariables((previousValue) => {
+      return {
+        ...previousValue,
+        limit: value?.value ?? 10,
+      };
+    });
+  };
+
+  const handleOrderChange = (value: OrderOption | null) => {
+    setLessonContentVariables((previousValue) => {
+      return {
+        ...previousValue,
+        sortOrder: value?.value ?? SortOrder.Asc,
+      };
+    });
+  };
   return (
     <>
       <CreateLessonContentProvider>
@@ -71,18 +109,32 @@ const ContentTab = () => {
         />
       </CreateLessonContentProvider>
       <ContentTabWrapper>
-        <RegularInput
-          Svg={Search}
-          title='Seacrh'
-          placeholder={t('pages.createLesson.search')}
-          value={search}
-          onChange={handleChange}
-        />
         <IconComponent
           onClick={createContentModalState.openModal}
           iconContainerStyle={iconContainerStyle}
           title='Add content'
           Svg={Plus}
+        />
+        <RegularInput
+          Svg={Search}
+          title='Seacrh'
+          placeholder={t('pages.createLesson.search')}
+          value={lessonContentVariables.search ?? ''}
+          onChange={handleSearchChange}
+        />
+        {t('pages.createLesson.limit')}
+        <DefaultSelectAsync
+          name='limit'
+          getOptions={loadOptions}
+          onChange={handleLimitChange}
+          defaultValue={limitOptions[0]}
+        />
+        {t('pages.createLesson.sortOrder')}
+        <DefaultSelectAsync
+          name='sortOrder'
+          getOptions={loadOrderOptions}
+          onChange={handleOrderChange}
+          defaultValue={orderOptions[0]}
         />
       </ContentTabWrapper>
       <ContentWrapper>

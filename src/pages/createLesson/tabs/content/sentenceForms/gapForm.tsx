@@ -68,9 +68,7 @@ const GapForm = () => {
 
   return (
     <FormWrapper>
-      <HeaderThreeBase>
-        {t('pages.lessonContent.enterSentence')}
-      </HeaderThreeBase>
+      <HeaderThreeBase>{t('pages.createLesson.enterSentence')}</HeaderThreeBase>
       {isEditing ? (
         <TextArea title='Sentence' value={value} onChange={handleChange} />
       ) : (
@@ -88,8 +86,8 @@ const GapForm = () => {
         variant='primary'
         onClick={handleCreateSentence}>
         {isEditing
-          ? t('pages.lessonContent.selectGap')
-          : t('pages.lessonContent.editSentence')}
+          ? t('pages.createLesson.selectGap')
+          : t('pages.createLesson.editSentence')}
       </ButtonComponent>
       <ButtonComponent
         width='full'
@@ -98,7 +96,7 @@ const GapForm = () => {
         type='button'
         variant='secondary'
         onClick={handleAddSentence}>
-        {t('pages.lessonContent.addSentence')}
+        {t('pages.createLesson.addSentence')}
       </ButtonComponent>
     </FormWrapper>
   );

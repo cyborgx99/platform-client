@@ -44,7 +44,7 @@ const ScrambleForm = () => {
       {isEditing ? (
         <>
           <HeaderThreeBase>
-            {t('pages.lessonContent.enterSentence')}
+            {t('pages.createLesson.enterSentence')}
           </HeaderThreeBase>
           <TextArea title='Sentence' value={value} onChange={handleChange} />
         </>
@@ -63,8 +63,8 @@ const ScrambleForm = () => {
         variant='primary'
         onClick={handleScrambleSentence}>
         {isEditing
-          ? t('pages.lessonContent.scrambleSentence')
-          : t('pages.lessonContent.editSentence')}
+          ? t('pages.createLesson.scrambleSentence')
+          : t('pages.createLesson.editSentence')}
       </ButtonComponent>
       <ButtonComponent
         disabled={!currentSentence}
@@ -73,7 +73,7 @@ const ScrambleForm = () => {
         type='button'
         variant='secondary'
         onClick={handleAddSentence}>
-        {t('pages.lessonContent.addSentence')}
+        {t('pages.createLesson.addSentence')}
       </ButtonComponent>
     </FormWrapper>
   );

@@ -30,9 +30,7 @@ const TextForm = () => {
 
   return (
     <FormWrapper>
-      <HeaderThreeBase>
-        {t('pages.lessonContent.enterSentence')}
-      </HeaderThreeBase>
+      <HeaderThreeBase>{t('pages.createLesson.enterSentence')}</HeaderThreeBase>
       <TextArea title='Sentence' value={value} onChange={handleChange} />
       <ButtonComponent
         disabled={!value}
@@ -41,7 +39,7 @@ const TextForm = () => {
         type='button'
         variant='secondary'
         onClick={handleAddSentence}>
-        {t('pages.lessonContent.addSentence')}
+        {t('pages.createLesson.addSentence')}
       </ButtonComponent>
     </FormWrapper>
   );

@@ -51,7 +51,7 @@ const CreateContent = () => {
 
   return (
     <ContentForm
-      successMessage={t('pages.lessonContent.createSuccess')}
+      successMessage={t('pages.createLesson.createSuccess')}
       onTitleChange={handleTitleChange}
       onContinue={handleContinue}
       onButtonClick={handleCreate}
