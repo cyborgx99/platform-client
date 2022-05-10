@@ -1,21 +1,11 @@
-import { ReactComponent as Trash } from 'assets/icons/trash.svg';
 import ButtonComponent from 'components/button';
-import Card from 'components/card';
-import IconComponent from 'components/icon';
 import { useFormikContext } from 'formik';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ParagraphBase } from 'styles/globalStyles';
 import { v4 as uuid } from 'uuid';
 
-import SentencePreview from '../content/preview';
-import {
-  LessonPageWrapper,
-  PageCardWrapper,
-  PageTopWrapper,
-  trashIconStyles,
-  ValidationErrorMessage,
-} from './styles';
+import DisplayLessonPages from './displayLessonPages';
+import { ValidationErrorMessage } from './styles';
 import { ILessonFormValues, ILessonPageInFormProps, LessonPage } from './types';
 
 const LessonPageInForm = ({ isLoading }: ILessonPageInFormProps) => {
@@ -23,13 +13,7 @@ const LessonPageInForm = ({ isLoading }: ILessonPageInFormProps) => {
   const { values, setFieldValue, errors, touched } =
     useFormikContext<ILessonFormValues>();
 
-  const removePage = (id: string | undefined) => {
-    if (!id) return;
-    const filtered = values.pages.filter((item) => item.id !== id);
-    setFieldValue('pages', filtered, true);
-  };
-
-  const addPage = () => {
+  const addPage = async () => {
     if (!values.selectedImage) return;
     if (!values.selectedContent) return;
 
@@ -39,50 +23,20 @@ const LessonPageInForm = ({ isLoading }: ILessonPageInFormProps) => {
       lessonContent: values.selectedContent,
     };
 
-    setFieldValue('pages', [...values.pages, lessonPage]);
-    setFieldValue('selectedImage', null);
-    setFieldValue('selectedContent', null);
+    await setFieldValue('pages', [...values.pages, lessonPage]);
+    await setFieldValue('selectedImage', null);
+    await setFieldValue('selectedContent', null);
+  };
+
+  const removePage = (id: string | undefined) => {
+    if (!id) return;
+    const filtered = values.pages.filter((item) => item.id !== id);
+    setFieldValue('pages', filtered, true);
   };
 
   return (
     <>
-      {values.pages.map((page, index) => (
-        <LessonPageWrapper key={page.id}>
-          <PageTopWrapper>
-            <ParagraphBase $textType='normalText' $textWeight='medium'>
-              Page: {index + 1}
-            </ParagraphBase>
-            <IconComponent
-              data={page.id}
-              iconContainerStyle={trashIconStyles}
-              title='Delete page'
-              Svg={Trash}
-              onClick={removePage}
-            />
-          </PageTopWrapper>
-          <PageCardWrapper>
-            <Card
-              data={page.lessonImage}
-              key={page.lessonImage.id}
-              imageUrl={page.lessonImage.url}
-              cardTitle={page.lessonImage.title}
-            />
-            <Card
-              data={page.lessonContent}
-              key={page.lessonContent.id}
-              cardTitle={page.lessonContent.title}>
-              {page.lessonContent.sentences.map((sentence, index) => (
-                <SentencePreview
-                  canRemoveSentence={false}
-                  key={sentence.id}
-                  index={index}
-                  sentence={sentence}
-                />
-              ))}
-            </Card>
-          </PageCardWrapper>
-        </LessonPageWrapper>
-      ))}
+      <DisplayLessonPages pages={values.pages} onRemovePage={removePage} />
       <ButtonComponent
         onClick={addPage}
         width='full'
