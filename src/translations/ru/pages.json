@@ -37,9 +37,7 @@
     "update": "Изменить",
     "confirmDelete": "Подтвердить удаление",
     "search": "Поиск",
-    "addPage": "Добавить страницу"
-  },
-  "lessonContent": {
+    "addPage": "Добавить страницу",
     "enterSentence": "Введите предложение",
     "editSentence": "Редактировать предложение",
     "enterContentTitle": "Введите заголовок",
@@ -51,7 +49,9 @@
     "scrambleSentence": "Перемешать",
     "createdSentences": "Созданные предложения",
     "createSuccess": "Предложения созданы успешно.",
-    "updateSuccess": "Предложения изменены успешно."
+    "updateSuccess": "Предложения изменены успешно.",
+    "sortOrder": "Сортировать:",
+    "limit": "Лимит:"
   },
   "navigation": {
     "home": "Главная страница",

@@ -71,7 +71,7 @@ const ContentForm = ({
         <DisplaySentencesWrapper>
           {sentences.length > 0 && (
             <HeaderThreeBase>
-              {t('pages.lessonContent.createdSentences')}
+              {t('pages.createLesson.createdSentences')}
             </HeaderThreeBase>
           )}
           {sentences.map((sentence, i) => (
@@ -84,7 +84,7 @@ const ContentForm = ({
           ))}
         </DisplaySentencesWrapper>
         <HeaderThreeBase>
-          {t('pages.lessonContent.enterContentTitle')}
+          {t('pages.createLesson.enterContentTitle')}
         </HeaderThreeBase>
         <MultiInputsWrapper>
           <SpanBase
@@ -104,7 +104,7 @@ const ContentForm = ({
           type='button'
           onClick={onButtonClick}
           variant='primary'>
-          {t('pages.lessonContent.save')}
+          {t('pages.createLesson.save')}
         </ButtonComponent>
         <ApolloErrorMesage error={error} />
       </CreateContentWrapper>

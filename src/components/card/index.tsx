@@ -22,6 +22,7 @@ const Card = <T,>({
   onRightClick,
 }: ICardComponentProps<T>) => {
   const isActionContainerShown = Boolean(onLeftClick || onRightClick);
+  const hasCardAction = Boolean(!onCardClick);
 
   const handleCardClick = () => {
     onCardClick?.(data);
@@ -41,9 +42,8 @@ const Card = <T,>({
       $isSelected={isSelected}
       data-cy-card>
       <ContentWrapper
-        type='button'
-        disabled={Boolean(!onCardClick)}
-        onClick={handleCardClick}>
+        tabIndex={hasCardAction ? 0 : undefined}
+        onClick={hasCardAction ? handleCardClick : undefined}>
         {imageUrl && (
           <CardImage loading='lazy' src={imageUrl} alt={cardTitle} />
         )}

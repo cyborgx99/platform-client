@@ -8,6 +8,13 @@ import {
 } from 'apollo/graphql/generated.types';
 import { ReactComponent as Plus } from 'assets/icons/plus.svg';
 import { ReactComponent as Search } from 'assets/icons/search.svg';
+import {
+  limitOptions,
+  loadOptions,
+  loadOrderOptions,
+  orderOptions,
+} from 'common/options';
+import { LimitOption, OrderOption } from 'common/types';
 import Card from 'components/card';
 import IconComponent from 'components/icon';
 import RegularInput from 'components/input/regularInput';
@@ -28,8 +35,6 @@ import {
   ImageTabWrapper,
   StyledInView,
 } from './styles';
-import { LimitOption, OrderOption } from './types';
-import { loadOptions, loadOrderOptions, options, orderOptions } from './utils';
 
 const ImageTab = () => {
   const { t } = useTranslation();
@@ -124,14 +129,14 @@ const ImageTab = () => {
           value={lessonImageVariables.search ?? ''}
           onChange={handleSearchChange}
         />
-        Show images:
+        {t('pages.createLesson.limit')}
         <DefaultSelectAsync
           name='limit'
           getOptions={loadOptions}
           onChange={handleLimitChange}
-          defaultValue={options[0]}
+          defaultValue={limitOptions[0]}
         />
-        Sort order:
+        {t('pages.createLesson.sortOrder')}
         <DefaultSelectAsync
           name='sortOrder'
           getOptions={loadOrderOptions}

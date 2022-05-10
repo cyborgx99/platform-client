@@ -37,9 +37,7 @@
     "update": "Змінити",
     "confirmDelete": "Підтвердити видалення",
     "search": "Пошук",
-    "addPage": "Добавити сторінку"
-  },
-  "lessonContent": {
+    "addPage": "Добавити сторінку",
     "enterSentence": "Введіть речення",
     "editSentence": "Редагувати речення",
     "enterContentTitle": "Введіть заголовок",
@@ -51,7 +49,9 @@
     "scrambleSentence": "Перемішати",
     "createdSentences": "Створені речення",
     "createSuccess": "Речення створені успішно.",
-    "updateSuccess": "Речення змінені успішно."
+    "updateSuccess": "Речення змінені успішно.",
+    "sortOrder": "Сортувати:",
+    "limit": "Ліміт:"
   },
   "navigation": {
     "home": "Головна сторінка",
