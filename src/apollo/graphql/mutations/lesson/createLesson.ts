@@ -6,11 +6,29 @@ export const CREATE_LESSON = gql`
       id
       title
       description
-      pages {
-        lessonImageId
-        lessonContentId
-      }
       createdAt
+      pages {
+        lessonImage {
+          id
+          title
+          url
+          publicId
+        }
+        lessonContent {
+          id
+          title
+          sentences {
+            sentenceType
+            sentenceParts {
+              id
+              part
+              partType
+            }
+            text
+            id
+          }
+        }
+      }
     }
   }
 `;

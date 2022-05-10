@@ -4,6 +4,7 @@ export { SET_NEW_PASSWORD } from './mutations/auth/setNewPassword';
 export { SIGN_IN } from './mutations/auth/signIn';
 export { SIGN_UP } from './mutations/auth/signUp';
 export { CREATE_LESSON } from './mutations/lesson/createLesson';
+export { DELETE_LESSON } from './mutations/lesson/deleteLesson';
 export { CREATE_LESSON_CONTENT } from './mutations/lesson/lessonContent/createLessonContent';
 export { DELETE_LESSON_CONTENT } from './mutations/lesson/lessonContent/deleteLessonContent';
 export { UPDATE_LESSON_CONTENT } from './mutations/lesson/lessonContent/updateLessonContent';
