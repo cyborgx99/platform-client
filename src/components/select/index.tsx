@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { paginageClassNamePrefix, StyledAsync } from './styles';
 import { INoFormikSelectAsyncProps } from './types';
@@ -15,6 +16,7 @@ const DefaultSelectAsync = <Option, Additional>({
   getOptionValue,
   onChange,
 }: INoFormikSelectAsyncProps<Option, Additional>) => {
+  const { t } = useTranslation();
   return (
     <StyledAsync
       classNamePrefix={paginageClassNamePrefix}
@@ -26,7 +28,7 @@ const DefaultSelectAsync = <Option, Additional>({
       getOptionLabel={getOptionLabel}
       getOptionValue={getOptionValue}
       onChange={onChange}
-      placeholder={placeholder}
+      placeholder={placeholder ?? t('pages.select.placeholder')}
       additional={additional}
       isClearable={isClearable}
       value={value}

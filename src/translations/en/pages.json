@@ -32,6 +32,7 @@
     "title": "Title",
     "description": "Description",
     "selectImage": "Select image",
+    "selectContent": "Select content",
     "imageCreated": "Your lesson image has been created.",
     "imageUpdated": "Your lesson image has been updated.",
     "update": "Update",
@@ -79,5 +80,8 @@
     "success": "Success!",
     "error": "Error!",
     "continue": "Continue"
+  },
+  "select": {
+    "placeholder": "Select..."
   }
 }
