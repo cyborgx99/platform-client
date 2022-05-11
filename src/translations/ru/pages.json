@@ -32,6 +32,7 @@
     "title": "Заголовок",
     "description": "Описание",
     "selectImage": "Выбрать изображение",
+    "selectContent": "Выбрать предложение",
     "imageCreated": "Изображение было создано",
     "imageUpdated": "Изображение было изменено",
     "update": "Изменить",
@@ -79,5 +80,8 @@
     "success": "Успех!",
     "error": "Ошибка!",
     "continue": "Продолжить"
+  },
+  "select": {
+    "placeholder": "Выбрать..."
   }
 }

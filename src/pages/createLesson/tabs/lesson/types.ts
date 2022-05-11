@@ -31,6 +31,7 @@ export interface ILessonFormValues {
   selectedImage: LessonImage | null;
   selectedContent: LessonContent | null;
   pages: LessonPage[];
+  deletedPages?: string[];
 }
 
 export interface ILessonFormProps {
@@ -62,5 +63,10 @@ export interface IDisplayLessonPagesProps {
 
 export interface IDeleteLessonProps {
   onClose: () => void;
+  lesson: Lesson;
+}
+
+export interface IEditLessonProps {
+  onCloseModal: () => void;
   lesson: Lesson;
 }

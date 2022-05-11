@@ -162,7 +162,7 @@ const LessonForm = ({
                 additional={getOptionsAdditional}
                 isClearable
                 name='selectedImage'
-                label='Select image'
+                label={t('pages.createLesson.selectImage')}
               />
               {values.selectedImage && (
                 <Card
@@ -180,7 +180,7 @@ const LessonForm = ({
                 isClearable
                 additional={getOptionsAdditional}
                 name='selectedContent'
-                label='Select content'
+                label={t('pages.createLesson.selectContent')}
               />
               {values.selectedContent && (
                 <Card

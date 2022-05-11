@@ -27,15 +27,18 @@ import {
 } from 'hooks';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { ParagraphBase } from 'styles/globalStyles';
 
 import { iconContainerStyle } from '../image/styles';
 import CreateLesson from './createLesson';
 import DeleteLesson from './deleteLesson';
 import DisplayLessonPages from './displayLessonPages';
-import { LessonsContainer, LessonSearchWrapper } from './styles';
+import EditLesson from './editLesson';
+import { LessonsContainer, LessonSearchWrapper, StyledInView } from './styles';
 
 const LessonTab = () => {
   const createLessonModalState = useModalState();
+  const editModalState = useModalStateWithParams<Lesson>();
   const deleteModalState = useModalStateWithParams<Lesson>();
   const { t } = useTranslation();
   const [lessonVariables, setLessonVariables] = useState<QueryGetLessonsArgs>({
@@ -50,12 +53,12 @@ const LessonTab = () => {
     500
   );
 
-  const { data } = useQuery<Pick<Query, 'getLessons'>, QueryGetLessonsArgs>(
-    GET_LESSONS,
-    {
-      variables: debouncedVariables,
-    }
-  );
+  const { data, fetchMore } = useQuery<
+    Pick<Query, 'getLessons'>,
+    QueryGetLessonsArgs
+  >(GET_LESSONS, {
+    variables: debouncedVariables,
+  });
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLessonVariables((prev) => ({
@@ -82,6 +85,17 @@ const LessonTab = () => {
     });
   };
 
+  const handleFetchMore = async (isInView: boolean) => {
+    if (!data || !data.getLessons.hasMore || !isInView) return;
+
+    const offset = data.getLessons.data.length;
+    await fetchMore({
+      variables: {
+        offset,
+      },
+    });
+  };
+
   return (
     <>
       <Modal
@@ -94,6 +108,15 @@ const LessonTab = () => {
         {...deleteModalState}
         renderContent={({ params }) => (
           <DeleteLesson onClose={deleteModalState.closeModal} lesson={params} />
+        )}
+      />
+      <Modal
+        {...editModalState}
+        renderContent={({ params }) => (
+          <EditLesson
+            onCloseModal={editModalState.closeModal}
+            lesson={params}
+          />
         )}
       />
       <LessonSearchWrapper>
@@ -128,9 +151,7 @@ const LessonTab = () => {
       <LessonsContainer>
         {data?.getLessons.data.map((lesson) => (
           <Card
-            onLeftClick={() => {
-              return '';
-            }}
+            onLeftClick={editModalState.openModal}
             onRightClick={deleteModalState.openModal}
             data={lesson}
             key={lesson.id}
@@ -139,6 +160,11 @@ const LessonTab = () => {
           </Card>
         ))}
       </LessonsContainer>
+      <StyledInView onChange={handleFetchMore}>
+        <ParagraphBase $textType='normalText' $textWeight='medium'>
+          The end of the list.
+        </ParagraphBase>
+      </StyledInView>
     </>
   );
 };

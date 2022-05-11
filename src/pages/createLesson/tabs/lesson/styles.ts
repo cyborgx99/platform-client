@@ -1,3 +1,4 @@
+import { InView } from 'react-intersection-observer';
 import styled, { css } from 'styled-components/macro';
 import { FormBase, SpanBase } from 'styles/globalStyles';
 
@@ -72,4 +73,14 @@ export const LessonsContainer = styled.div`
   gap: 1rem;
 `;
 
-export const DeleteLessonWrapper = styled.div``;
+export const DeleteLessonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+`;
+
+export const StyledInView = styled(InView)`
+  text-align: center;
+  margin-top: 0.5rem;
+`;

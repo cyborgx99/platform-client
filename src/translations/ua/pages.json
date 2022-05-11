@@ -32,6 +32,7 @@
     "title": "Заголовок",
     "description": "Описання",
     "selectImage": "Вибрати зображення",
+    "selectContent": "Вибрати речення",
     "imageCreated": "Зображення було створено",
     "imageUpdated": "Изображение было змінено",
     "update": "Змінити",
@@ -79,5 +80,8 @@
     "success": "Успіх!",
     "error": "Помилка!",
     "continue": "Продовжити"
+  },
+  "select": {
+    "placeholder": "Вибрати..."
   }
 }
