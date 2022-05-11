@@ -1,26 +1,27 @@
 import { useMutation } from '@apollo/client';
-import { CREATE_LESSON } from 'apollo/graphql';
+import { UPDATE_LESSON } from 'apollo/graphql';
 import {
-  CreateLessonMutationVariables,
   Mutation,
+  UpdateLessonMutationVariables,
 } from 'apollo/graphql/generated.types';
 import ResultWrapper from 'components/result';
 import React, { useState } from 'react';
 
 import LessonForm from './lessonForm';
 import {
-  ICreateLessonProps,
+  IEditLessonProps,
   ILessonFormValues,
   LessonPageFormValues,
 } from './types';
-import { initialLessonFormValues, lessonFormValidationSchema } from './utils';
+import { lessonFormValidationSchema } from './utils';
 
-const CreateLesson = ({ onCloseModal }: ICreateLessonProps) => {
-  const [createLesson, { loading, error }] =
-    useMutation<Pick<Mutation, 'createLesson'>, CreateLessonMutationVariables>(
-      CREATE_LESSON
-    );
+const EditLesson = ({ onCloseModal, lesson }: IEditLessonProps) => {
   const [isSuccessShown, setIsSuccessShown] = useState(false);
+
+  const [updateLesson, { loading, error }] =
+    useMutation<Pick<Mutation, 'updateLesson'>, UpdateLessonMutationVariables>(
+      UPDATE_LESSON
+    );
 
   const handleSubmit = async (values: ILessonFormValues) => {
     const pageIds: LessonPageFormValues[] = values.pages.map((page) => {
@@ -31,18 +32,29 @@ const CreateLesson = ({ onCloseModal }: ICreateLessonProps) => {
       };
     });
 
-    const data = await createLesson({
+    const data = await updateLesson({
       variables: {
         input: {
+          id: lesson.id,
           pages: pageIds,
           title: values.title,
           description: values.description,
+          pagesToDelete: values.deletedPages,
         },
       },
     });
-    if (data.data?.createLesson.id) {
+
+    if (data.data?.updateLesson.id) {
       setIsSuccessShown(true);
     }
+  };
+
+  const editLessonFormInitialValues: ILessonFormValues = {
+    title: lesson.title,
+    description: lesson.description,
+    selectedImage: null,
+    selectedContent: null,
+    pages: lesson.pages,
   };
 
   return (
@@ -53,14 +65,14 @@ const CreateLesson = ({ onCloseModal }: ICreateLessonProps) => {
       type='success'>
       <LessonForm
         validationSchema={lessonFormValidationSchema}
-        type='create'
+        type='edit'
         loading={loading}
         error={error}
-        initialValues={initialLessonFormValues}
+        initialValues={editLessonFormInitialValues}
         onSubmit={handleSubmit}
       />
     </ResultWrapper>
   );
 };
 
-export default CreateLesson;
+export default EditLesson;

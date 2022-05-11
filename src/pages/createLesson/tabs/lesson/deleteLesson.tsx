@@ -7,9 +7,11 @@ import {
 import { GET_LESSONS } from 'apollo/graphql/queries/lesson/getLessons';
 import ApolloErrorMessage from 'components/apolloErrorMessage';
 import ButtonComponent from 'components/button';
+import Card from 'components/card';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
+import DisplayLessonPages from './displayLessonPages';
 import { DeleteLessonWrapper } from './styles';
 import { IDeleteLessonProps } from './types';
 
@@ -36,6 +38,9 @@ const DeleteLesson = ({ onClose, lesson }: IDeleteLessonProps) => {
 
   return (
     <DeleteLessonWrapper>
+      <Card data={lesson} key={lesson.id} cardTitle={lesson.title}>
+        {lesson.pages && <DisplayLessonPages pages={lesson.pages} />}
+      </Card>
       <ButtonComponent
         onClick={handleDelete}
         width='full'

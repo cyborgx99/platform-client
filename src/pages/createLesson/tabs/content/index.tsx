@@ -26,13 +26,14 @@ import { useDebouncedValue } from 'hooks/useDebouncedValue';
 import { CreateLessonContentProvider } from 'pages/createLesson/context';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { ParagraphBase } from 'styles/globalStyles';
 
 import { iconContainerStyle } from '../image/styles';
 import CreateContent from './createContent';
 import DeleteContent from './deleteContent';
 import EditContent from './editContent';
 import SentencePreview from './preview';
-import { ContentTabWrapper, ContentWrapper } from './styles';
+import { ContentTabWrapper, ContentWrapper, StyledInView } from './styles';
 
 const ContentTab = () => {
   const { t } = useTranslation();
@@ -54,7 +55,7 @@ const ContentTab = () => {
     500
   );
 
-  const { data } = useQuery<
+  const { data, fetchMore } = useQuery<
     Pick<Query, 'getLessonContents'>,
     GetLessonImagesQueryVariables
   >(GET_LESSON_CONTENTS, {
@@ -87,6 +88,18 @@ const ContentTab = () => {
       };
     });
   };
+
+  const handleFetchMore = async (isInView: boolean) => {
+    if (!data || !data.getLessonContents.hasMore || !isInView) return;
+
+    const offset = data.getLessonContents.data.length;
+    await fetchMore({
+      variables: {
+        offset,
+      },
+    });
+  };
+
   return (
     <>
       <CreateLessonContentProvider>
@@ -159,6 +172,11 @@ const ContentTab = () => {
             )
         )}
       </ContentWrapper>
+      <StyledInView onChange={handleFetchMore}>
+        <ParagraphBase $textType='normalText' $textWeight='medium'>
+          The end of the list.
+        </ParagraphBase>
+      </StyledInView>
     </>
   );
 };

@@ -1,4 +1,5 @@
 import { PartType } from 'apollo/graphql/generated.types';
+import { InView } from 'react-intersection-observer';
 import styled, { css } from 'styled-components/macro';
 import { CssStyleProp } from 'styles/types';
 
@@ -93,4 +94,9 @@ export const ContentWrapper = styled.div`
   gap: 1rem;
   align-items: start;
   grid-auto-flow: dense;
+`;
+
+export const StyledInView = styled(InView)`
+  text-align: center;
+  margin-top: 0.5rem;
 `;

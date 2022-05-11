@@ -2,7 +2,7 @@ import { LessonContent, LessonImage } from 'apollo/graphql/generated.types';
 import { stringRequiredMinMax } from 'utils/validation';
 import * as yup from 'yup';
 
-import { GetOptionsAdditional } from './types';
+import { GetOptionsAdditional, ILessonFormValues } from './types';
 
 export const lessonFormValidationSchema = yup.object().shape({
   title: stringRequiredMinMax,
@@ -13,6 +13,14 @@ export const lessonFormValidationSchema = yup.object().shape({
 });
 
 export type LessonFormValidationSchema = typeof lessonFormValidationSchema;
+
+export const initialLessonFormValues: ILessonFormValues = {
+  title: '',
+  description: '',
+  selectedImage: null,
+  selectedContent: null,
+  pages: [],
+};
 
 export const getOptionsAdditional: GetOptionsAdditional = {
   limit: 5,
