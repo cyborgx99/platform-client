@@ -11,6 +11,7 @@ export { UPDATE_LESSON_CONTENT } from './mutations/lesson/lessonContent/updateLe
 export { CREATE_LESSON_IMAGE } from './mutations/lesson/lessonImage/createLessonImage';
 export { DELETE_LESSON_IMAGE } from './mutations/lesson/lessonImage/deleteLessonImage';
 export { UPDATE_LESSON_IMAGE } from './mutations/lesson/lessonImage/updateLessonImage';
+export { UPDATE_LESSON } from './mutations/lesson/updateLesson';
 export { UPLOAD_FILE } from './mutations/uploadFile';
 export { GET_LESSON_IMAGES } from './queries/lesson/getLessonImages';
 export { GET_USER } from './queries/user/getUser';
