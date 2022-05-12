@@ -59,7 +59,7 @@
     "login": "Login",
     "sign-up": "Sign-Up",
     "dashboard": "Dashboard",
-    "create-lesson": "Create lesson",
+    "create": "Create",
     "tabs": {
       "user": "User",
       "payment": "Payment",

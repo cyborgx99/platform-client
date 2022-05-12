@@ -1,6 +1,6 @@
 import { useAuth } from 'auth';
 import Spinner from 'components/spinner';
-import CreateLessonPage from 'pages/createLesson';
+import CreateLessonPage from 'pages/create';
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 

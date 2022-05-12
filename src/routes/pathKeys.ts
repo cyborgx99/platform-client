@@ -13,7 +13,7 @@ export const pathKeys = {
   },
   teacher: {
     DASHBOARD: '/dashboard',
-    CREATE_LESSON: '/create-lesson',
+    CREATE_LESSON: '/create',
   },
   tabs: {
     DASHBOARD_STUDENT_TABS: {
@@ -26,10 +26,10 @@ export const pathKeys = {
       LESSON: '/dashboard/lesson',
       CLASSROOM: '/dashboard/classroom',
     },
-    CREATE_LESSON_TABS: {
-      IMAGE: '/create-lesson/image',
-      CONTENT: '/create-lesson/content',
-      LESSON: '/create-lesson/lesson',
+    CREATE_TABS: {
+      IMAGE: '/create/image',
+      CONTENT: '/create/content',
+      LESSON: '/create/lesson',
     },
   },
 };

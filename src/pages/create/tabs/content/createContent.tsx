@@ -5,8 +5,8 @@ import {
   MutationCreateLessonContentArgs,
 } from 'apollo/graphql/generated.types';
 import { GET_LESSON_CONTENTS } from 'apollo/graphql/queries/lesson/getLessonContents';
-import { useCreateLesson } from 'pages/createLesson/context';
-import { LessonContentActionTypes } from 'pages/createLesson/reducer/types';
+import { useCreateLesson } from 'pages/create/context';
+import { LessonContentActionTypes } from 'pages/create/reducer/types';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 

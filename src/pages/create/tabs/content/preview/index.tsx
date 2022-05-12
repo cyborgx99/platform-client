@@ -1,5 +1,5 @@
-import { useCreateLesson } from 'pages/createLesson/context';
-import { LessonContentActionTypes } from 'pages/createLesson/reducer/types';
+import { useCreateLesson } from 'pages/create/context';
+import { LessonContentActionTypes } from 'pages/create/reducer/types';
 import React from 'react';
 import { ParagraphBase } from 'styles/globalStyles';
 

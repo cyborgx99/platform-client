@@ -14,10 +14,12 @@ export const envConfig: ConfigType = yup.object({
 });
 
 export const envConfigValidator = async (envConfig: ConfigType) => {
-  const response = await envConfig.validate({
+  const isValid = await envConfig.isValid({
     REACT_APP_APOLLO_SERVER_URL: process.env.REACT_APP_APOLLO_SERVER_URL,
     REACT_APP_APOLLO_SERVER_URL_SUBSCRIPTION:
       process.env.REACT_APP_APOLLO_SERVER_URL_SUBSCRIPTION,
   });
-  console.log(response);
+  if (!isValid) {
+    throw new Error('ENVIRONMENT VARIABLES MISSING');
+  }
 };

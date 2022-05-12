@@ -10,14 +10,14 @@ import { CreateLessonContainer, CreateLessonContent } from './styles';
 const CreateLessonPage = () => {
   const location = useLocation();
 
-  if (location.pathname === '/create-lesson') {
-    return <Navigate to={pathKeys.tabs.CREATE_LESSON_TABS.IMAGE} replace />;
+  if (location.pathname === '/create') {
+    return <Navigate to={pathKeys.tabs.CREATE_TABS.IMAGE} replace />;
   }
 
   return (
     <PageLayout title='Create Lesson'>
       <CreateLessonContainer>
-        <TabNavigator tabs={pathKeys.tabs.CREATE_LESSON_TABS} />
+        <TabNavigator tabs={pathKeys.tabs.CREATE_TABS} />
         <CreateLessonContent>
           <Suspense fallback={<Spinner type='animated' />}>
             <Outlet />

@@ -23,7 +23,7 @@ import Modal from 'components/modal';
 import DefaultSelectAsync from 'components/select';
 import { useModalState, useModalStateWithParams } from 'hooks';
 import { useDebouncedValue } from 'hooks/useDebouncedValue';
-import { CreateLessonContentProvider } from 'pages/createLesson/context';
+import { CreateLessonContentProvider } from 'pages/create/context';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ParagraphBase } from 'styles/globalStyles';

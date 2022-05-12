@@ -5,9 +5,9 @@ import {
 } from 'apollo/graphql/generated.types';
 import ButtonComponent from 'components/button';
 import TextArea from 'components/textArea';
-import { useCreateLesson } from 'pages/createLesson/context';
-import { changePartType, createSentence } from 'pages/createLesson/reducer';
-import { LessonContentActionTypes } from 'pages/createLesson/reducer/types';
+import { useCreateLesson } from 'pages/create/context';
+import { changePartType, createSentence } from 'pages/create/reducer';
+import { LessonContentActionTypes } from 'pages/create/reducer/types';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HeaderThreeBase } from 'styles/globalStyles';
