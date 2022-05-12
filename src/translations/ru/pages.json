@@ -25,7 +25,7 @@
     "alreadyHaveAccount": "Уже есть аккаунт?",
     "footer": "Все права защищены. (Кажется)"
   },
-  "createLesson": {
+  "create": {
     "url": "Url",
     "upload": "Загрузить",
     "create": "Создать",
@@ -59,7 +59,7 @@
     "login": "Логин",
     "sign-up": "Регистрация",
     "dashboard": "Дашборд",
-    "create-lesson": "Создать урок",
+    "create": "Создать",
     "tabs": {
       "user": "Пользователь",
       "payment": "Оплата",

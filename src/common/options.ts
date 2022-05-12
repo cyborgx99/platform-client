@@ -37,7 +37,7 @@ export const orderOptions: OrderOption[] = [
   },
 ];
 
-export const loadOptions: GetOptionsFunction<LimitOption> = () => {
+export const loadLimitOptions: GetOptionsFunction<LimitOption> = () => {
   return {
     options: limitOptions,
   };
