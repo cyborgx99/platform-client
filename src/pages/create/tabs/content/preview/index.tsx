@@ -1,4 +1,4 @@
-import { useCreateLesson } from 'pages/create/context';
+import { useLessonContent } from 'pages/create/context';
 import { LessonContentActionTypes } from 'pages/create/reducer/types';
 import React from 'react';
 import { ParagraphBase } from 'styles/globalStyles';
@@ -15,7 +15,7 @@ const SentencePreview = ({
   index,
   canRemoveSentence,
 }: ISentencePreviewProps) => {
-  const { dispatch } = useCreateLesson();
+  const { dispatch } = useLessonContent();
 
   const handleRemoveSentence = () => {
     if (!canRemoveSentence) return;

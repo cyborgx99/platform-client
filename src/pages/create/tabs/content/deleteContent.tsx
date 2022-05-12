@@ -44,7 +44,7 @@ const DeleteContent = ({ currentContent, onClose }: IDeleteContentProps) => {
         isLoading={loading}
         type='button'
         variant='danger'>
-        {t('pages.createLesson.confirmDelete')}
+        {t('pages.create.confirmDelete')}
       </ButtonComponent>
       <ApolloErrorMessage error={error} />
     </CreateContentWrapper>

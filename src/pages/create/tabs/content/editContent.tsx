@@ -6,7 +6,7 @@ import {
   UpdateLessonContentMutationVariables,
 } from 'apollo/graphql/generated.types';
 import { GET_LESSON_CONTENTS } from 'apollo/graphql/queries/lesson/getLessonContents';
-import { useCreateLesson } from 'pages/create/context';
+import { useLessonContent } from 'pages/create/context';
 import { LessonContentActionTypes } from 'pages/create/reducer/types';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -17,7 +17,7 @@ import { IEditContentProps } from './types';
 
 const EditContent = ({ lessonContent }: IEditContentProps) => {
   const { t } = useTranslation();
-  const { sentences, dispatch } = useCreateLesson();
+  const { sentences, dispatch } = useLessonContent();
   const [title, setTitle] = useState(lessonContent?.title ?? '');
   const [updateContent, { error, loading }] = useMutation<
     Pick<Mutation, 'updateLessonContent'>,

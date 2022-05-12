@@ -1,7 +1,7 @@
 import { LessonContentSentence } from 'apollo/graphql/generated.types';
 import ButtonComponent from 'components/button';
 import TextArea from 'components/textArea';
-import { useCreateLesson } from 'pages/create/context';
+import { useLessonContent } from 'pages/create/context';
 import { createSentence } from 'pages/create/reducer';
 import { LessonContentActionTypes } from 'pages/create/reducer/types';
 import React, { useState } from 'react';
@@ -14,7 +14,7 @@ import FormSpan from './formSpan';
 const ScrambleForm = () => {
   const { t } = useTranslation();
   const [isEditing, setIsEditing] = useState(true);
-  const { dispatch, toggleValue } = useCreateLesson();
+  const { dispatch, toggleValue } = useLessonContent();
   const [value, setValue] = useState('');
   const [currentSentence, setCurrentSentence] =
     useState<LessonContentSentence | null>(null);
@@ -43,9 +43,7 @@ const ScrambleForm = () => {
     <FormWrapper>
       {isEditing ? (
         <>
-          <HeaderThreeBase>
-            {t('pages.createLesson.enterSentence')}
-          </HeaderThreeBase>
+          <HeaderThreeBase>{t('pages.create.enterSentence')}</HeaderThreeBase>
           <TextArea title='Sentence' value={value} onChange={handleChange} />
         </>
       ) : (
@@ -63,8 +61,8 @@ const ScrambleForm = () => {
         variant='primary'
         onClick={handleScrambleSentence}>
         {isEditing
-          ? t('pages.createLesson.scrambleSentence')
-          : t('pages.createLesson.editSentence')}
+          ? t('pages.create.scrambleSentence')
+          : t('pages.create.editSentence')}
       </ButtonComponent>
       <ButtonComponent
         disabled={!currentSentence}
@@ -73,7 +71,7 @@ const ScrambleForm = () => {
         type='button'
         variant='secondary'
         onClick={handleAddSentence}>
-        {t('pages.createLesson.addSentence')}
+        {t('pages.create.addSentence')}
       </ButtonComponent>
     </FormWrapper>
   );

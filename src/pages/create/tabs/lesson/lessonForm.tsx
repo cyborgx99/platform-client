@@ -123,12 +123,12 @@ const LessonForm = ({
 
   const textData = {
     create: {
-      message: t('pages.createLesson.imageCreated'),
-      button: t('pages.createLesson.create'),
+      message: t('pages.create.imageCreated'),
+      button: t('pages.create.create'),
     },
     edit: {
-      message: t('pages.createLesson.imageUpdated'),
-      button: t('pages.createLesson.update'),
+      message: t('pages.create.imageUpdated'),
+      button: t('pages.create.update'),
     },
   };
 
@@ -162,7 +162,7 @@ const LessonForm = ({
                 additional={getOptionsAdditional}
                 isClearable
                 name='selectedImage'
-                label={t('pages.createLesson.selectImage')}
+                label={t('pages.create.selectImage')}
               />
               {values.selectedImage && (
                 <Card
@@ -180,7 +180,7 @@ const LessonForm = ({
                 isClearable
                 additional={getOptionsAdditional}
                 name='selectedContent'
-                label={t('pages.createLesson.selectContent')}
+                label={t('pages.create.selectContent')}
               />
               {values.selectedContent && (
                 <Card
@@ -200,12 +200,12 @@ const LessonForm = ({
               )}
               <LessonPageInForm isLoading={loading} />
               <FormInput
-                label={t('pages.createLesson.title')}
+                label={t('pages.create.title')}
                 name='title'
                 type='text'
               />
               <FormInput
-                label={t('pages.createLesson.description')}
+                label={t('pages.create.description')}
                 name='description'
                 type='text'
               />

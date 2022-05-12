@@ -45,7 +45,7 @@ const LessonPageInForm = ({ isLoading }: ILessonPageInFormProps) => {
         type='button'
         shape='rectangle'
         variant='primary'>
-        {t('pages.createLesson.addPage')}
+        {t('pages.create.addPage')}
       </ButtonComponent>
       <ValidationErrorMessage
         data-cy-error='pages'

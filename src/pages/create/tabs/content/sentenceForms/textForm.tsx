@@ -1,6 +1,6 @@
 import ButtonComponent from 'components/button';
 import TextArea from 'components/textArea';
-import { useCreateLesson } from 'pages/create/context';
+import { useLessonContent } from 'pages/create/context';
 import { createSentence } from 'pages/create/reducer';
 import { LessonContentActionTypes } from 'pages/create/reducer/types';
 import React, { useState } from 'react';
@@ -12,7 +12,7 @@ import { FormWrapper } from '../styles';
 const TextForm = () => {
   const { t } = useTranslation();
   const [value, setValue] = useState('');
-  const { dispatch, toggleValue } = useCreateLesson();
+  const { dispatch, toggleValue } = useLessonContent();
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value);
@@ -30,7 +30,7 @@ const TextForm = () => {
 
   return (
     <FormWrapper>
-      <HeaderThreeBase>{t('pages.createLesson.enterSentence')}</HeaderThreeBase>
+      <HeaderThreeBase>{t('pages.create.enterSentence')}</HeaderThreeBase>
       <TextArea title='Sentence' value={value} onChange={handleChange} />
       <ButtonComponent
         disabled={!value}
@@ -39,7 +39,7 @@ const TextForm = () => {
         type='button'
         variant='secondary'
         onClick={handleAddSentence}>
-        {t('pages.createLesson.addSentence')}
+        {t('pages.create.addSentence')}
       </ButtonComponent>
     </FormWrapper>
   );

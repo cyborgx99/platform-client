@@ -5,7 +5,7 @@ import {
 } from 'apollo/graphql/generated.types';
 import ButtonComponent from 'components/button';
 import TextArea from 'components/textArea';
-import { useCreateLesson } from 'pages/create/context';
+import { useLessonContent } from 'pages/create/context';
 import { changePartType, createSentence } from 'pages/create/reducer';
 import { LessonContentActionTypes } from 'pages/create/reducer/types';
 import React, { useState } from 'react';
@@ -19,7 +19,7 @@ const GapForm = () => {
   const { t } = useTranslation();
   const [value, setValue] = useState('');
   const [isEditing, setIsEditing] = useState(true);
-  const { dispatch, toggleValue } = useCreateLesson();
+  const { dispatch, toggleValue } = useLessonContent();
   const [currentSentence, setCurrentSentence] =
     useState<LessonContentSentence | null>(null);
   const hasGap = currentSentence?.sentenceParts.some(
@@ -68,7 +68,7 @@ const GapForm = () => {
 
   return (
     <FormWrapper>
-      <HeaderThreeBase>{t('pages.createLesson.enterSentence')}</HeaderThreeBase>
+      <HeaderThreeBase>{t('pages.create.enterSentence')}</HeaderThreeBase>
       {isEditing ? (
         <TextArea title='Sentence' value={value} onChange={handleChange} />
       ) : (
@@ -86,8 +86,8 @@ const GapForm = () => {
         variant='primary'
         onClick={handleCreateSentence}>
         {isEditing
-          ? t('pages.createLesson.selectGap')
-          : t('pages.createLesson.editSentence')}
+          ? t('pages.create.selectGap')
+          : t('pages.create.editSentence')}
       </ButtonComponent>
       <ButtonComponent
         width='full'
@@ -96,7 +96,7 @@ const GapForm = () => {
         type='button'
         variant='secondary'
         onClick={handleAddSentence}>
-        {t('pages.createLesson.addSentence')}
+        {t('pages.create.addSentence')}
       </ButtonComponent>
     </FormWrapper>
   );

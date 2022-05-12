@@ -10,7 +10,7 @@ import { ReactComponent as Plus } from 'assets/icons/plus.svg';
 import { ReactComponent as Search } from 'assets/icons/search.svg';
 import {
   limitOptions,
-  loadOptions,
+  loadLimitOptions,
   loadOrderOptions,
   orderOptions,
 } from 'common/options';
@@ -125,18 +125,18 @@ const ImageTab = () => {
         <RegularInput
           Svg={Search}
           title='Seacrh'
-          placeholder={t('pages.createLesson.search')}
+          placeholder={t('pages.create.search')}
           value={lessonImageVariables.search ?? ''}
           onChange={handleSearchChange}
         />
-        {t('pages.createLesson.limit')}
+        {t('pages.create.limit')}
         <DefaultSelectAsync
           name='limit'
-          getOptions={loadOptions}
+          getOptions={loadLimitOptions}
           onChange={handleLimitChange}
           defaultValue={limitOptions[0]}
         />
-        {t('pages.createLesson.sortOrder')}
+        {t('pages.create.sortOrder')}
         <DefaultSelectAsync
           name='sortOrder'
           getOptions={loadOrderOptions}

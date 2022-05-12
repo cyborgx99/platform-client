@@ -5,7 +5,7 @@ import {
   MutationCreateLessonContentArgs,
 } from 'apollo/graphql/generated.types';
 import { GET_LESSON_CONTENTS } from 'apollo/graphql/queries/lesson/getLessonContents';
-import { useCreateLesson } from 'pages/create/context';
+import { useLessonContent } from 'pages/create/context';
 import { LessonContentActionTypes } from 'pages/create/reducer/types';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -14,7 +14,7 @@ import ContentForm from './contentForm';
 
 const CreateContent = () => {
   const { t } = useTranslation();
-  const { sentences, dispatch } = useCreateLesson();
+  const { sentences, dispatch } = useLessonContent();
   const [createContent, { loading, error }] = useMutation<
     Pick<Mutation, 'createLessonContent'>,
     MutationCreateLessonContentArgs
@@ -51,7 +51,7 @@ const CreateContent = () => {
 
   return (
     <ContentForm
-      successMessage={t('pages.createLesson.createSuccess')}
+      successMessage={t('pages.create.createSuccess')}
       onTitleChange={handleTitleChange}
       onContinue={handleContinue}
       onButtonClick={handleCreate}

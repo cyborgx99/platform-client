@@ -4,7 +4,7 @@ import ButtonComponent from 'components/button';
 import RegularInput from 'components/input/regularInput';
 import ResultWrapper from 'components/result';
 import ToggleButton from 'components/toggleButton';
-import { useCreateLesson } from 'pages/create/context';
+import { useLessonContent } from 'pages/create/context';
 import { LessonContentActionTypes } from 'pages/create/reducer/types';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -44,7 +44,7 @@ const ContentForm = ({
   onButtonClick,
   error,
 }: IContentFormProps) => {
-  const { toggleValue, dispatch, sentences } = useCreateLesson();
+  const { toggleValue, dispatch, sentences } = useLessonContent();
   const { t } = useTranslation();
   const isSaveSentencesDisabled = sentences.length === 0 || !title;
 
@@ -71,7 +71,7 @@ const ContentForm = ({
         <DisplaySentencesWrapper>
           {sentences.length > 0 && (
             <HeaderThreeBase>
-              {t('pages.createLesson.createdSentences')}
+              {t('pages.create.createdSentences')}
             </HeaderThreeBase>
           )}
           {sentences.map((sentence, i) => (
@@ -83,9 +83,7 @@ const ContentForm = ({
             />
           ))}
         </DisplaySentencesWrapper>
-        <HeaderThreeBase>
-          {t('pages.createLesson.enterContentTitle')}
-        </HeaderThreeBase>
+        <HeaderThreeBase>{t('pages.create.enterContentTitle')}</HeaderThreeBase>
         <MultiInputsWrapper>
           <SpanBase
             $textType='normalText'
@@ -104,7 +102,7 @@ const ContentForm = ({
           type='button'
           onClick={onButtonClick}
           variant='primary'>
-          {t('pages.createLesson.save')}
+          {t('pages.create.save')}
         </ButtonComponent>
         <ApolloErrorMesage error={error} />
       </CreateContentWrapper>

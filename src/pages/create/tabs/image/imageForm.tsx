@@ -32,12 +32,12 @@ const ImageForm = ({
   const { t } = useTranslation();
   const textData: ImageFormText = {
     create: {
-      message: t('pages.createLesson.imageCreated'),
-      button: t('pages.createLesson.create'),
+      message: t('pages.create.imageCreated'),
+      button: t('pages.create.create'),
     },
     edit: {
-      message: t('pages.createLesson.imageUpdated'),
-      button: t('pages.createLesson.update'),
+      message: t('pages.create.imageUpdated'),
+      button: t('pages.create.update'),
     },
   };
 
@@ -62,7 +62,7 @@ const ImageForm = ({
   const imageInput: ImageInput = {
     url: (
       <FormInput
-        label={t('pages.createLesson.url')}
+        label={t('pages.create.url')}
         name='url'
         type='url'
         imagePreview
@@ -92,7 +92,7 @@ const ImageForm = ({
             />
             {imageInput[toggleValue]}
             <FormInput
-              label={t('pages.createLesson.title')}
+              label={t('pages.create.title')}
               name='title'
               type='text'
             />

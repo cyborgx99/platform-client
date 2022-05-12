@@ -18,11 +18,11 @@ const initialContextValues: ILessonContentContextValues = {
   },
 };
 
-const CreateLessonContentContext =
+const LessonContentContext =
   createContext<ILessonContentContextValues>(initialContextValues);
-CreateLessonContentContext.displayName = 'CreateLessonContentContext';
+LessonContentContext.displayName = 'LessonContentContext';
 
-export const CreateLessonContentProvider = ({
+export const LessonContentProvider = ({
   children,
 }: ICreateLessonContextProviderProps) => {
   const initialReducerValues: ILessonContentReducerState = {
@@ -41,14 +41,14 @@ export const CreateLessonContentProvider = ({
   };
 
   return (
-    <CreateLessonContentContext.Provider value={providerValue}>
+    <LessonContentContext.Provider value={providerValue}>
       {children}
-    </CreateLessonContentContext.Provider>
+    </LessonContentContext.Provider>
   );
 };
 
-export const useCreateLesson = () => {
-  const context = useContext(CreateLessonContentContext);
+export const useLessonContent = () => {
+  const context = useContext(LessonContentContext);
   if (!context) {
     throw new Error(
       'Cannot be rendered outside of the CreateLessonContentContext'

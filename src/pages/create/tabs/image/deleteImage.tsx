@@ -44,7 +44,7 @@ const DeleteImage = ({ currentImage, onClose }: IDeleteImageProps) => {
         isLoading={loading}
         type='button'
         variant='danger'>
-        {t('pages.createLesson.confirmDelete')}
+        {t('pages.create.confirmDelete')}
       </ButtonComponent>
       <ApolloErrorMessage error={error} />
     </ContentWrapper>

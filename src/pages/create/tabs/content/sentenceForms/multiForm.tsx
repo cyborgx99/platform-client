@@ -6,7 +6,7 @@ import ButtonComponent from 'components/button';
 import Checkbox from 'components/checkbox';
 import RegularInput from 'components/input/regularInput';
 import TextArea from 'components/textArea';
-import { useCreateLesson } from 'pages/create/context';
+import { useLessonContent } from 'pages/create/context';
 import { createSentence, removeById } from 'pages/create/reducer';
 import { LessonContentActionTypes } from 'pages/create/reducer/types';
 import React, { useState } from 'react';
@@ -24,7 +24,7 @@ const MultiForm = () => {
   const [options, setOptions] =
     useState<LessonContentSentencePart[] | null>(null);
   const [isCorrectOptionChecked, setIsCorrectOptionChecked] = useState(false);
-  const { dispatch, toggleValue } = useCreateLesson();
+  const { dispatch, toggleValue } = useLessonContent();
   const hasRightAnswer = Boolean(
     options?.some((option) => option.partType === PartType.RightAnswer)
   );
@@ -77,9 +77,9 @@ const MultiForm = () => {
 
   return (
     <FormWrapper>
-      <HeaderThreeBase>{t('pages.createLesson.enterSentence')}</HeaderThreeBase>
+      <HeaderThreeBase>{t('pages.create.enterSentence')}</HeaderThreeBase>
       <TextArea title='Sentence' value={value} onChange={handleChange} />
-      <HeaderThreeBase>{t('pages.createLesson.addOption')}</HeaderThreeBase>
+      <HeaderThreeBase>{t('pages.create.addOption')}</HeaderThreeBase>
       <MultiInputsWrapper>
         <Checkbox
           title='Correct answer'
@@ -92,7 +92,7 @@ const MultiForm = () => {
           value={optionValue}
         />
       </MultiInputsWrapper>
-      <HeaderThreeBase>{t('pages.createLesson.options')}</HeaderThreeBase>
+      <HeaderThreeBase>{t('pages.create.options')}</HeaderThreeBase>
       <SpanWrapper>
         {options?.map((part) => (
           <FormSpan onClick={handleRemoveOption} key={part.id} data={part} />
@@ -105,7 +105,7 @@ const MultiForm = () => {
         type='button'
         variant='primary'
         onClick={handleAddOption}>
-        {t('pages.createLesson.addOption')}
+        {t('pages.create.addOption')}
       </ButtonComponent>
       <ButtonComponent
         disabled={isAddDisabled}
@@ -114,7 +114,7 @@ const MultiForm = () => {
         type='button'
         variant='secondary'
         onClick={handleAddSentence}>
-        {t('pages.createLesson.addSentence')}
+        {t('pages.create.addSentence')}
       </ButtonComponent>
     </FormWrapper>
   );

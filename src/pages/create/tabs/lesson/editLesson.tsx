@@ -39,7 +39,6 @@ const EditLesson = ({ onCloseModal, lesson }: IEditLessonProps) => {
           pages: pageIds,
           title: values.title,
           description: values.description,
-          pagesToDelete: values.deletedPages,
         },
       },
     });
@@ -60,7 +59,7 @@ const EditLesson = ({ onCloseModal, lesson }: IEditLessonProps) => {
   return (
     <ResultWrapper
       onContinue={onCloseModal}
-      message='Lesson has been created!'
+      message='Lesson has been updated!'
       isShown={isSuccessShown}
       type='success'>
       <LessonForm
