@@ -20,14 +20,13 @@ const CreateClassroom = ({ onCloseModal }: ICreateClassroomProps) => {
       CreateClassroomMutationVariables
     >(CREATE_CLASSROOM);
 
-  console.log(onCloseModal);
-
   const handleCreate = (values: IClassroomFormValues) => {
     createLesson({
       variables: {
         input: values,
       },
     });
+    onCloseModal;
   };
 
   return (

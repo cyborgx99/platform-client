@@ -1,19 +1,49 @@
-import { AsyncPaginate } from 'react-select-async-paginate';
-import styled from 'styled-components/macro';
+import {
+  AsyncPaginate,
+  WithAsyncPaginateType,
+} from 'react-select-async-paginate';
+import styled, {
+  css,
+  DefaultTheme,
+  StyledComponent,
+} from 'styled-components/macro';
 import { SpanBase } from 'styles/globalStyles';
 
 export const paginageClassNamePrefix = 'select';
 
-export const StyledAsync = styled(AsyncPaginate)`
+const border = css`
+  border: 2px solid ${({ theme }) => theme.colors.secondary.light};
+`;
+
+const borderError = css`
+  border: 2px solid ${({ theme }) => theme.colors.red.light};
+`;
+
+const outline = css`
+  outline: 2px solid ${({ theme }) => theme.colors.secondary.darkest} !important;
+`;
+
+const outlineError = css`
+  outline: 2px solid ${({ theme }) => theme.colors.red.darkest} !important;
+`;
+
+export const StyledAsync: StyledComponent<
+  WithAsyncPaginateType,
+  DefaultTheme,
+  {
+    $hasError?: boolean | undefined;
+  },
+  string
+> = styled(AsyncPaginate)<{ $hasError?: boolean }>`
   & .${paginageClassNamePrefix}__control {
-    border: 2px solid ${({ theme }) => theme.colors.secondary.light};
+    ${({ $hasError }) => ($hasError ? borderError : border)};
     & :hover {
-      border: 2px solid ${({ theme }) => theme.colors.secondary.light};
+      ${({ $hasError }) => ($hasError ? borderError : border)};
     }
   }
 
   & .${paginageClassNamePrefix}__control--is-focused {
-    outline: 2px solid ${({ theme }) => theme.colors.secondary.darkest} !important;
+    ${({ $hasError }) => ($hasError ? outlineError : outline)};
     box-shadow: none;
   }
 
@@ -24,7 +54,7 @@ export const StyledAsync = styled(AsyncPaginate)`
   & .${paginageClassNamePrefix}__option--is-selected {
     background-color: ${({ theme }) => theme.colors.secondary.base};
   }
-` as typeof AsyncPaginate;
+`;
 
 export const ValidationErrorMessage = styled(SpanBase)`
   color: ${({ theme }) => theme.colors.red.base};

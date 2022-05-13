@@ -14,12 +14,18 @@ const FormSelectAsync = <
 >(
   props: ISelectAsyncProps<Option, Additional>
 ) => {
-  const [{ value }, { error, touched }, { setValue }] = useField(props.name);
-  const hasError = Boolean(touched && error);
   const { t } = useTranslation();
+  const [{ value }, { error, touched }, { setValue, setTouched }] = useField(
+    props.name
+  );
+  const hasError = Boolean(touched && error);
 
   const handleChange = (value: SingleValue<Option>) => {
     setValue(value);
+  };
+
+  const handleBlur = () => {
+    setTouched(true);
   };
 
   return (
@@ -33,6 +39,8 @@ const FormSelectAsync = <
         {...props}
         value={value}
         onChange={handleChange}
+        onBlur={handleBlur}
+        hasError={hasError}
       />
       <ValidationErrorMessage
         data-cy-error={props.name}

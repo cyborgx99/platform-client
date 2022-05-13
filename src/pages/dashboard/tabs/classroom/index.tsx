@@ -31,7 +31,7 @@ const ClassroomTab = () => {
       sortOrder: SortOrder.Asc,
     });
 
-  console.log(classroomVariables);
+  // console.log(classroomVariables);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setClassroomVariables((prev) => ({

@@ -1,18 +1,27 @@
 import { gql } from '@apollo/client';
 
 export const GET_USERS = gql`
-  query getUsers($offset: Float!, $limit: Float!) {
-    getUsers(offset: $offset, limit: $limit) {
-      totalCount
-      pages
+  query getUsers(
+    $offset: Int!
+    $limit: Int!
+    $search: String
+    $sortOrder: SortOrder
+  ) {
+    getUsers(
+      offset: $offset
+      limit: $limit
+      search: $search
+      sortOrder: $sortOrder
+    ) {
       data {
         id
         name
         lastName
         email
-        role
-        createdAt
       }
+      pages
+      totalCount
+      hasMore
     }
   }
 `;

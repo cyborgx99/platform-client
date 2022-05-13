@@ -2,8 +2,8 @@ import { gql } from '@apollo/client';
 
 export const GET_LESSON_IMAGES = gql`
   query getLessonImages(
-    $offset: Float!
-    $limit: Float!
+    $offset: Int!
+    $limit: Int!
     $search: String
     $sortOrder: SortOrder
   ) {

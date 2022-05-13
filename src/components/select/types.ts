@@ -24,5 +24,7 @@ export interface ISelectAsyncProps<Option, Additional> {
 export interface INoFormikSelectAsyncProps<Option, Additional>
   extends ISelectAsyncProps<Option, Additional> {
   value?: Option;
+  hasError?: boolean;
   onChange: (value: SingleValue<Option> | Option) => void;
+  onBlur?: () => void;
 }

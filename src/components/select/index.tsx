@@ -15,15 +15,19 @@ const DefaultSelectAsync = <Option, Additional>({
   getOptionLabel,
   getOptionValue,
   onChange,
+  onBlur,
+  hasError,
 }: INoFormikSelectAsyncProps<Option, Additional>) => {
   const { t } = useTranslation();
   return (
     <StyledAsync
+      $hasError={hasError}
       classNamePrefix={paginageClassNamePrefix}
       debounceTimeout={200}
       name={name}
       defaultValue={defaultValue}
       defaultOptions
+      onBlur={onBlur}
       loadOptions={getOptions}
       getOptionLabel={getOptionLabel}
       getOptionValue={getOptionValue}
