@@ -27,7 +27,7 @@ export type Classroom = {
   createdAt: Scalars['DateTime'];
   id: Scalars['ID'];
   lesson: Lesson;
-  notes: Scalars['String'];
+  notes?: Maybe<Scalars['String']>;
   title: Scalars['String'];
   user?: Maybe<User>;
 };
@@ -475,7 +475,7 @@ export type CreateClassroomMutationVariables = Exact<{
 }>;
 
 
-export type CreateClassroomMutation = { __typename?: 'Mutation', createClassroom: { __typename?: 'Classroom', id: string, title: string, notes: string, createdAt: Date, user?: { __typename?: 'User', id: string, name: string, lastName: string, email: string, role: Role, createdAt: Date } | null, lesson: { __typename?: 'Lesson', id: string, title: string, description: string, createdAt: Date, pages: Array<{ __typename?: 'LessonPageObject', id: string, lessonImage: { __typename?: 'LessonImage', id: string, title: string, url: string, publicId?: string | null }, lessonContent: { __typename?: 'LessonContent', id: string, title: string, sentences: Array<{ __typename?: 'LessonContentSentence', id: string, text?: string | null, sentenceType: LessonSentenceType, sentenceParts: Array<{ __typename?: 'LessonContentSentencePart', id: string, part: string, partType: PartType }> }> } }> } } };
+export type CreateClassroomMutation = { __typename?: 'Mutation', createClassroom: { __typename?: 'Classroom', id: string, title: string, notes?: string | null, createdAt: Date, user?: { __typename?: 'User', id: string, name: string, lastName: string, email: string, role: Role, createdAt: Date } | null, lesson: { __typename?: 'Lesson', id: string, title: string, description: string, createdAt: Date, pages: Array<{ __typename?: 'LessonPageObject', id: string, lessonImage: { __typename?: 'LessonImage', id: string, title: string, url: string, publicId?: string | null }, lessonContent: { __typename?: 'LessonContent', id: string, title: string, sentences: Array<{ __typename?: 'LessonContentSentence', id: string, text?: string | null, sentenceType: LessonSentenceType, sentenceParts: Array<{ __typename?: 'LessonContentSentencePart', id: string, part: string, partType: PartType }> }> } }> } } };
 
 export type CreateLessonContentMutationVariables = Exact<{
   input: CreateLessonContentInput;

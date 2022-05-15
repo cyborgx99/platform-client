@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { StyledErrorMessage } from './styles';
 import { IErrorMessageProps } from './types';
 
-const ErrorMessage = ({ error }: IErrorMessageProps) => {
+const ApolloErrorMessage = ({ error }: IErrorMessageProps) => {
   const { t } = useTranslation();
   return (
     <StyledErrorMessage $textType='normalText' $textWeight='regular'>
@@ -14,4 +14,4 @@ const ErrorMessage = ({ error }: IErrorMessageProps) => {
   );
 };
 
-export default ErrorMessage;
+export default ApolloErrorMessage;
