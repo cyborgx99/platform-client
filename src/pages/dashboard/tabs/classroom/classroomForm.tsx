@@ -8,12 +8,13 @@ import {
   User,
 } from 'apollo/graphql/generated.types';
 import { GET_LESSONS } from 'apollo/graphql/queries/lesson/getLessons';
+import ApolloErrorMessage from 'components/apolloErrorMessage';
 import ButtonComponent from 'components/button';
 import FormInput from 'components/input';
 import FormSelectAsync from 'components/select/formSelect';
 import { GetOptionsFunction } from 'components/select/types';
-import { Formik } from 'formik';
-import React from 'react';
+import { Formik, FormikProps } from 'formik';
+import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { StyledClassroomForm } from './styles';
@@ -34,9 +35,12 @@ const ClassroomForm = ({
   initialValues,
   validationSchema,
   onSubmit,
+  loading,
+  error,
   type,
 }: IClassroomFormProps) => {
   const { t } = useTranslation();
+  const ref = useRef<FormikProps<IClassroomFormValues>>(null);
   const textData = {
     create: {
       message: t('pages.create.classroomCreated'),
@@ -48,6 +52,7 @@ const ClassroomForm = ({
     },
   };
   const handleSubmit = (values: IClassroomFormValues) => {
+    console.log('323', values);
     onSubmit(values);
   };
 
@@ -119,13 +124,12 @@ const ClassroomForm = ({
       };
     };
 
-  const loading = false;
-
   return (
     <Formik
       onSubmit={handleSubmit}
       initialValues={initialValues}
       enableReinitialize
+      innerRef={ref}
       validationSchema={validationSchema}>
       <StyledClassroomForm>
         <FormSelectAsync
@@ -134,7 +138,7 @@ const ClassroomForm = ({
           getOptions={getLessonsOptions}
           additional={getOptionsAdditional}
           isClearable
-          name='lessonId'
+          name='selectedLesson'
           label={t('pages.create.selectLesson')}
         />
         <FormSelectAsync
@@ -143,7 +147,7 @@ const ClassroomForm = ({
           getOptions={getUsersOptions}
           additional={getOptionsAdditional}
           isClearable
-          name='userId'
+          name='selectedStudent'
           label={t('pages.create.selectUser')}
         />
         <FormInput label={t('pages.create.title')} name='title' type='text' />
@@ -154,6 +158,7 @@ const ClassroomForm = ({
           variant='primary'>
           {textData[type].button}
         </ButtonComponent>
+        <ApolloErrorMessage error={error} />
       </StyledClassroomForm>
     </Formik>
   );

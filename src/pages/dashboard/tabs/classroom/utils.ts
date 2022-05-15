@@ -2,26 +2,21 @@ import { Lesson, User } from 'apollo/graphql/generated.types';
 import { stringRequiredMinMax } from 'utils/validation';
 import * as yup from 'yup';
 
-import {
-  GetOptionsAdditional,
-  IClassroomFormValidationSchema,
-  IClassroomFormValues,
-} from './types';
+import { GetOptionsAdditional, IClassroomFormValues } from './types';
 
 export const initialClassroomFormValues: IClassroomFormValues = {
   title: '',
-  lessonId: '',
-  studentId: '',
+  selectedLesson: null,
+  selectedStudent: null,
   notes: '',
 };
 
-export const classroomFormValidationSchema: IClassroomFormValidationSchema =
-  yup.object({
-    title: stringRequiredMinMax,
-    notes: yup.string(),
-    studentId: yup.string().uuid(),
-    lessonId: yup.string().required().uuid(),
-  });
+export const classroomFormValidationSchema = yup.object({
+  title: stringRequiredMinMax,
+  notes: yup.string(),
+  selectedStudent: yup.object().nullable().default(null),
+  selectedLesson: yup.object().nullable().required('required'),
+});
 
 export const getLessonOptionValue = (option: Lesson): string => {
   return JSON.stringify(option);

@@ -1,20 +1,33 @@
 import { ApolloError } from '@apollo/client';
-import { SchemaOf } from 'yup';
+import { Classroom, Lesson, User } from 'apollo/graphql/generated.types';
+
+import { classroomFormValidationSchema } from './utils';
 
 export interface ICreateClassroomProps {
   onCloseModal: () => void;
 }
 
+export interface IUpdateClassroomProps {
+  onCloseModal: () => void;
+  classroom: Classroom;
+}
+
+export interface IDeleteClassroomProps {
+  onCloseModal: () => void;
+  classroom: Classroom;
+}
+
 export type ClassroomFormTypes = 'edit' | 'create';
 
 export type IClassroomFormValues = {
-  lessonId: string;
+  selectedLesson: Lesson | null;
   title: string;
   notes?: string;
-  studentId?: string;
+  selectedStudent?: User | null;
 };
 
-export type IClassroomFormValidationSchema = SchemaOf<IClassroomFormValues>;
+export type IClassroomFormValidationSchema =
+  typeof classroomFormValidationSchema;
 
 export interface IClassroomFormProps {
   loading: boolean;
