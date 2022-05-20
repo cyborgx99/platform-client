@@ -11,17 +11,23 @@ const isSelected = css`
 export const CardContainer = styled.div<{
   $isSelected?: boolean;
   $cardContainerStyles?: CssStyleProp;
+  $hasBorders?: boolean;
 }>`
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 8px;
-  border: 1px solid ${({ theme }) => theme.colors.gray.base};
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
   display: flex;
   flex-direction: column;
 
   ${({ $cardContainerStyles }) => $cardContainerStyles};
 
   ${({ $isSelected }) => $isSelected && isSelected}
+
+  ${({ $hasBorders }) =>
+    $hasBorders &&
+    css`
+      border: 1px solid ${({ theme }) => theme.colors.gray.base};
+      box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    `}
 `;
 
 export const ContentWrapper = styled.div`

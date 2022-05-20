@@ -1,5 +1,6 @@
 import { useAuth } from 'auth';
 import Spinner from 'components/spinner';
+import ClassroomPage from 'pages/classroom';
 import CreateLessonPage from 'pages/create';
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -20,6 +21,10 @@ const AppRoutes = () => {
       <Suspense fallback={<Spinner type='animated' />}>
         <Routes>
           <Route
+            path={pathKeys.relative.CLASSROOM}
+            element={<ClassroomPage />}
+          />
+          <Route
             element={
               <ProtectedRoute
                 redirectPath={pathKeys.user.DASHBOARD}
@@ -38,7 +43,7 @@ const AppRoutes = () => {
           <Route
             element={
               <ProtectedRoute
-                redirectPath={pathKeys.unathorized.LOGIN}
+                redirectPath={pathKeys.unathorized.HOME}
                 isAllowed={!!user}
               />
             }>

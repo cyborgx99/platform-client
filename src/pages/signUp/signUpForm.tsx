@@ -42,7 +42,7 @@ const SignUpForm = () => {
     useMutation<Pick<Mutation, 'signUp'>>(SIGN_UP);
 
   const handleContinue = () => {
-    navigate(pathKeys.unathorized.LOGIN);
+    navigate(pathKeys.unathorized.HOME);
   };
 
   const handleSubmit = async (values: SignUpFormValues) => {

@@ -29,8 +29,9 @@ const PageHeader = ({ onToggleNavbar }: IPageHeaderInterface) => {
   const { t } = useTranslation();
   const apolloClient = useApolloClient();
   const [logout, { loading }] = useMutation<Pick<Mutation, 'logout'>>(LOGOUT, {
-    onCompleted: () => {
-      apolloClient.cache.reset();
+    onCompleted: async () => {
+      await apolloClient.cache.reset();
+      await apolloClient.resetStore();
     },
   });
 

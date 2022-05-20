@@ -1,10 +1,9 @@
 import { useMutation } from '@apollo/client';
-import { SIGN_IN } from 'apollo/graphql';
+import { GET_USER, SIGN_IN } from 'apollo/graphql';
 import {
   Mutation,
   SignInMutationVariables,
 } from 'apollo/graphql/generated.types';
-import { useAuth } from 'auth';
 import ApolloErrorMessage from 'components/apolloErrorMessage';
 import ButtonComponent from 'components/button';
 import FormInput from 'components/input';
@@ -34,7 +33,6 @@ const signInValidationSchema: yup.SchemaOf<ISignInFormValues> = yup.object({
 
 const SignInForm = () => {
   const { t } = useTranslation();
-  const { refetch } = useAuth();
   const [signIn, { loading, error }] = useMutation<
     Pick<Mutation, 'signIn'>,
     SignInMutationVariables
@@ -42,17 +40,15 @@ const SignInForm = () => {
     onError: (err) => {
       console.log('ERR', err.networkError?.message);
     },
+    refetchQueries: [GET_USER],
   });
 
   const handleSignIn = async (values: ISignInFormValues) => {
-    const { data } = await signIn({
+    await signIn({
       variables: {
         input: values,
       },
     });
-    if (data?.signIn.success) {
-      refetch();
-    }
   };
 
   return (

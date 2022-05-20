@@ -1,7 +1,6 @@
 export const pathKeys = {
   unathorized: {
     HOME: '/',
-    LOGIN: '/login',
     SIGN_UP: '/sign-up',
   },
   password: {
@@ -14,6 +13,9 @@ export const pathKeys = {
   teacher: {
     DASHBOARD: '/dashboard',
     CREATE_LESSON: '/create',
+  },
+  relative: {
+    CLASSROOM: '/classroom/:id',
   },
   tabs: {
     DASHBOARD_STUDENT_TABS: {

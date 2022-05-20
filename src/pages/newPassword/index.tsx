@@ -43,7 +43,7 @@ const NewPassword = () => {
   const reset = searchParams.get('reset');
 
   const handleContinue = () => {
-    navigate(pathKeys.unathorized.LOGIN);
+    navigate(pathKeys.unathorized.HOME);
   };
 
   if (!reset) {
