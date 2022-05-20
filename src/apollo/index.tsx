@@ -1,5 +1,6 @@
 import {
   ApolloClient,
+  ApolloLink,
   ApolloProvider,
   FieldPolicy,
   InMemoryCache,
@@ -26,13 +27,15 @@ const wsLink = new GraphQLWsLink(
 const splitLink = split(
   ({ query }) => {
     const definition = getMainDefinition(query);
+
     return (
       definition.kind === 'OperationDefinition' &&
       definition.operation === 'subscription'
     );
   },
   wsLink,
-  httpLink
+  // https://github.com/jaydenseric/apollo-upload-client/issues/221
+  httpLink as unknown as ApolloLink
 );
 
 /** Concatenates incoming arrays with cached arrays for paginated queries. */
@@ -65,6 +68,7 @@ const client = new ApolloClient({
         fields: {
           getUsers: queryWithPaginationOptions,
           getLessonImages: queryWithPaginationOptions,
+          getLessonContents: queryWithPaginationOptions,
         },
       },
     },
