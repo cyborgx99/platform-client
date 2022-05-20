@@ -37,13 +37,14 @@ const DisplayLessonPages = ({
           </PageTopWrapper>
           <PageCardWrapper>
             <Card
+              hasBorders={false}
               data={page.lessonImage}
               key={page.lessonImage.id}
               imageUrl={page.lessonImage.url}
               cardTitle={page.lessonImage.title}
             />
-
             <Card
+              hasBorders={false}
               data={page.lessonContent}
               key={page.lessonContent.id}
               cardTitle={page.lessonContent.title}>

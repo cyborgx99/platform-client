@@ -51,7 +51,7 @@ const ForgotPasswordPage = () => {
   };
 
   const handleContinue = () => {
-    navigate(pathKeys.unathorized.LOGIN);
+    navigate(pathKeys.unathorized.HOME);
   };
 
   return (

@@ -6,6 +6,7 @@ export interface ICardComponentProps<T> {
   cardTitle: string;
   isSelected?: boolean;
   cardContainerStyles?: CssStyleProp;
+  hasBorders?: boolean;
   onCardClick?: (data: T) => void;
   onLeftClick?: (data: T) => void;
   onRightClick?: (data: T) => void;

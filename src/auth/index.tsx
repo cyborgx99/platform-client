@@ -8,25 +8,18 @@ import { IAuthContext, IAuthContextProviderProps } from './types';
 
 const AuthContext = createContext<IAuthContext>({
   user: undefined,
-  refetch: () => {
-    throw new Error('Called "refetch" without provider.');
-  },
 });
 
 export const AuthContextProvider = ({
   children,
 }: IAuthContextProviderProps) => {
-  const { data, loading, refetch } = useQuery<Pick<Query, 'getUser'>>(
-    GET_USER,
-    {
-      notifyOnNetworkStatusChange: true,
-      fetchPolicy: 'network-only',
-    }
-  );
+  const { data, loading } = useQuery<Pick<Query, 'getUser'>>(GET_USER, {
+    notifyOnNetworkStatusChange: true,
+    fetchPolicy: 'network-only',
+  });
 
   const value: IAuthContext = {
     user: data?.getUser,
-    refetch,
   };
 
   if (loading) return <Spinner type='animated' />;

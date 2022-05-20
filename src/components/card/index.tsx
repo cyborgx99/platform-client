@@ -17,12 +17,13 @@ const Card = <T,>({
   children,
   isSelected,
   cardContainerStyles,
+  hasBorders = true,
   onCardClick,
   onLeftClick,
   onRightClick,
 }: ICardComponentProps<T>) => {
   const isActionContainerShown = Boolean(onLeftClick || onRightClick);
-  const hasCardAction = Boolean(!onCardClick);
+  const hasCardAction = Boolean(onCardClick);
 
   const handleCardClick = () => {
     onCardClick?.(data);
@@ -39,6 +40,7 @@ const Card = <T,>({
   return (
     <CardContainer
       $cardContainerStyles={cardContainerStyles}
+      $hasBorders={hasBorders}
       $isSelected={isSelected}
       data-cy-card>
       <ContentWrapper

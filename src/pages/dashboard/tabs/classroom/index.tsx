@@ -25,6 +25,7 @@ import { useModalState, useModalStateWithParams } from 'hooks';
 import DisplayLessonPages from 'pages/create/tabs/lesson/displayLessonPages';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 import { iconContainerStyle } from '../lesson/style';
 import CreateClassroom from './createClassroom';
@@ -37,6 +38,7 @@ const ClassroomTab = () => {
   const editClassroomModalState = useModalStateWithParams<Classroom>();
   const deleteClassroomModalState = useModalStateWithParams<Classroom>();
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [classroomVariables, setClassroomVariables] =
     useState<QueryGetLessonsArgs>({
       limit: 5,
@@ -51,6 +53,10 @@ const ClassroomTab = () => {
   >(GET_CLASSROOMS, {
     variables: classroomVariables,
   });
+
+  const handleCardClick = (data: Classroom) => {
+    navigate(`/classroom/${data.id}`, { replace: true });
+  };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setClassroomVariables((prev) => ({
@@ -140,6 +146,7 @@ const ClassroomTab = () => {
             cardTitle={`Classroom: ${classroom.title}`}
             data={classroom}
             key={classroom.id}
+            onCardClick={handleCardClick}
             onLeftClick={editClassroomModalState.openModal}
             onRightClick={deleteClassroomModalState.openModal}>
             {classroom.user && (

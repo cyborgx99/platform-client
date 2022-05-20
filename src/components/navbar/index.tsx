@@ -46,7 +46,7 @@ const Navbar = ({ isShown, onToggle, userRole }: INavbarProps) => {
               <LinkText $isActive={isActive}>
                 {t(
                   `pages.navigation.${
-                    link === '/' ? 'home' : removeSlash(link)
+                    link === '/' ? 'login' : removeSlash(link)
                   }`
                 )}
               </LinkText>
