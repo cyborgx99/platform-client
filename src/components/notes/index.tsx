@@ -1,6 +1,6 @@
 import 'quill/dist/quill.snow.css';
 
-import { useSocket } from 'common/socket';
+import { useSocket } from 'pages/classroom/socket';
 import Quill, { Sources, TextChangeHandler } from 'quill';
 import React, { useCallback, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
@@ -39,7 +39,7 @@ const Notes = () => {
   }, []);
 
   useEffect(() => {
-    if (!id) return;
+    if (!id || !socket) return;
 
     socket.once(SocketOn.loadNotes, (data: LoadNotesData) => {
       if (!quillRef.current) return;
@@ -61,7 +61,7 @@ const Notes = () => {
       oldDelta,
       source: Sources
     ) => {
-      if (source !== 'user') return;
+      if (source !== 'user' || !socket) return;
 
       const changeData = { roomId: id, notes: JSON.stringify(delta) };
 
@@ -92,7 +92,7 @@ const Notes = () => {
   }, [id, socket]);
 
   useEffect(() => {
-    if (!quillRef.current || !id) return;
+    if (!quillRef.current || !id || !socket) return;
 
     const handleTextChange = (data: ReceiveChangesData) => {
       if (!quillRef.current) return;
