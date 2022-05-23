@@ -1,6 +1,5 @@
 import ApolloClientProvider from 'apollo';
 import { AuthContextProvider } from 'auth';
-import { SocketContextProvider } from 'common/socket';
 import { envConfig, envConfigValidator } from 'enValidation';
 import React from 'react';
 import { ThemeProvider } from 'styled-components/macro';
@@ -17,9 +16,7 @@ const App = () => {
       <GlobalCSS />
       <ApolloClientProvider>
         <AuthContextProvider>
-          <SocketContextProvider>
-            <AppRoutes />
-          </SocketContextProvider>
+          <AppRoutes />
         </AuthContextProvider>
       </ApolloClientProvider>
     </ThemeProvider>
