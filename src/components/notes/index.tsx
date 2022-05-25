@@ -1,17 +1,13 @@
 import 'quill/dist/quill.snow.css';
 
+import { SocketEmit, SocketOn } from 'common/types';
 import { useSocket } from 'pages/classroom/socket';
 import Quill, { Sources, TextChangeHandler } from 'quill';
 import React, { useCallback, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { QuillContainer } from './styles';
-import {
-  LoadNotesData,
-  ReceiveChangesData,
-  SocketEmit,
-  SocketOn,
-} from './types';
+import { LoadNotesData, ReceiveChangesData } from './types';
 import { quillId, toolbarOptions } from './utils';
 
 const Notes = () => {

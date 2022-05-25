@@ -1,6 +1,5 @@
 import {
   LessonContent,
-  LessonContentSentence,
   LessonPageObject,
 } from 'apollo/graphql/generated.types';
 
@@ -10,8 +9,4 @@ export interface IClassroomPageProps {
 
 export interface IQuizProps {
   lessonContent: LessonContent;
-}
-
-export interface IQuizSentenceProps {
-  sentence: LessonContentSentence;
 }
