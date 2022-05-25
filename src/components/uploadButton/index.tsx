@@ -57,7 +57,7 @@ const UploadButton = ({ name }: IUploadButtonProps) => {
         variant='primary'
         type='button'
         onClick={handleButtonClick}>
-        {t('pages.createLesson.selectImage')}
+        {t('pages.create.selectImage')}
       </ButtonComponent>
       <ValidationErrorMessage
         data-cy-error={name}

@@ -26,7 +26,6 @@ export const PageContent = styled.section`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.white};
   position: relative;
-  margin-bottom: 1rem;
 `;
 
 export const PageContentScrollable = styled.div`
