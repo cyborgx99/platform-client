@@ -9,7 +9,7 @@ const QuizSentenceGap = ({ parts }: IQuizSentenceGapProps) => {
     <QuizSentenceGapWrapper>
       {parts.map((part) => {
         if (part.partType === 'Gap') {
-          return <GapPart part={part} />;
+          return <GapPart key={part.id} part={part} />;
         }
         return <span key={part.id}> {part.part}</span>;
       })}
