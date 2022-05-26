@@ -33,3 +33,30 @@ export interface IQuizMultiAnswerProps {
 export interface IQuizSentenceProps {
   sentence: LessonContentSentence;
 }
+
+export interface ScrambledData {
+  type: 'add' | 'remove';
+  part: LessonContentSentencePart;
+  sentenceId: string;
+}
+export interface ScrambledEmitData extends ScrambledData {
+  roomId: string;
+}
+
+export interface MultiData {
+  partId: string;
+  value: boolean;
+}
+
+export interface MultiEmitData extends MultiData {
+  roomId: string;
+}
+
+export interface GapData {
+  value: string;
+  partId: string;
+}
+
+export interface GapEmitData extends GapData {
+  roomId: string;
+}

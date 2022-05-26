@@ -61,7 +61,7 @@ const Notes = () => {
 
       const changeData = { roomId: id, notes: JSON.stringify(delta) };
 
-      socket.emit(SocketEmit.textChange, changeData);
+      socket.emit(SocketEmit.notesChange, changeData);
 
       if (timer) {
         clearTimeout(timer);

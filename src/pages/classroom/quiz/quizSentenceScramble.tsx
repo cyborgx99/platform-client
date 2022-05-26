@@ -9,7 +9,11 @@ import {
   QuizSentenceScrambleAnswerWrapper,
   QuizSentenceScrambleWrapper,
 } from './styles';
-import { IQuizSentenceScrambleProps } from './types';
+import {
+  IQuizSentenceScrambleProps,
+  ScrambledData,
+  ScrambledEmitData,
+} from './types';
 
 const QuizSentenceScramble = ({
   parts,
@@ -26,8 +30,8 @@ const QuizSentenceScramble = ({
   const isCorrect = answer === text;
 
   const handleAdd = (part: LessonContentSentencePart) => {
-    if (!socket) return;
-    const data = {
+    if (!socket || !id) return;
+    const data: ScrambledEmitData = {
       type: 'add',
       part,
       sentenceId,
@@ -40,8 +44,8 @@ const QuizSentenceScramble = ({
   };
 
   const handleRemove = (part: LessonContentSentencePart) => {
-    if (!socket || isCorrect) return;
-    const data = {
+    if (!socket || isCorrect || !id) return;
+    const data: ScrambledEmitData = {
       type: 'remove',
       part,
       sentenceId,
@@ -56,7 +60,7 @@ const QuizSentenceScramble = ({
   useEffect(() => {
     if (!id || !socket || !sentenceId) return;
 
-    const handleChange = (data: any) => {
+    const handleChange = (data: ScrambledData) => {
       if (sentenceId !== data.sentenceId) return;
 
       if (data.type === 'add') {

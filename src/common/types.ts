@@ -12,10 +12,12 @@ export type OrderOption = {
 
 export enum SocketEmit {
   joinRoom = 'joinRoom',
-  textChange = 'textChange',
   leaveRoom = 'leaveRoom',
+  notesChange = 'notesChange',
   saveDocument = 'saveDocument',
-  emitInput = 'emitInput',
+  handleGap = 'handleGap',
+  handleScrambled = 'handleScrambled',
+  handleMulti = 'handleMulti',
 }
 
 export enum SocketOn {

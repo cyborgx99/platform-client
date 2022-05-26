@@ -3,6 +3,7 @@ import cloneDeepWith from 'lodash-es/cloneDeepWith';
 export const omitTypenameDeep = <T>(variables: T): Omit<T, '__typename'> =>
   cloneDeepWith<T>(variables, (value) => {
     if (value && value.__typename) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { __typename, ...valWithoutTypename } = value;
       return omitTypenameDeep(valWithoutTypename);
     }

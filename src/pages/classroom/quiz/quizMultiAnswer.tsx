@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import { useSocket } from '../socket';
 import { QuizMultiAnswerButton } from './styles';
-import { IQuizMultiAnswerProps } from './types';
+import { IQuizMultiAnswerProps, MultiData, MultiEmitData } from './types';
 
 const QuizMultiAnswer = ({ part }: IQuizMultiAnswerProps) => {
   const { id } = useParams<{ id: string }>();
@@ -12,9 +12,9 @@ const QuizMultiAnswer = ({ part }: IQuizMultiAnswerProps) => {
   const { socket } = useSocket();
 
   const handleClick = () => {
-    if (!socket) return;
+    if (!socket || !id) return;
     setIsAnswered(true);
-    const data = {
+    const data: MultiEmitData = {
       roomId: id,
       partId: part.id,
       value: true,
@@ -25,7 +25,7 @@ const QuizMultiAnswer = ({ part }: IQuizMultiAnswerProps) => {
   useEffect(() => {
     if (!id || !socket) return;
 
-    const handleChange = (data: any) => {
+    const handleChange = (data: MultiData) => {
       if (part.id !== data.partId) return;
       setIsAnswered(data.value);
     };

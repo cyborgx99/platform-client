@@ -5,28 +5,30 @@ import { useParams } from 'react-router-dom';
 
 import { useSocket } from '../socket';
 import { StyledInput } from './styles';
+import { GapData, GapEmitData } from './types';
 
 const GapPart = ({ part }: { part: LessonContentSentencePart }) => {
   const { id } = useParams<{ id: string }>();
   const { socket } = useSocket();
   const [value, setValue] = useState('');
+
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!socket) return;
+    if (!socket || !id) return;
     setValue(e.target.value);
 
-    const data = {
+    const data: GapEmitData = {
       roomId: id,
       value: e.target.value,
       partId: part.id,
     };
 
-    socket.emit(SocketEmit.emitInput, data);
+    socket.emit(SocketEmit.handleGap, data);
   };
 
   useEffect(() => {
     if (!id || !socket) return;
 
-    const handleTextChange = (data: any) => {
+    const handleTextChange = (data: GapData) => {
       if (part.id !== data.partId) return;
       setValue(data.value);
     };
