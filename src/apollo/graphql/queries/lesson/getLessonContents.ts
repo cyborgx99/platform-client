@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client';
+import { LESSON_CONTENT_FIELDS } from 'apollo/graphql/fragments/lessonContentFields';
 
 export const GET_LESSON_CONTENTS = gql`
   query getLessonContents(
@@ -14,21 +15,12 @@ export const GET_LESSON_CONTENTS = gql`
       sortOrder: $sortOrder
     ) {
       data {
-        id
-        title
-        sentences {
-          id
-          text
-          sentenceParts {
-            partType
-            part
-            id
-          }
-          sentenceType
-        }
+        ...LessonContentFields
       }
       totalCount
       hasMore
     }
   }
+
+  ${LESSON_CONTENT_FIELDS}
 `;

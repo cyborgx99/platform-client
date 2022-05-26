@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client';
+import { LESSON_IMAGE_FIELDS } from 'apollo/graphql/fragments/lessonImageFields';
 
 export const GET_LESSON_IMAGES = gql`
   query getLessonImages(
@@ -14,13 +15,12 @@ export const GET_LESSON_IMAGES = gql`
       sortOrder: $sortOrder
     ) {
       data {
-        id
-        title
-        url
-        publicId
+        ...LessonImageFields
       }
       totalCount
       hasMore
     }
   }
+
+  ${LESSON_IMAGE_FIELDS}
 `;

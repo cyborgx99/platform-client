@@ -1,4 +1,6 @@
 import { gql } from '@apollo/client';
+import { LESSON_CONTENT_FIELDS } from 'apollo/graphql/fragments/lessonContentFields';
+import { LESSON_IMAGE_FIELDS } from 'apollo/graphql/fragments/lessonImageFields';
 
 export const UPDATE_LESSON = gql`
   mutation updateLesson($input: UpdateLessonInput!) {
@@ -7,29 +9,17 @@ export const UPDATE_LESSON = gql`
       title
       description
       pages {
-        lessonContent {
-          title
-          id
-          sentences {
-            id
-            text
-            sentenceParts {
-              partType
-              part
-              id
-            }
-            sentenceType
-          }
-        }
-        lessonImage {
-          id
-          title
-          url
-          publicId
-        }
         id
+        lessonImage {
+          ...LessonImageFields
+        }
+        lessonContent {
+          ...LessonContentFields
+        }
       }
-      createdAt
     }
   }
+
+  ${LESSON_IMAGE_FIELDS}
+  ${LESSON_CONTENT_FIELDS}
 `;

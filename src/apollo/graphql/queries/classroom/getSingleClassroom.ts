@@ -1,4 +1,6 @@
 import { gql } from '@apollo/client';
+import { LESSON_CONTENT_FIELDS } from 'apollo/graphql/fragments/lessonContentFields';
+import { LESSON_IMAGE_FIELDS } from 'apollo/graphql/fragments/lessonImageFields';
 
 export const GET_SINGLE_CLASSROOM = gql`
   query getSingleClassroom($id: String!) {
@@ -12,30 +14,17 @@ export const GET_SINGLE_CLASSROOM = gql`
         pages {
           id
           lessonImage {
-            id
-            title
-            url
-            publicId
+            ...LessonImageFields
           }
           lessonContent {
-            id
-            title
-            sentences {
-              id
-              text
-              sentenceParts {
-                id
-                part
-                partType
-              }
-              sentenceType
-            }
+            ...LessonContentFields
           }
         }
-        createdAt
       }
       notes
-      createdAt
     }
   }
+
+  ${LESSON_IMAGE_FIELDS}
+  ${LESSON_CONTENT_FIELDS}
 `;

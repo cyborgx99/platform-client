@@ -1,4 +1,7 @@
 import { gql } from '@apollo/client';
+import { LESSON_CONTENT_FIELDS } from 'apollo/graphql/fragments/lessonContentFields';
+import { LESSON_IMAGE_FIELDS } from 'apollo/graphql/fragments/lessonImageFields';
+import { USER_FIELDS } from 'apollo/graphql/fragments/userFields';
 
 export const CREATE_CLASSROOM = gql`
   mutation createClassroom($input: CreateClassroomInput!) {
@@ -6,44 +9,27 @@ export const CREATE_CLASSROOM = gql`
       id
       title
       user {
-        id
-        name
-        lastName
-        email
-        role
-        createdAt
+        ...UserFields
       }
       lesson {
         id
         title
         description
         pages {
+          id
           lessonImage {
-            id
-            title
-            url
-            publicId
+            ...LessonImageFields
           }
           lessonContent {
-            id
-            title
-            sentences {
-              id
-              text
-              sentenceParts {
-                id
-                part
-                partType
-              }
-              sentenceType
-            }
+            ...LessonContentFields
           }
-          id
         }
-        createdAt
       }
       notes
-      createdAt
     }
   }
+
+  ${USER_FIELDS}
+  ${LESSON_IMAGE_FIELDS}
+  ${LESSON_CONTENT_FIELDS}
 `;

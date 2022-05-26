@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client';
+import { USER_FIELDS } from 'apollo/graphql/fragments/userFields';
 
 export const GET_USERS = gql`
   query getUsers(
@@ -14,14 +15,13 @@ export const GET_USERS = gql`
       sortOrder: $sortOrder
     ) {
       data {
-        id
-        name
-        lastName
-        email
+        ...UserFields
       }
       pages
       totalCount
       hasMore
     }
   }
+
+  ${USER_FIELDS}
 `;

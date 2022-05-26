@@ -1,47 +1,35 @@
 import { gql } from '@apollo/client';
+import { LESSON_CONTENT_FIELDS } from 'apollo/graphql/fragments/lessonContentFields';
+import { LESSON_IMAGE_FIELDS } from 'apollo/graphql/fragments/lessonImageFields';
+import { USER_FIELDS } from 'apollo/graphql/fragments/userFields';
 
 export const UPDATE_CLASSROOM = gql`
   mutation updateClassroom($input: UpdateClassroomInput!) {
     updateClassroom(input: $input) {
       id
       title
+      user {
+        ...UserFields
+      }
       lesson {
         id
         title
         description
         pages {
+          id
           lessonImage {
-            title
-            id
-            url
-            publicId
+            ...LessonImageFields
           }
           lessonContent {
-            id
-            sentences {
-              text
-              id
-              sentenceParts {
-                partType
-                part
-                id
-              }
-              sentenceType
-            }
-            title
+            ...LessonContentFields
           }
-          id
         }
-        createdAt
-      }
-      user {
-        id
-        name
-        lastName
-        email
-        createdAt
       }
       notes
     }
   }
+
+  ${USER_FIELDS}
+  ${LESSON_IMAGE_FIELDS}
+  ${LESSON_CONTENT_FIELDS}
 `;

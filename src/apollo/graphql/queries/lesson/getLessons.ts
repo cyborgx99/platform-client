@@ -1,4 +1,6 @@
 import { gql } from '@apollo/client';
+import { LESSON_CONTENT_FIELDS } from 'apollo/graphql/fragments/lessonContentFields';
+import { LESSON_IMAGE_FIELDS } from 'apollo/graphql/fragments/lessonImageFields';
 
 export const GET_LESSONS = gql`
   query getLessons(
@@ -20,31 +22,19 @@ export const GET_LESSONS = gql`
         pages {
           id
           lessonImage {
-            id
-            title
-            url
-            publicId
+            ...LessonImageFields
           }
           lessonContent {
-            id
-            title
-            sentences {
-              id
-              text
-              sentenceParts {
-                partType
-                part
-                id
-              }
-              sentenceType
-            }
+            ...LessonContentFields
           }
         }
-        createdAt
       }
       totalCount
       pages
       hasMore
     }
   }
+
+  ${LESSON_CONTENT_FIELDS}
+  ${LESSON_IMAGE_FIELDS}
 `;

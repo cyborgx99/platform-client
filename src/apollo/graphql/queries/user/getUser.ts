@@ -1,13 +1,12 @@
 import { gql } from '@apollo/client';
+import { USER_FIELDS } from 'apollo/graphql/fragments/userFields';
 
 export const GET_USER = gql`
   query getUser {
     getUser {
-      id
-      lastName
-      name
-      role
-      email
+      ...UserFields
     }
   }
+
+  ${USER_FIELDS}
 `;
