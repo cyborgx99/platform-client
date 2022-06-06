@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { HeaderOneBase, HeaderTwoBase } from 'styles/globalStyles';
+import { HeaderTwoBase } from 'styles/globalStyles';
 
 export const FourOFourContainer = styled.div`
   flex: 1;
@@ -14,6 +14,8 @@ export const TitleWrapper = styled.div``;
 
 export const NotFountHeader = styled(HeaderTwoBase)``;
 
-export const NotFountCodeHeader = styled(HeaderOneBase)`
-  color: ${({ theme }) => theme.colors.red.darkest};
+export const NotFoundImage = styled.img`
+  width: 100%;
+  max-width: 30rem;
+  object-fit: contain;
 `;

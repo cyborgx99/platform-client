@@ -23,7 +23,10 @@
     "doNotHaveAccount": "Do not have an account?",
     "forgotPassword": "Forgot password?",
     "alreadyHaveAccount": "Already have an account?",
-    "footer": "All rights reserved. (Apparently)"
+    "footer": "All rights reserved. (Apparently)",
+    "haveNotReceivedEmail": "Have not received a confirmation email?",
+    "resend": "Resend",
+    "confirmed": "Your email has been confirmed."
   },
   "create": {
     "url": "Url",

@@ -32,6 +32,10 @@ export type Classroom = {
   user?: Maybe<User>;
 };
 
+export type ConfirmEmailInput = {
+  token: Scalars['String'];
+};
+
 export type CreateClassroomInput = {
   lessonId: Scalars['String'];
   notes?: InputMaybe<Scalars['String']>;
@@ -97,6 +101,7 @@ export type Lesson = {
 
 export type LessonContent = {
   __typename?: 'LessonContent';
+  createdAt: Scalars['DateTime'];
   id: Scalars['ID'];
   sentences: Array<LessonContentSentence>;
   title: Scalars['String'];
@@ -132,6 +137,7 @@ export type LessonContentSentencePartInput = {
 
 export type LessonImage = {
   __typename?: 'LessonImage';
+  createdAt: Scalars['DateTime'];
   id: Scalars['ID'];
   lesson?: Maybe<Lesson>;
   publicId?: Maybe<Scalars['String']>;
@@ -162,6 +168,7 @@ export enum LessonSentenceType {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  confirmEmail: AuthSuccessResponse;
   createClassroom: Classroom;
   createLesson: Lesson;
   createLessonContent: LessonContent;
@@ -171,6 +178,7 @@ export type Mutation = {
   deleteLessonContent: DeleteLessonContentResponse;
   deleteLessonImage: LessonImage;
   logout: AuthSuccessResponse;
+  resendConfirmationEmail: AuthSuccessResponse;
   resetPasswordLink: AuthSuccessResponse;
   setNewPassword: AuthSuccessResponse;
   signIn: AuthSuccessResponse;
@@ -180,6 +188,11 @@ export type Mutation = {
   updateLessonContent: LessonContent;
   updateLessonImage: LessonImage;
   uploadFile: FileUploadResponse;
+};
+
+
+export type MutationConfirmEmailArgs = {
+  input: ConfirmEmailInput;
 };
 
 
@@ -220,6 +233,11 @@ export type MutationDeleteLessonContentArgs = {
 
 export type MutationDeleteLessonImageArgs = {
   input: DeleteLessonImageInput;
+};
+
+
+export type MutationResendConfirmationEmailArgs = {
+  input: ResendConfirmationEmailInput;
 };
 
 
@@ -295,8 +313,8 @@ export type PaginatedLessonsResponse = {
   __typename?: 'PaginatedLessonsResponse';
   data: Array<Lesson>;
   hasMore: Scalars['Boolean'];
-  pages: Scalars['Float'];
-  totalCount: Scalars['Float'];
+  pages: Scalars['Int'];
+  totalCount: Scalars['Int'];
 };
 
 export type PaginatedUsers = {
@@ -368,6 +386,10 @@ export type QueryGetUsersArgs = {
   offset: Scalars['Int'];
   search?: InputMaybe<Scalars['String']>;
   sortOrder?: InputMaybe<SortOrder>;
+};
+
+export type ResendConfirmationEmailInput = {
+  email: Scalars['String'];
 };
 
 export enum Role {
@@ -533,6 +555,13 @@ export type CreateLessonImageMutationVariables = Exact<{
 
 export type CreateLessonImageMutation = { __typename?: 'Mutation', createLessonImage: { __typename?: 'LessonImage', id: string, publicId?: string | null, title: string, url: string } };
 
+export type DeleteLessonImageMutationVariables = Exact<{
+  input: DeleteLessonImageInput;
+}>;
+
+
+export type DeleteLessonImageMutation = { __typename?: 'Mutation', deleteLessonImage: { __typename?: 'LessonImage', id: string } };
+
 export type UpdateLessonImageMutationVariables = Exact<{
   input: UpdateLessonImageInput;
 }>;
@@ -639,6 +668,7 @@ export const DeleteLessonContentDocument = {"kind":"Document","definitions":[{"k
 export const UpdateLessonContentDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"updateLessonContent"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateLessonContentInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateLessonContent"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LessonContentFields"}}]}}]}},...LessonContentFieldsFragmentDoc.definitions]} as unknown as DocumentNode<UpdateLessonContentMutation, UpdateLessonContentMutationVariables>;
 export const UploadFileDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"uploadFile"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"file"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Upload"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"uploadFile"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"file"},"value":{"kind":"Variable","name":{"kind":"Name","value":"file"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"publicId"}}]}}]}}]} as unknown as DocumentNode<UploadFileMutation, UploadFileMutationVariables>;
 export const CreateLessonImageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"createLessonImage"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateLessonImageInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createLessonImage"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LessonImageFields"}}]}}]}},...LessonImageFieldsFragmentDoc.definitions]} as unknown as DocumentNode<CreateLessonImageMutation, CreateLessonImageMutationVariables>;
+export const DeleteLessonImageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"deleteLessonImage"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"DeleteLessonImageInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"deleteLessonImage"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<DeleteLessonImageMutation, DeleteLessonImageMutationVariables>;
 export const UpdateLessonImageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"updateLessonImage"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateLessonImageInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateLessonImage"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LessonImageFields"}}]}}]}},...LessonImageFieldsFragmentDoc.definitions]} as unknown as DocumentNode<UpdateLessonImageMutation, UpdateLessonImageMutationVariables>;
 export const CreateLessonDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"createLesson"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateLessonInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createLesson"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"pages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"lessonImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LessonImageFields"}}]}},{"kind":"Field","name":{"kind":"Name","value":"lessonContent"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LessonContentFields"}}]}}]}}]}}]}},...LessonImageFieldsFragmentDoc.definitions,...LessonContentFieldsFragmentDoc.definitions]} as unknown as DocumentNode<CreateLessonMutation, CreateLessonMutationVariables>;
 export const DeleteLessonDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"deleteLesson"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"deleteLesson"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<DeleteLessonMutation, DeleteLessonMutationVariables>;

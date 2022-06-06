@@ -37,9 +37,6 @@ const SignInForm = () => {
     Pick<Mutation, 'signIn'>,
     SignInMutationVariables
   >(SIGN_IN, {
-    onError: (err) => {
-      console.log('ERR', err.networkError?.message);
-    },
     refetchQueries: [GET_USER],
   });
 
@@ -72,6 +69,20 @@ const SignInForm = () => {
         </ButtonComponent>
         <ApolloErrorMessage error={error} />
         <LinkContainer>
+          {error?.message === 'UnconfirmedEmail' && (
+            <ParagraphBase $textType='normalText' $textWeight='regular'>
+              {t('pages.auth.haveNotReceivedEmail')}{' '}
+              <LinkBase
+                onClick={() => {
+                  console.log(123);
+                }}
+                to=''
+                $textType='normalText'
+                $textWeight='regular'>
+                {t('pages.auth.resend')}
+              </LinkBase>
+            </ParagraphBase>
+          )}
           <ParagraphBase $textType='normalText' $textWeight='regular'>
             {t('pages.auth.doNotHaveAccount')}{' '}
             <LinkBase

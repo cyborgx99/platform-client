@@ -10,5 +10,7 @@
   "USER_CONFLICT": "Неможливо зареєструвати користувача.",
   "NO_INTERNET": "Відсутнє підключення до інтернету.",
   "NETWORK_ERROR": "Помилка мережі.",
-  "INVALID_CREDENTIALS": "Невірні облікові дані."
+  "INVALID_CREDENTIALS": "Невірні облікові дані.",
+  "UnconfirmedEmail": "Будь ласта підвердіть свою пошту.",
+  "somethingWentWrong": "Щось пішло не так."
 }

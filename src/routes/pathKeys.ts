@@ -7,6 +7,9 @@ export const pathKeys = {
     FORGOT_PASSWORD: '/forgot-password',
     SET_NEW_PASSWORD: '/set-password',
   },
+  email: {
+    CONFIRM_EMAIL: '/confirm',
+  },
   user: {
     DASHBOARD: '/dashboard',
   },

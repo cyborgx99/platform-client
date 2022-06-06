@@ -7,7 +7,7 @@ export type ResultTitle = Record<ResultType, string>;
 export interface ResultWrapperProps {
   message: string;
   onContinue: () => void;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   type: ResultType;
   isShown: boolean;
 }

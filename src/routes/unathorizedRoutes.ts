@@ -7,6 +7,7 @@ const LoginPage = lazy(() => import('../pages/login'));
 const SignUpPage = lazy(() => import('../pages/signUp'));
 const ForgotPasswordPage = lazy(() => import('../pages/forgotPassword'));
 const SetNewPasswordPage = lazy(() => import('../pages/newPassword'));
+const ConfirmEmail = lazy(() => import('../pages/confirmEmail'));
 
 export const unathorizedRoutes: IRouteInterface[] = [
   {
@@ -24,5 +25,9 @@ export const unathorizedRoutes: IRouteInterface[] = [
   {
     path: pathKeys.password.SET_NEW_PASSWORD,
     Component: SetNewPasswordPage,
+  },
+  {
+    path: pathKeys.email.CONFIRM_EMAIL,
+    Component: ConfirmEmail,
   },
 ];

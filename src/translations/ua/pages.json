@@ -23,7 +23,10 @@
     "doNotHaveAccount": "Немає акаунта?",
     "forgotPassword": "Забули пароль?",
     "alreadyHaveAccount": "Вже є акаунт?",
-    "footer": "Усі права захищені. (Здається)"
+    "footer": "Усі права захищені. (Здається)",
+    "haveNotReceivedEmail": "Не отримали підтверджуючого листа?",
+    "resend": "Відправити ще раз.",
+    "confirmed": "Пошта була підтверджена."
   },
   "create": {
     "url": "Url",

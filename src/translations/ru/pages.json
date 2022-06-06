@@ -23,7 +23,10 @@
     "doNotHaveAccount": "Нет аккаунта?",
     "forgotPassword": "Забыли пароль?",
     "alreadyHaveAccount": "Уже есть аккаунт?",
-    "footer": "Все права защищены. (Кажется)"
+    "footer": "Все права защищены. (Кажется)",
+    "haveNotReceivedEmail": "Не получили подтверждающее письмо?",
+    "resend": "Отправить еще раз.",
+    "confirmed": "Почта была подверждена."
   },
   "create": {
     "url": "Url",
